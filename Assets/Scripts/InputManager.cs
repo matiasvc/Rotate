@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour {
 	{
 		if(Input.GetKeyDown(pause))
 		{
-			EventDispatcher.SendEvent("INPUT_PAUSE");
+			EventDispatcher.SendEvent(EventNames.INPUT_PAUSE);
 		}
 	}
 }

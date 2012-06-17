@@ -16,7 +16,7 @@ public class GameMenu : MonoBehaviour {
 	
 	protected void Awake()
 	{
-		EventDispatcher.AddHandler("INPUT_PAUSE", HandleEvent);
+		EventDispatcher.AddHandler(EventNames.INPUT_PAUSE, HandleEvent);
 	}
 	
 	protected void Start()
@@ -26,7 +26,7 @@ public class GameMenu : MonoBehaviour {
 	
 	private void HandleEvent(string eventName, object param)
 	{
-		if(eventName == "INPUT_PAUSE")
+		if(eventName == EventNames.INPUT_PAUSE)
 		{
 			Toggle();
 		}

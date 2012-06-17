@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 	
 	protected void Awake()
 	{
-		EventDispatcher.AddHandler("PLAYER_ENTER_TRIGGER", PlayerEnterTrigger);
+		EventDispatcher.AddHandler(EventNames.PLAYER_ENTER_TRIGGER, PlayerEnterTrigger);
 	}
 	
 	protected void Start()
@@ -122,6 +122,6 @@ public class PlayerController : MonoBehaviour {
 		playerTransform.rigidbody.velocity = Vector3.zero;
 		
 		
-		EventDispatcher.SendEvent("PLAYER_RESPAWN", respawnPoint);
+		EventDispatcher.SendEvent(EventNames.PLAYER_RESPAWN, respawnPoint);
 	}
 }
