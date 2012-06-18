@@ -5,6 +5,7 @@ ModelImporter:
     4300000: checkpoint_sprite
     4300002: checkpoint_body
     4300004: checkpoint_top
+    4300006: checkpoint_collider
   serializedVersion: 10
   materials:
     importMaterials: 0
@@ -23,7 +24,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -59,6 +60,19 @@ ModelImporter:
       data:
         first: 33
         second: a45a3200
+    checkpoint_collider:
+      data:
+        first: 1
+        second: a8860100
+      data:
+        first: 4
+        second: 881a0600
+      data:
+        first: 23
+        second: 66182300
+      data:
+        first: 33
+        second: a65a3200
     checkpoint_sprite:
       data:
         first: 1
