@@ -3,6 +3,19 @@ using System.Collections;
 
 public static class MeshEx {
 	
+	public static Mesh TransformMesh(Mesh mesh, Vector3 pos, Quaternion rot, Vector3 scale)
+	{
+		Vector3[] vertsArray = mesh.vertices;
+		Matrix4x4 matrix = Matrix4x4.TRS(pos, rot, scale);
+		
+		for (int i = 0; i < vertsArray.Length; i++)
+			vertsArray[i] = matrix.MultiplyPoint(vertsArray[i]);
+		
+		mesh.vertices = vertsArray;
+		
+		return mesh;
+	}
+	
 	public static Mesh CreateQuad()
 	{
 		Mesh mesh = new Mesh();
@@ -303,6 +316,8 @@ public static class MeshEx {
 	
 	public static Mesh CreateSphere(int subdivisonsAxis, int subdivisonsHeigth)
 	{
+		Debug.LogError("ERROR! Fucntion not yet implemented");
+		
 		Mesh mesh = new Mesh();
 		
 		return mesh;
