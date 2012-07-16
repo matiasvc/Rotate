@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameMenu : MonoBehaviour {
 	
-	private enum MenuState {HIDDEN, MAIN, MAIN_MENU_CHECK, RESTART_CHECK}
+	private enum MenuState {HIDDEN, MAIN, MAIN_MENU_CHECK, RESTART_CHECK, LEVEL_COMPLETE}
 	private MenuState state = MenuState.HIDDEN;
 	
 	private float buttonHeigth = 50f;
@@ -14,9 +14,16 @@ public class GameMenu : MonoBehaviour {
 	
 	private Vector2 screenCenter;
 	
-	protected void Awake()
+	protected void OnEnable()
 	{
 		EventDispatcher.AddHandler(EventNames.INPUT_PAUSE, HandleEvent);
+		EventDispatcher.AddHandler(EventNames.GAME_LEVELCOMPLETE, HandleEvent);
+	}
+	
+	protected void OnDisable()
+	{
+		EventDispatcher.RemoveHandler(EventNames.INPUT_PAUSE, HandleEvent);
+		EventDispatcher.RemoveHandler(EventNames.GAME_LEVELCOMPLETE, HandleEvent);
 	}
 	
 	protected void Start()
@@ -29,6 +36,10 @@ public class GameMenu : MonoBehaviour {
 		if(eventName == EventNames.INPUT_PAUSE)
 		{
 			Toggle();
+		}
+		else if (eventName == EventNames.GAME_LEVELCOMPLETE)
+		{
+			state = MenuState.LEVEL_COMPLETE;
 		}
 	}
 	
@@ -122,6 +133,21 @@ public class GameMenu : MonoBehaviour {
 			if(GUI.Button(new Rect(screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), "NO"))
 			{
 				state = MenuState.MAIN;
+			}
+			
+			break;
+		case MenuState.LEVEL_COMPLETE:
+			
+			GUI.Label(new Rect(screenCenter.x - titleWidth / 2f, screenCenter.y - 100f, titleWidth, titleHeigth), "Level complete.");
+			
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2, buttonWidth, buttonHeigth), "RESTART"))
+			{
+				state = MenuState.RESTART_CHECK;
+			}
+			
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y + buttonHeigth / 2, buttonWidth, buttonHeigth), "MAIN MENU"))
+			{
+				state = MenuState.MAIN_MENU_CHECK;
 			}
 			
 			break;

@@ -3,11 +3,13 @@ using System.Collections;
 
 public class FlamerController : LevelItem {
 	
-	public float fireLength = 3f;
+	public float fireLength;
 	
 	private ParticleEmitter flameParticles;
 	private BoxCollider itemCollider;
 	private BoxCollider flameCollider;
+	
+	// TODO Clean up all this properties shit
 	
 	public ParticleEmitter FlameParticles
 	{

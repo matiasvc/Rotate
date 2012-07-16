@@ -104,6 +104,11 @@ public class StartMenuManager : MonoBehaviour {
 				i++;
 			}
 			
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth + 30f, buttonWidth, buttonHeigth), "BACK"))
+			{
+				state = MenuState.MAIN;
+			}
+			
 		}
 		else if (state == MenuState.SELECTED_LEVEL)
 		{
