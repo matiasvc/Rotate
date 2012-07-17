@@ -5,18 +5,21 @@ public static class GizmoEx {
 	
 	private const int CURCLE_SUBDIVISIONS = 64;
 	
-	public static void DrawCross(Vector3 markerPosition, float markSize, Color color)
+	public static void DrawCross(Vector3 pos, float size, Color color)
     {
-        Vector3 upper 	= new Vector3(markerPosition.x,						markerPosition.y + (markSize * 0.5f),	markerPosition.z);
-        Vector3 lower 	= new Vector3(markerPosition.x,						markerPosition.y - (markSize * 0.5f),	markerPosition.z);
-        Vector3 left 	= new Vector3(markerPosition.x - (markSize * 0.5f),	markerPosition.y,						markerPosition.z);
-        Vector3 rigth 	= new Vector3(markerPosition.x + (markSize * 0.5f),	markerPosition.y,						markerPosition.z);
+        Vector3 upper 	= new Vector3(pos.x,					pos.y + (size * 0.5f),	pos.z);
+        Vector3 lower 	= new Vector3(pos.x,					pos.y - (size * 0.5f),	pos.z);
+        Vector3 left 	= new Vector3(pos.x - (size * 0.5f),	pos.y,					pos.z);
+        Vector3 rigth 	= new Vector3(pos.x + (size * 0.5f),	pos.y,					pos.z);
+		Vector3 front	= new Vector3(pos.x,					pos.y,					pos.z + (size * 0.5f));
+		Vector3 back	= new Vector3(pos.x,					pos.y,					pos.z - (size * 0.5f));
         
 		Color oldColor = Gizmos.color;
         Gizmos.color = color;
 		
         Gizmos.DrawLine(upper, lower);
         Gizmos.DrawLine(left, rigth);
+		Gizmos.DrawLine(front, back);
 		
 		Gizmos.color = oldColor;
     }
@@ -59,13 +62,11 @@ public static class GizmoEx {
 	
 	public static void DrawCircle(Vector3 position, Quaternion direction, float size, Color color)
 	{
-		Matrix4x4 matrix = Matrix4x4.TRS(position, direction, Vector3.one);
-		
 		Color oldColor = Gizmos.color;
 		Gizmos.color = color;
 		
+		Matrix4x4 matrix = Matrix4x4.TRS(position, direction, Vector3.one);
 		Vector3 lastPos = Vector3.zero;
-		
 		float slice = 2f * Mathf.PI / CURCLE_SUBDIVISIONS;
 		
 		for (int i = 0; i <= CURCLE_SUBDIVISIONS; i++)

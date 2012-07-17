@@ -37,18 +37,4 @@ public class ElectroController : LevelItem {
 		}
 	}
 	
-	void Awake ()
-	{
-		
-	}
-	
-	void Start ()
-	{
-		
-	}
-	
-	void Update ()
-	{
-		
-	}
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PistonController : MonoBehaviour {
+public class PistonController : LevelItem {
 	
 	private float pushForce = 20.0f;
 	public bool directional = false;
@@ -14,14 +14,14 @@ public class PistonController : MonoBehaviour {
 		get
 		{
 #if UNITY_EDITOR
-			Vector2 editorTempVector = RotateVector2(transform.right, directionAngle);
+			Vector2 editorTempVector = VectorEx.RotateVector2(transform.right, directionAngle);
 				
 			return new Vector3(editorTempVector.x, editorTempVector.y, 0f);
 #endif
 			
 			if(_directionVector == null)
 			{
-				Vector2 tempVector = RotateVector2(transform.right, directionAngle);
+				Vector2 tempVector = VectorEx.RotateVector2(transform.right, directionAngle);
 				_directionVector = new Vector3(tempVector.x, tempVector.y, 0f);
 				
 				return _directionVector;
@@ -60,17 +60,4 @@ public class PistonController : MonoBehaviour {
 		}
 	}
 	
-	
-	private Vector2 RotateVector2(Vector2 vector ,float angle)
-	{
-		angle = angle * Mathf.Deg2Rad;
-		
-		float cs = Mathf.Cos(angle);
-		float sn = Mathf.Sin(angle);
-		
-		float xt = (vector.x * cs - vector.y * sn);
-		float yt = (vector.x * sn + vector.y * cs);
-		
-		return new Vector2(xt,yt);
-	}
 }
