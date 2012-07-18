@@ -3,30 +3,26 @@ using System.Collections;
 
 public class HUDFPS : MonoBehaviour
 {
+	public enum Placement
+	{
+		TopLeft,
+		TopRight,
+		BottomLeft,
+		BottomRight
+	}
 	
-	// Attach this to a GUIText to make a frames/second indicator.
-	//
-	// It calculates frames/second over each updateInterval,
-	// so the display does not keep changing wildly.
-	//
-	// It is also fairly accurate at very low FPS counts (<10).
-	// We do this not by simply counting frames per interval, but
-	// by accumulating FPS for each frame. This way we end up with
-	// correct overall FPS even if the interval renders something like
-	// 5.5 frames.
+	public  float updateInterval = 0.5f;
+	public Placement placement = Placement.TopRight;
 	
-	public  float updateInterval = 0.5F;
+	private float accum   = 0;
+	private int   frames  = 0;
+	private float timeleft;
 	
-	private float accum   = 0; // FPS accumulated over the interval
-	private int   frames  = 0; // Frames drawn over the interval
-	private float timeleft; // Left time for current interval
+	private string fpsString = "";
+	private Color color;
 	
 	void Start()
 	{
-	    if( !guiText )
-	    {
-	        gameObject.AddComponent<GUIText>();
-	    }
 	    timeleft = updateInterval;  
 	}
 	 
@@ -35,26 +31,42 @@ public class HUDFPS : MonoBehaviour
 	    timeleft -= Time.deltaTime;
 	    accum += Time.timeScale/Time.deltaTime;
 	    ++frames;
-	   
-	    // Interval ended - update GUI text and start new interval
-	    if( timeleft <= 0.0 )
+		
+	    if (timeleft <= 0.0 )
 	    {
-	        // display two fractional digits (f2 format)
-	    float fps = accum/frames;
-	    string format = System.String.Format("{0:F2} FPS",fps);
-	    guiText.text = format;
-	
-	    if(fps < 30)
-	        guiText.material.color = Color.yellow;
-	    else
-	        if(fps < 10)
-	            guiText.material.color = Color.red;
-	        else
-	            guiText.material.color = Color.green;
-	    //  DebugConsole.Log(format,level);
+		    float fps = accum/frames;
+		    fpsString = System.String.Format("{0:F2} FPS",fps);
+		
+		    if (fps < 30)
+		        color = Color.yellow;
+		    else
+			{
+				if (fps < 15)
+					color = Color.red;
+				else
+					color = Color.green;				
+			}
+			
 	        timeleft = updateInterval;
-	        accum = 0.0F;
+	        accum = 0.0f;
 	        frames = 0;
 	    }
+	}
+	
+	void OnGUI ()
+	{
+		Color oldColor = GUI.contentColor;
+		GUI.contentColor = color;
+		
+		if (placement == Placement.TopRight)
+			GUI.Label (new Rect (Screen.width - 50, 5, 50, 20), fpsString);
+		else if (placement == Placement.TopLeft)
+			GUI.Label (new Rect (5, 5, 50, 20), fpsString);
+		else if (placement == Placement.BottomLeft)
+			GUI.Label (new Rect (5, Screen.height - 20, 50, 20), fpsString);
+		else if (placement == Placement.BottomLeft)
+			GUI.Label (new Rect (Screen.width - 50, Screen.height - 20, 50, 20), fpsString);
+		
+		GUI.contentColor = oldColor;
 	}
 }
