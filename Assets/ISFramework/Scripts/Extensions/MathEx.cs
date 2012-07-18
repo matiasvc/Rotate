@@ -74,6 +74,67 @@ public static class MathEx {
         return closest;
     }
 	
+	/// <summary>
+	/// Find the line of intersection between two planes.
+	/// </summary>
+	public static bool PlaneIntersection(out Vector3 linePoint, out Vector3 lineVec, Vector3 plane1Normal, Vector3 plane1Position, Vector3 plane2Normal, Vector3 plane2Position)
+	{
+	   
+	    linePoint = Vector3.zero;
+	    lineVec = Vector3.zero;
+	   
+	    lineVec = Vector3.Cross(plane1Normal, plane2Normal);
+	     
+	    Vector3 ldir = Vector3.Cross(plane2Normal, lineVec);       
+	   
+	    float denominator = Vector3.Dot(plane1Normal, ldir);
+	   
+	    //Prevent divide by zero and rounding errors by requiring about 5 degrees angle between the planes.
+	    if(Mathf.Abs(denominator) > 0.006f){
+	       
+	        Vector3 plane1ToPlane2 = plane1Position - plane2Position;
+	        float t = Vector3.Dot(plane1Normal, plane1ToPlane2) / denominator;
+	        linePoint = plane2Position + t * ldir;
+	       
+	        return true;
+	    }
+	    else
+	        return false;
+	}
+	
+	/// <summary>
+	/// Get the intersection between a line and a plane.
+	/// </summary>
+	public static bool LinePlaneIntersection(out Vector3 intersection, Vector3 linePoint, Vector3 lineVec, Vector3 planeNormal, Vector3 planePoint)
+	{
+	    float length;
+	    float dotNumerator;
+	    float dotDenominator;
+	    Vector3 vector;
+	    intersection = Vector3.zero;
+	   
+	    //calculate the distance between the linePoint and the line-plane intersection point
+	    dotNumerator = Vector3.Dot((planePoint - linePoint), planeNormal);
+	    dotDenominator = Vector3.Dot(lineVec, planeNormal);
+	   
+	    //line and plane are not parallel
+	    if(dotDenominator != 0.0f){
+	        length =  dotNumerator / dotDenominator;
+	       
+	        //create a vector from the linePoint to the intersection point
+	        vector = SetVectorLength(lineVec, length);
+	       
+	        //get the coordinates of the line-plane intersection point
+	        intersection = linePoint + vector; 
+	       
+	        return true;   
+	    }
+	   
+	    //output not valid
+	    else
+	        return false;	
+	}
+	
 	public static Vector3[] BuildBezier(Vector3[] controlPoints)
     {
         if (controlPoints.Length < 4)
