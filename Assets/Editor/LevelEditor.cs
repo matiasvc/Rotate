@@ -185,24 +185,25 @@ public class LevelEditor : EditorWindow {
 		
 		if( GUILayout.Button("Rotate UV", GUILayout.Width(70f)) )
 		{
-			Debug.LogError("Not yet implemented");
-			/*
-			foreach( GameObject selected in Selection.gameObjects )
+			Undo.RegisterUndo(Selection.gameObjects, "Rotate UVs");
+			
+			foreach( GameObject go in Selection.gameObjects )
 			{
-				MeshFilter meshFilter = selected.GetComponentInChildren<MeshFilter>();
+				MeshFilter meshFilter = go.GetComponentInChildren<MeshFilter>();
+				Mesh mesh = (Mesh)Instantiate(meshFilter.sharedMesh);
 				
-				Vector2[] oldUVPoints = meshFilter.mesh.uv;
-				Vector2[] newUVPoints = new Vector2[oldUVPoints.Length];
+				Vector2[] uvArray = mesh.uv;
 				
-				for (int i = 0; i < oldUVPoints.Length; i++)
+				for (int i = 0; i < uvArray.Length; i++)
 				{
-					Vector2 oldUVPoint = oldUVPoints[i];
-					newUVPoints[i] = new Vector2(oldUVPoint.y, oldUVPoint.x);
+					uvArray[i] = Quaternion.Euler(0f, 0f, 90f) * uvArray[i];
 				}
 				
-				meshFilter.mesh.uv = newUVPoints;
+				mesh.uv = uvArray;
+				meshFilter.sharedMesh = mesh;
+				
+				EditorUtility.SetDirty(meshFilter);
 			}
-			*/
 		}
 		
 		GUILayout.EndHorizontal();
@@ -231,7 +232,7 @@ public class LevelEditor : EditorWindow {
 				
 				if( GUILayout.Button(levelItem.icon, GUILayout.Height(buttonSize), GUILayout.Width(buttonSize)) )
 				{
-					string itemParentName = "_items";
+					string itemParentName = "items";
 					GameObject itemParent = GameObject.Find("/" + itemParentName);
 					
 					if(itemParent == null) // Instantiate new parent object if none was found in the scene.
@@ -286,7 +287,7 @@ public class LevelEditor : EditorWindow {
 				
 				if( GUILayout.Button(levelItem.icon, GUILayout.Height(buttonSize), GUILayout.Width(buttonSize)) )
 				{
-					string itemParentName = "_level";
+					string itemParentName = "level";
 					GameObject itemParent = GameObject.Find("/" + itemParentName);
 					
 					if(itemParent == null) // Instantiate new parent object if none was found in the scene.
