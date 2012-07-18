@@ -122,7 +122,8 @@ public static class MathEx {
 	        length =  dotNumerator / dotDenominator;
 	       
 	        //create a vector from the linePoint to the intersection point
-	        vector = SetVectorLength(lineVec, length);
+//	        vector = SetVectorLength(lineVec, length);
+			vector = lineVec.normalized * length;
 	       
 	        //get the coordinates of the line-plane intersection point
 	        intersection = linePoint + vector; 
