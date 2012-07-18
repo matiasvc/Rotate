@@ -1,0 +1,6 @@
+# Convert all files to Unix file endings
+*.cs	text eol=fl
+*.meta	text eol=fl
+
+# Keep asset files as binary
+*.asset binary
