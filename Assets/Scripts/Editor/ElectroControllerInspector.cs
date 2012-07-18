@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections;
 
 [CustomEditor(typeof(ElectroController))]
-public class ElectroControllerEditor : Editor {
+public class ElectroControllerInspector : Editor {
 	
 	ElectroController editorTarget = null;
 	

@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections;
 
 [CustomEditor(typeof(CheckpointController))]
-public class CheckpointControllerEditor : Editor {
+public class CheckpointControllerInspector : Editor {
 	
 	private CheckpointController editorTarget = null;
 	

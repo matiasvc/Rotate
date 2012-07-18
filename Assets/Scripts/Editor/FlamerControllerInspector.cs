@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections;
 
 [CustomEditor(typeof(FlamerController))]
-public class FlamerControllerEditor : Editor {
+public class FlamerControllerInspector : Editor {
 	
 	private FlamerController editorTarget = null;
 	private float fireLength;
