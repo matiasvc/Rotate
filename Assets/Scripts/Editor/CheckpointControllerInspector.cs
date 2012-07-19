@@ -21,8 +21,10 @@ public class CheckpointControllerInspector : Editor {
 	{
 		editorTarget.checkpointLength = (float)EditorGUILayout.IntSlider( Mathf.RoundToInt(editorTarget.checkpointLength), 1, 8 );
 		
-		if( GUI.changed )
+		if (GUI.changed)
 		{
+			Undo.RegisterUndo(new Object[]{editorTarget, editorTarget.gameObject, editorTarget.otherCheckpoint.gameObject}, "Changed checkpoint length");
+			
 			editorTarget.otherCheckpoint.localPosition = new Vector3(editorTarget.checkpointLength + 2f, 0f, 1f);
 			
 			BoxCollider collider = editorTarget.GetComponent<BoxCollider>();
