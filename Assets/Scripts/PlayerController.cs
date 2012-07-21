@@ -18,17 +18,22 @@ public class PlayerController : MonoBehaviour {
 	private bool rigthButton = false;
 	private bool leftButton = false;
 	
-	protected void Awake()
+	void OnEnable()
 	{
 		EventDispatcher.AddHandler(EventNames.PLAYER_ENTER_TRIGGER, PlayerEnterTrigger);
 	}
 	
-	protected void Start()
+	void OnDisbable()
+	{
+		EventDispatcher.RemoveHandler(EventNames.PLAYER_ENTER_TRIGGER, PlayerEnterTrigger);
+	}
+	
+	void Start()
 	{
 		LevelController.Instance.RespawnPoint = transform.position;
 	}
 	
-	protected void Update ()
+	void Update ()
 	{
 		float input = Input.GetAxis("Horizontal");
 		
