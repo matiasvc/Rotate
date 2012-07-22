@@ -16,25 +16,62 @@ public static class InputSwipe {
 	
 	public class Swipe
 	{
+		public Swipe()
+		{
+			positions = new List<Vector2>();
+		}
+		
 		public int id;
-		public Vector2 startPos;
-		public Vector2 endPos;
-		public Vector2 delta;
 		
-		public Vector2 updateDelta;
-		public Vector2 previusFramePos;
-		
-		public float length;
+		public List<Vector2> positions;
 		
 		public float startTime;
 		public float endTime;
 		
-		public float duration;
+		public Vector2 startPos
+		{
+			get { return this.positions[0]; }
+		}
 		
-		public float averageSpeed;
+		public Vector2 endPos
+		{
+			get { return this.positions[positions.Count-1]; }
+		}
+		
+		public Vector2 delta
+		{
+			get { return this.positions[positions.Count-1] - this.positions[0]; }
+		}
+		
+		public Vector2 frameDelta
+		{
+			get { return this.positions[positions.Count-1] - this.positions[positions.Count-2]; }
+		}
+		
+		public float length
+		{
+			get { return this.delta.magnitude; }
+		}
+		
+		public float duration
+		{
+			get { return this.endTime - this.startTime; }
+		}
+		
+		public float averageSpeed
+		{
+			get
+			{
+				float swipeLength = this.length;
+				
+				if(Mathf.Approximately(swipeLength, 0f))
+					return 0f;
+				else
+					return swipeLength / duration;
+			}
+		}
 		
 		public bool used;
-		
 		public bool accepted;
 	}
 	
@@ -128,12 +165,10 @@ public static class InputSwipe {
 			
 			if (swipe != null)
 			{
-				swipe.startPos = pos;
+				swipe.positions.Add(pos);
 				swipe.startTime = Time.time;
 				swipe.accepted = false;
 				
-				swipe.previusFramePos = pos;
-				swipe.updateDelta = new Vector2(0.0f, 0.0f);
 			}
 		}
 		else if (inputEvent == InputEvent.Hold)
@@ -142,13 +177,8 @@ public static class InputSwipe {
 			
 			if (swipe != null)
 			{
-				swipe.endPos = pos;
-				swipe.delta = swipe.endPos - swipe.startPos;
-				swipe.length = swipe.delta.magnitude;
+				swipe.positions.Add(pos);
 				swipe.endTime = Time.time;
-				
-				swipe.updateDelta = pos - swipe.previusFramePos;
-				swipe.previusFramePos = pos;
 				
 				if (swipe.length > MIN_SWIPE_LENGTH)
 				{
@@ -156,17 +186,6 @@ public static class InputSwipe {
 				}
 				
 				eatInput = swipe.accepted;
-				
-				swipe.duration = (swipe.endTime - swipe.startTime);
-				
-				if (swipe.duration > 0.001f)
-				{
-					swipe.averageSpeed = swipe.length/swipe.duration;
-				}
-				else
-				{
-					swipe.averageSpeed = 0.0f;
-				}
 				
 				if (swipe.accepted
 				    && swipe.used == false)
@@ -182,12 +201,8 @@ public static class InputSwipe {
 			
 			if (swipe != null)
 			{
-				swipe.endPos = pos;
-				swipe.delta = swipe.endPos - swipe.startPos;
-				swipe.length = swipe.delta.magnitude;
+				swipe.positions.Add(pos);
 				swipe.endTime = Time.time;
-				
-				swipe.updateDelta = pos - swipe.previusFramePos;
 				
 				if (swipe.length > MIN_SWIPE_LENGTH)
 				{
@@ -195,17 +210,6 @@ public static class InputSwipe {
 				}
 				
 				eatInput = false;
-				
-				swipe.duration = (swipe.endTime - swipe.startTime);
-				
-				if (swipe.duration > 0.001f)
-				{
-					swipe.averageSpeed = swipe.length/swipe.duration;
-				}
-				else
-				{
-					swipe.averageSpeed = 0.0f;
-				}
 				
 				if (swipe.accepted
 				    && swipe.used == false)
