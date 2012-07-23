@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 	
-	public enum GameState {PLAYING, NO_INPUT, PAUSED};
+	public enum GameState {PLAYING, PAUSED};
 	
 	private static GameState gameState;
 	
@@ -17,9 +17,6 @@ public class GameManager : MonoBehaviour {
 			{
 			case GameState.PLAYING:
 				Time.timeScale = 1f;
-				break;
-			case GameState.NO_INPUT:
-				
 				break;
 			case GameState.PAUSED:
 				Time.timeScale = 0f;

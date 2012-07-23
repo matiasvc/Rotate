@@ -48,7 +48,7 @@ public class GoalController : LevelItem {
 			{
 				player.rigidbody.isKinematic = true;
 				playerReachedGoal = true;
-				EventDispatcher.SendEvent(EventNames.GAME_LEVELCOMPLETE);
+				EventDispatcher.SendEvent(EventKey.GAME_LEVELCOMPLETE);
 			}
 		}
 	}

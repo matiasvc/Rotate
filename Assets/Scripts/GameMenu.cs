@@ -16,14 +16,14 @@ public class GameMenu : MonoBehaviour {
 	
 	protected void OnEnable()
 	{
-		EventDispatcher.AddHandler(EventNames.INPUT_PAUSE, HandleEvent);
-		EventDispatcher.AddHandler(EventNames.GAME_LEVELCOMPLETE, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.INPUT_PAUSE, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.GAME_LEVELCOMPLETE, HandleEvent);
 	}
 	
 	protected void OnDisable()
 	{
-		EventDispatcher.RemoveHandler(EventNames.INPUT_PAUSE, HandleEvent);
-		EventDispatcher.RemoveHandler(EventNames.GAME_LEVELCOMPLETE, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.INPUT_PAUSE, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.GAME_LEVELCOMPLETE, HandleEvent);
 	}
 	
 	protected void Start()
@@ -33,11 +33,11 @@ public class GameMenu : MonoBehaviour {
 	
 	private void HandleEvent(string eventName, object param)
 	{
-		if(eventName == EventNames.INPUT_PAUSE)
+		if(eventName == EventKey.INPUT_PAUSE)
 		{
 			Toggle();
 		}
-		else if (eventName == EventNames.GAME_LEVELCOMPLETE)
+		else if (eventName == EventKey.GAME_LEVELCOMPLETE)
 		{
 			state = MenuState.LEVEL_COMPLETE;
 		}
