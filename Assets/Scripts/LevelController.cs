@@ -31,19 +31,21 @@ public class LevelController : MonoBehaviour {
 	
 	void Start()
 	{
-		rotation = startRotation;
+		SetRotation(startRotation);
 	}
 	
 	void OnEnable()
 	{
 		EventDispatcher.AddHandler(EventKey.INPUT_ROTATE, HandleEvent);
 		EventDispatcher.AddHandler(EventKey.PLAYER_RESPAWN, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.GAME_SETROTATION, HandleEvent);
 	}
 	
 	void OnDisable()
 	{
 		EventDispatcher.RemoveHandler(EventKey.INPUT_ROTATE, HandleEvent);
 		EventDispatcher.RemoveHandler(EventKey.PLAYER_RESPAWN, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.GAME_SETROTATION, HandleEvent);
 	}
 	
 	private void HandleEvent(string eventName, object param)
@@ -56,22 +58,28 @@ public class LevelController : MonoBehaviour {
 		case EventKey.PLAYER_RESPAWN:
 			EventDispatcher.SendEvent(EventKey.GAME_SETROTATION, startRotation);
 			break;
+		case EventKey.GAME_SETROTATION:
+			SetRotation((float)param);
+			break;
 		default:
 			Debug.LogWarning("No handler for this event implemented.");
 			break;
 		}
 	}
 	
-	private void Rotate(float rotAmt)
+	private void Rotate(float rotationDelta)
 	{
-		rotation += (rotAmt * rotationSpeed) * Time.deltaTime;
+		float newRotation = rotation + rotationDelta * rotationSpeed * Time.deltaTime;
+		
+		EventDispatcher.SendEvent(EventKey.GAME_SETROTATION, newRotation);
+	}
+	
+	private void SetRotation(float degrees)
+	{
+		rotation = degrees;
 		
 		float rad = rotation * Mathf.Deg2Rad;
 		Physics.gravity = new Vector3 (Mathf.Sin (rad), 0f, Mathf.Cos (rad)) * -gravityForce;
-		
-		EventDispatcher.SendEvent (EventKey.GAME_SETROTATION, rotation);
 	}
-	
-	
 	
 }

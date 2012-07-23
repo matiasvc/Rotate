@@ -6,11 +6,13 @@ public class PlayerController : MonoBehaviour {
 	void OnEnable()
 	{
 		EventDispatcher.AddHandler(EventKey.GAME_SETROTATION, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.PLAYER_DESTROY, HandleEvent);
 	}
 	
 	void OnDisable()
 	{
 		EventDispatcher.RemoveHandler(EventKey.GAME_SETROTATION, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.PLAYER_DESTROY, HandleEvent);
 	}
 	
 	void Start()
@@ -24,6 +26,9 @@ public class PlayerController : MonoBehaviour {
 		{
 		case EventKey.GAME_SETROTATION:
 			gameObject.rigidbody.WakeUp();
+			break;
+		case EventKey.PLAYER_DESTROY:
+			Death();
 			break;
 		default:
 			Debug.LogWarning("No handler for this event implemented.");

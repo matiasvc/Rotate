@@ -4,6 +4,7 @@ using System.Collections;
 public static class EventKey {
 	
 	public const string PLAYER_RESPAWN = 		"PLAYER_RESPAWN";			// Called when the player should respawn
+	public const string PLAYER_DESTROY =		"PLAYER_DESTROY";			// Called when the player should be destroyed
 	
 	public const string GAME_SETROTATION =		"GAME_SETROTATION";			// Called when the rotation of the level has been changed
 	public const string GAME_LEVELCOMPLETE = 	"GAME_LEVELCOMPLETE";		// Called when the level has been completed
