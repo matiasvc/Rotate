@@ -65,14 +65,14 @@ public static class GizmoEx {
 		Color oldColor = Gizmos.color;
 		Gizmos.color = color;
 		
-		Matrix4x4 matrix = Matrix4x4.TRS(position, direction, Vector3.one);
+		Matrix4x4 matrix = Matrix4x4.TRS(position, direction, Vector3.one * size);
 		Vector3 lastPos = Vector3.zero;
 		float slice = 2f * Mathf.PI / CURCLE_SUBDIVISIONS;
 		
 		for (int i = 0; i <= CURCLE_SUBDIVISIONS; i++)
 		{
 			float angle = slice * i;
-			Vector3 newPos = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f) * size;
+			Vector3 newPos = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
 			newPos = matrix.MultiplyPoint(newPos);
 			
 			if (lastPos != Vector3.zero)
@@ -80,6 +80,55 @@ public static class GizmoEx {
 			
 			lastPos = newPos;
 		}
+		
+		Gizmos.color = oldColor;
+	}
+	
+	public static void DrawNormal(Vector3 position, Vector3 direction, float size, Color color)
+	{
+		DrawNormal(position, Quaternion.LookRotation(direction), size, color);
+	}
+	
+	public static void DrawNormal(Vector3 position, Quaternion direction, float size, Color color)
+	{
+		Color oldColor = Gizmos.color;
+		Gizmos.color = color;
+		
+		Matrix4x4 matrix = Matrix4x4.TRS(position, direction, Vector3.one * size);
+		
+		Vector3 baseLeft =			new Vector3(-0.5f,		0f,			0f);
+		Vector3 baseRigth = 		new Vector3(0.5f,		0f,			0f);
+		Vector3 baseTop = 			new Vector3(0f,			0.5f, 		0f);
+		Vector3 baseBottom = 		new Vector3(0f,			-0.5f,		0f);
+		
+		Vector3 arrowBottom =		new Vector3(0f,			0f,			0f);
+		Vector3 arrowTop =			new Vector3(0f,			0f,			1f);
+		
+		Vector3 arrowPointLeft =	new Vector3(-0.25f,		0f,			0.75f);
+		Vector3 arrowPointRigth =	new Vector3(0.25f,		0f,			0.75f);
+		Vector3 arrowPointTop =		new Vector3(0f,			0.25f,		0.75f);
+		Vector3 arrowPointBottom = 	new Vector3(0f,			-0.25f,		0.75f);
+		
+		baseLeft = matrix.MultiplyPoint(baseLeft);
+		baseRigth = matrix.MultiplyPoint(baseRigth);
+		baseTop = matrix.MultiplyPoint(baseTop);
+		baseBottom = matrix.MultiplyPoint(baseBottom);
+		
+		arrowBottom = matrix.MultiplyPoint(arrowBottom);
+		arrowTop = matrix.MultiplyPoint(arrowTop);
+		
+		arrowPointLeft = matrix.MultiplyPoint(arrowPointLeft);
+		arrowPointRigth = matrix.MultiplyPoint(arrowPointRigth);
+		arrowPointTop = matrix.MultiplyPoint(arrowPointTop);
+		arrowPointBottom = matrix.MultiplyPoint(arrowPointBottom);
+		
+		Gizmos.DrawLine(baseLeft, baseRigth);
+		Gizmos.DrawLine(baseTop, baseBottom);
+		Gizmos.DrawLine(arrowBottom, arrowTop);
+		Gizmos.DrawLine(arrowPointLeft, arrowTop);
+		Gizmos.DrawLine(arrowPointRigth, arrowTop);
+		Gizmos.DrawLine(arrowPointTop, arrowTop);
+		Gizmos.DrawLine(arrowPointBottom, arrowTop);
 		
 		Gizmos.color = oldColor;
 	}
