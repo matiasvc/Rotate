@@ -36,7 +36,7 @@ public static class VectorEx {
 	public static Vector2 AngleToVector(float angle)
 	{
 		angle = angle * Mathf.Deg2Rad;
-	    return new Vector2((float)Mathf.Cos(angle), (float)Mathf.Sin(angle));
+	    return new Vector2((float)Mathf.Sin(angle), (float)Mathf.Cos(angle));
 	}
 	
 	 public static float VectorToAngle(Vector2 vector)
