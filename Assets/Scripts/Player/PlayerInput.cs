@@ -21,7 +21,7 @@ public class PlayerInput : MonoBehaviour {
 			input += 1f;
 		
 		if(Mathf.Abs(input) > Mathf.Epsilon)
-			EventDispatcher.SendEvent(EventKey.INPUT_ROTATE, input);
+			EventDispatcher.SendEvent(EventKey.INPUT_ROTATE, input * 120f);
 	}
 	
 	void OnGUI()

@@ -5,24 +5,14 @@ public class LevelController : MonoBehaviour {
 	
 	public static LevelController Instance;
 	
-	private Vector2 respawnPoint;
-	public Vector3 RespawnPoint
-	{
-		get
-		{
-			return new Vector3(respawnPoint.x, 0f, respawnPoint.y);
-		}
-		set
-		{
-			respawnPoint = new Vector2(value.x, value.z);
-		}
-	}
+	public GameObject playerGroupPrefab;
 	
-	private float startRotation = 0f;
-	
-	private float rotation;
-	private float rotationSpeed = 120f;
+	private float rotation = 0f;
 	private float gravityForce = 9.8f;
+	private Vector3 spawnPoint;
+	private float spawnRotation;
+	
+	private GameObject playerGroup;
 	
 	void Awake()
 	{
@@ -31,21 +21,24 @@ public class LevelController : MonoBehaviour {
 	
 	void Start()
 	{
-		SetRotation(startRotation);
+		playerGroup = GameObject.Instantiate(playerGroupPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		SpawnPlayer();
 	}
 	
 	void OnEnable()
 	{
 		EventDispatcher.AddHandler(EventKey.INPUT_ROTATE, HandleEvent);
-		EventDispatcher.AddHandler(EventKey.PLAYER_RESPAWN, HandleEvent);
 		EventDispatcher.AddHandler(EventKey.GAME_SETROTATION, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.PLAYER_SETCHECKPOINT, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.PLAYER_SPAWN, HandleEvent);
 	}
 	
 	void OnDisable()
 	{
 		EventDispatcher.RemoveHandler(EventKey.INPUT_ROTATE, HandleEvent);
-		EventDispatcher.RemoveHandler(EventKey.PLAYER_RESPAWN, HandleEvent);
 		EventDispatcher.RemoveHandler(EventKey.GAME_SETROTATION, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.PLAYER_SETCHECKPOINT, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.PLAYER_SPAWN, HandleEvent);
 	}
 	
 	private void HandleEvent(string eventName, object param)
@@ -55,11 +48,15 @@ public class LevelController : MonoBehaviour {
 		case EventKey.INPUT_ROTATE:
 			Rotate((float)param);
 			break;
-		case EventKey.PLAYER_RESPAWN:
-			EventDispatcher.SendEvent(EventKey.GAME_SETROTATION, startRotation);
-			break;
 		case EventKey.GAME_SETROTATION:
 			SetRotation((float)param);
+			break;
+		case EventKey.PLAYER_SETCHECKPOINT:
+			Vector4 cpParam = (Vector4)param;
+			SetCheckpoint(new Vector3(cpParam.x, cpParam.y, cpParam.z), cpParam.w);
+			break;
+		case EventKey.PLAYER_SPAWN:
+			SpawnPlayer();
 			break;
 		default:
 			Debug.LogWarning("No handler for this event implemented.");
@@ -67,9 +64,16 @@ public class LevelController : MonoBehaviour {
 		}
 	}
 	
+	private void SpawnPlayer()
+	{
+		EventDispatcher.SendEvent(EventKey.PLAYER_MOVE, spawnPoint);
+		EventDispatcher.SendEvent(EventKey.GAME_SETROTATION, spawnRotation);
+		EventDispatcher.SendEvent(EventKey.PLAYER_TOGGLEACTIVE, true);
+	}
+	
 	private void Rotate(float rotationDelta)
 	{
-		float newRotation = rotation + rotationDelta * rotationSpeed * Time.deltaTime;
+		float newRotation = rotation + rotationDelta * Time.deltaTime;
 		
 		EventDispatcher.SendEvent(EventKey.GAME_SETROTATION, newRotation);
 	}
@@ -80,6 +84,12 @@ public class LevelController : MonoBehaviour {
 		
 		float rad = rotation * Mathf.Deg2Rad;
 		Physics.gravity = new Vector3 (Mathf.Sin (rad), 0f, Mathf.Cos (rad)) * -gravityForce;
+	}
+	
+	private void SetCheckpoint(Vector3 pos, float rot)
+	{
+		spawnPoint = pos;
+		spawnRotation = rot;
 	}
 	
 }

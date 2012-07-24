@@ -3,13 +3,17 @@ using System.Collections;
 
 public class SpawnController : MonoBehaviour {
 	
-	public GameObject playerPrefab;
+	public float spawnRotation = 0f;
 	
-	
-	protected void Start()
+	public void Awake()
 	{
-		GameObject playerGo;
-		
-		playerGo = GameObject.Instantiate(playerPrefab, transform.position, Quaternion.identity) as GameObject;
+		Vector3 pos = transform.position;
+		EventDispatcher.SendEvent(EventKey.PLAYER_SETCHECKPOINT, new Vector4(pos.x, pos.y, pos.z, spawnRotation));
+	}
+	
+	void OnDrawGizmosSelected()
+	{
+		Vector2 rotVec = VectorEx.AngleToVector(spawnRotation);
+		GizmoEx.DrawNormal(transform.position, new Vector3(rotVec.x, 0f, rotVec.y), 2f, Color.yellow);
 	}
 }
