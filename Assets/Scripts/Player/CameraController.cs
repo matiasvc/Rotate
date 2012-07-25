@@ -4,13 +4,22 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 	
 	public Transform player;
+	public Transform camTilt;
+	public Transform camRot;
 	
-	private float cameraFollowRate = 4f;
-	//private float cameraRotateAmt = 10f;
+	private float cameraFollowRate = 3f;
+	private float cameraTiltRate = 2f;
+	
+	private Vector3 playerVector = Vector3.zero;
 	
 	void LateUpdate()
 	{
-		transform.position = Vector3.Lerp(transform.position, player.position, cameraFollowRate * Time.deltaTime);
+		playerVector = player.position - camTilt.position;
+		
+		transform.position = Vector3.Lerp(transform.position, player.position, cameraFollowRate * Time.deltaTime);;
+		
+		Quaternion goalRot = Quaternion.FromToRotation(Vector3.down, playerVector);
+		camTilt.rotation = Quaternion.Lerp(camTilt.rotation, goalRot, cameraTiltRate * Time.deltaTime);
 	}
 	
 	void OnEnable()
@@ -39,7 +48,7 @@ public class CameraController : MonoBehaviour {
 	private void SetRotation(float rotation)
 	{
 		Vector3 oldRot = transform.localEulerAngles;
-		transform.localEulerAngles = new Vector3(oldRot.x, rotation, oldRot.z);
+		camRot.localEulerAngles = new Vector3(oldRot.x, rotation, oldRot.z);
 	}
 	
 }
