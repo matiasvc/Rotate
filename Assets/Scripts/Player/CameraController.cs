@@ -7,8 +7,8 @@ public class CameraController : MonoBehaviour {
 	public Transform camTilt;
 	public Transform camRot;
 	
-	private float cameraFollowRate = 3f;
-	private float cameraTiltRate = 2f;
+	public float cameraFollowRate = 3f;
+	public float cameraTiltRate = 2f;
 	
 	private Vector3 playerVector = Vector3.zero;
 	
