@@ -4,13 +4,13 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 	
 	private Rigidbody playerRigidbody;
-	private MeshRenderer meshRenderer;
+	private MeshRenderer[] meshRenderers;
 	private Light playerLigth;
 	
 	void Awake()
 	{
 		playerRigidbody = gameObject.GetComponent<Rigidbody>();
-		meshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();
+		meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>();
 		playerLigth = gameObject.GetComponentInChildren<Light>();
 	}
 	
@@ -58,7 +58,10 @@ public class PlayerController : MonoBehaviour {
 			playerRigidbody.velocity = Vector3.zero;
 		
 		playerRigidbody.isKinematic = !toggle;
-		meshRenderer.enabled = toggle;
+		
+		foreach (MeshRenderer meshRenderer in meshRenderers)
+			meshRenderer.enabled = toggle;
+		
 		playerLigth.enabled = toggle;
 	}
 	
