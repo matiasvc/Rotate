@@ -5628,7 +5628,7 @@ Mesh:
       m_BitSize: 20
     m_UV:
       m_NumItems: 8
-      m_Range: 1.00101626
+      m_Range: 1.00098586
       m_Start: -.000576557999
       m_Data: 0400fcfffbff07000000000080ff7fffff
       m_BitSize: 17
@@ -7354,7 +7354,7 @@ Mesh:
       m_BitSize: 20
     m_UV:
       m_NumItems: 72
-      m_Range: 1.00103188
+      m_Range: 1.00100148
       m_Start: -.000584067951
       m_Data: 0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff
       m_BitSize: 17
