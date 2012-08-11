@@ -11,12 +11,33 @@ public class GoalController : LevelItem {
 	private float atractionForce = 30f;
 	private float goalRadius = 0.3f;
 	
+	private ParticleSystem particles;
+	private Animation anim;
+	
+	private const string animName = "open";
+	
+	void Awake()
+	{
+		particles = gameObject.GetComponentInChildren<ParticleSystem>();
+		anim = gameObject.GetComponentInChildren<Animation>();
+	}
+	
+	void Start()
+	{
+		particles.Stop();
+	}
+	
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Player")
 		{
 			playerInTrigger = true;
 			player = other.gameObject;
+			particles.Play();
+			
+			anim[animName].speed = 1f;
+			anim[animName].normalizedTime = 0f;
+			anim.Play();
 		}
 	}
 	
@@ -26,6 +47,11 @@ public class GoalController : LevelItem {
 		{
 			playerInTrigger = false;
 			player = null;
+			particles.Stop();
+			
+			anim[animName].speed = -1f;
+			anim[animName].normalizedTime = 1f;
+			anim.Play();
 		}
 	}
 	
