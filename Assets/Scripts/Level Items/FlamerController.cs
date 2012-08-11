@@ -7,7 +7,7 @@ public class FlamerController : LevelItem {
 	private float fireLength;
 	
 	private BoxCollider flameCollider = null;
-	private ParticleEmitter flameParticleEmitter = null;
+	private ParticleSystem flameParticles = null;
 	
 	public float FireLength
 	{
@@ -25,15 +25,27 @@ public class FlamerController : LevelItem {
 		}
 	}
 	
-	public ParticleEmitter FlameParticleEmitter
+	public ParticleSystem FlameParticleEmitter
 	{
 		get
 		{
-			if (flameParticleEmitter == null)
-				flameParticleEmitter = gameObject.GetComponentInChildren<ParticleEmitter>();
+			if (flameParticles == null)
+				flameParticles = gameObject.GetComponentInChildren<ParticleSystem>();
 			
-			return flameParticleEmitter;
+			return flameParticles;
 		}
+	}
+	
+	void Awake()
+	{
+		flameParticles = gameObject.GetComponentInChildren<ParticleSystem>();
+		Debug.Log(flameParticles);
+	}
+	
+	void Start()
+	{
+		if (itemEnabled)
+			FlameParticleEmitter.Play();
 	}
 	
 	public void SetFlameLength(float length)
@@ -46,10 +58,13 @@ public class FlamerController : LevelItem {
 		Vector3 newColliderPos = new Vector3((fireLength * 0.5f ) + 1f , oldColliderPos.y, oldColliderPos.z);
 		Vector3 newColliderSize = new Vector3(fireLength, oldColliderSize.y, oldColliderSize.z);
 		
-		float particleSpeed = FlameParticleEmitter.localVelocity.x;
+//		float particleSpeed = FlameParticleEmitter.localVelocity.x;
+		float particleSpeed = FlameParticleEmitter.startSpeed;
 		
-		FlameParticleEmitter.maxEnergy = (fireLength + 0.5f) / particleSpeed;
-		FlameParticleEmitter.minEnergy = (fireLength - 0.5f) / particleSpeed;
+//		FlameParticleEmitter.maxEnergy = (fireLength + 0.5f) / particleSpeed;
+//		FlameParticleEmitter.minEnergy = (fireLength - 0.5f) / particleSpeed;
+		
+		FlameParticleEmitter.startLifetime = fireLength / particleSpeed;
 		
 		FlameCollider.center = newColliderPos;
 		FlameCollider.size = newColliderSize;
