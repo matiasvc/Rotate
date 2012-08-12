@@ -6382,6 +6382,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 956dc17bebdf2a14797bd6dd91dfb9c1, type: 2}
+      propertyPath: ShapeModule.type
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 956dc17bebdf2a14797bd6dd91dfb9c1, type: 2}
   m_RootGameObject: {fileID: 74006954}
@@ -6593,7 +6597,7 @@ Mesh:
       m_NumItems: 8
       m_Range: 1.00086439
       m_Start: -.000576557999
-      m_Data: 0400feffffff070000000000c0ffffffff
+      m_Data: 0300feffffff070000000000c0ffffffff
       m_BitSize: 17
     m_BindPoses:
       m_NumItems: 0
@@ -10541,9 +10545,9 @@ Mesh:
       m_BitSize: 20
     m_UV:
       m_NumItems: 72
-      m_Range: 1.00088
+      m_Range: 1.00086474
       m_Start: -.000584067951
-      m_Data: 0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff0000fcfffbff07000000000080ff7fffff
+      m_Data: 0000feffffff070000000000c0ffffffff0000feffffff070000000000c0ffffffff0000feffffff070000000000c0ffffffff0000feffffff070000000000c0ffffffff0000feffffff070000000000c0ffffffff0000feffffff070000000000c0ffffffff0000feffffff070000000000c0ffffffff0000feffffff070000000000c0ffffffff0000feffffff070000000000c0ffffffff
       m_BitSize: 17
     m_BindPoses:
       m_NumItems: 0
@@ -10773,7 +10777,6 @@ GameObject:
   - 4: {fileID: 1570621390}
   - 114: {fileID: 1570621391}
   - 114: {fileID: 1570621392}
-  - 114: {fileID: 1570621393}
   m_Layer: 0
   m_Name: _LevelManager
   m_TagString: Untagged
@@ -10815,17 +10818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9b8110f61555b42a8fb0584df06736, type: 1}
   m_Name: 
   playerGroupPrefab: {fileID: 100010, guid: 9862a38ac72d2da4dbc7c708a92d4619, type: 2}
---- !u!114 &1570621393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400004, guid: 46829da4b11b6bb4594398f2f3577f9a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1246546201}
-  m_GameObject: {fileID: 1570621389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e070e359f1a84fc69623e53b33c271e, type: 1}
-  m_Name: 
+  HUDGroupPrefab: {fileID: 100006, guid: 81e92edf7eec81547b68dd3a483ef727, type: 2}
 --- !u!1 &1583974646
 GameObject:
   m_ObjectHideFlags: 0
@@ -11539,8 +11532,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 910391964}
-  - {fileID: 92}
   - {fileID: 1274118370}
+  - {fileID: 92}
   - {fileID: 74006955}
   - {fileID: 347341201}
   m_Father: {fileID: 0}

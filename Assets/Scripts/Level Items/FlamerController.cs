@@ -58,11 +58,7 @@ public class FlamerController : LevelItem {
 		Vector3 newColliderPos = new Vector3((fireLength * 0.5f ) + 1f , oldColliderPos.y, oldColliderPos.z);
 		Vector3 newColliderSize = new Vector3(fireLength, oldColliderSize.y, oldColliderSize.z);
 		
-//		float particleSpeed = FlameParticleEmitter.localVelocity.x;
 		float particleSpeed = FlameParticleEmitter.startSpeed;
-		
-//		FlameParticleEmitter.maxEnergy = (fireLength + 0.5f) / particleSpeed;
-//		FlameParticleEmitter.minEnergy = (fireLength - 0.5f) / particleSpeed;
 		
 		FlameParticleEmitter.startLifetime = fireLength / particleSpeed;
 		

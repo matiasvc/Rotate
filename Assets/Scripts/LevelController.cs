@@ -6,6 +6,7 @@ public class LevelController : MonoBehaviour {
 	public static LevelController Instance;
 	
 	public GameObject playerGroupPrefab;
+	public GameObject HUDGroupPrefab;
 	
 	private float rotation = 0f;
 	private float gravityForce = 9.8f;
@@ -13,6 +14,7 @@ public class LevelController : MonoBehaviour {
 	private float spawnRotation;
 	
 	private GameObject playerGroup;
+	private GameObject HUDGroup;
 	
 	void Awake()
 	{
@@ -22,6 +24,7 @@ public class LevelController : MonoBehaviour {
 	void Start()
 	{
 		playerGroup = GameObject.Instantiate(playerGroupPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		HUDGroup = GameObject.Instantiate(HUDGroupPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 		SpawnPlayer();
 	}
 	
