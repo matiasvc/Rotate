@@ -9,7 +9,7 @@ public class GoalController : LevelItem {
 	
 	private float atractionRadius = 3f;
 	private float atractionForce = 30f;
-	private float goalRadius = 0.3f;
+	private float goalRadius = 0.6f;
 	
 	private ParticleSystem particles;
 	private Animation anim;
@@ -74,9 +74,57 @@ public class GoalController : LevelItem {
 			{
 				player.rigidbody.isKinematic = true;
 				playerReachedGoal = true;
-				EventDispatcher.SendEvent(EventKey.GAME_LEVELCOMPLETE);
+				StartCoroutine(PlayerExitAnimation(player.rigidbody.velocity.magnitude, Vector3.Distance(player.transform.position, transform.position)));
 			}
 		}
 	}
+	
+	private IEnumerator PlayerExitAnimation(float velocity, float distance)
+	{
+		
+		float t = 0;
+		float length = (distance / velocity) * 2.0f;
+		
+		Debug.Log(velocity + " - " + distance + " - " + length);
+		
+		Vector2 startPos = new Vector2(player.transform.position.x, player.transform.position.z);
+		Vector2 goalPos = new Vector2(transform.position.x, transform.position.z);
+		
+		while (t <= length)
+		{
+			float xyLerp = Easing.easing(Easing.EasingType.linear, 0f, 1f, Mathf.InverseLerp(0f, length, t));
+			Vector2 xyPos = Vector2.Lerp(startPos, goalPos, xyLerp);
+			
+			float zLerp = Easing.easing(Easing.EasingType.easeOutCirc, 0f, 1f, Mathf.InverseLerp(0f, length, t));
+			float zPos = Mathf.Lerp(0f, -1.5f, zLerp);
+			
+			player.transform.position = new Vector3(xyPos.x, zPos, xyPos.y);
+			
+			yield return null;
+			t += Time.deltaTime;
+		}
+		
+		particles.Stop();
+		
+		anim[animName].speed = -1f;
+		anim[animName].normalizedTime = 1f;
+		anim.Play();
+		
+		while(anim.isPlaying)
+			yield return null;
+		
+		EventDispatcher.SendEvent(EventKey.GAME_LEVELCOMPLETE);
+	}
+	
+	void OnDrawGizmosSelected()
+	{
+		Color oldColor = Gizmos.color;
+		Gizmos.color = Color.green;
+		
+		Gizmos.DrawWireSphere(transform.position, goalRadius);
+		
+		Gizmos.color = oldColor;
+	}
+	
 	
 }
