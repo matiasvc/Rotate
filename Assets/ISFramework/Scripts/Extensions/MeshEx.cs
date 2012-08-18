@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public static class MeshEx {
+public static class MeshEx
+{
 	
 	public static Mesh TransformMesh(Mesh mesh, Vector3 pos, Quaternion rot, Vector3 scale)
 	{

@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public static class GizmoEx {
+public static class GizmoEx
+{
 	
 	private const int CURCLE_SUBDIVISIONS = 64;
 	
