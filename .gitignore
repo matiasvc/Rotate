@@ -1,13 +1,15 @@
+# Unity Local Folders
 Temp/
 obj/
+Library/
 
-Library/*
-
-*.pidb
-*.csproj
+# Unity Files
 *.unityproj
 *.userprefs
 
+# Monodevelop & Visual Studio Files
+*.pidb
+*.csproj
 *.suo
 *.sln
 *.svd
