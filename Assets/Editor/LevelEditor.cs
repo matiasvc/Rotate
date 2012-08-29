@@ -6,9 +6,33 @@ using System.IO;
 
 public class LevelEditor : EditorWindow {
 	
-	private class LevelItem : Object {
+	public class LevelItem : Object {
 		public string itemName;
-		public Texture2D icon;
+		
+		private Texture2D _icon = null;
+		public Texture2D icon
+		{
+			get
+			{
+				int i = 0;
+				
+				while(this._icon == null)
+				{
+					if(i > 25)
+						break;
+					
+					_icon = EditorUtility.GetAssetPreview(this.prefab);
+					i++;
+				}
+				
+				if (this._icon == null)
+					_icon = (Texture2D)AssetDatabase.LoadAssetAtPath(@"Assets/Editor/Icons/missingIcon.png", typeof(Texture2D));
+				
+				return _icon;
+			}
+		}
+		
+		
 		public GameObject prefab;
 	}
 	
@@ -40,15 +64,6 @@ public class LevelEditor : EditorWindow {
 			newItemObject.prefab = (GameObject)AssetDatabase.LoadAssetAtPath(objectPath, typeof(GameObject) );
 			newItemObject.itemName = newItemObject.prefab.name;
 			
-			string iconPath = @"Assets/Editor/Icons/" + newItemObject.itemName + ".png";
-			newItemObject.icon = (Texture2D)AssetDatabase.LoadAssetAtPath(iconPath, typeof(Texture2D) );
-			
-			if(newItemObject.icon == null)
-			{
-				Debug.LogWarning("Level Editor Warning: Could not find a icon file for: \"" + newItemObject.itemName + "\" Path: " + iconPath);
-				newItemObject.icon = (Texture2D)AssetDatabase.LoadAssetAtPath(@"Assets/Editor/Icons/placeholder.png", typeof(Texture2D) );
-			}
-			
 			itemPrefabs.Add(newItemObject);
 		}
 		
@@ -61,23 +76,23 @@ public class LevelEditor : EditorWindow {
 			
 			newLevelObject.prefab = (GameObject)AssetDatabase.LoadAssetAtPath(objectPath, typeof(GameObject) );
 			newLevelObject.itemName = newLevelObject.prefab.name;
-			
-			string iconPath = @"Assets/Editor/Icons/" + newLevelObject.itemName + ".png";
-			newLevelObject.icon = (Texture2D)AssetDatabase.LoadAssetAtPath(iconPath, typeof(Texture2D) );
-			
-			if(newLevelObject.icon == null)
-			{
-				Debug.LogWarning("Level Editor Warning: Could not find a icon file for: \"" + newLevelObject.itemName + "\" Path: " + iconPath);
-				newLevelObject.icon = (Texture2D)AssetDatabase.LoadAssetAtPath(@"Assets/Editor/Icons/placeholder.png", typeof(Texture2D) );
-			}
+
 			
 			levelPrefabs.Add(newLevelObject);
 		}
 	}
 	
+	
+	
 	void OnGUI ()
 	{
-		
+		DrawToolButtons();
+		DrawItemButtons();
+		DrawLevelButtons();
+	}
+	
+	private void DrawToolButtons()
+	{
 		// Move Buttons
 		float moveBtnSize = 50f;
 		GUILayout.BeginHorizontal();
@@ -212,122 +227,120 @@ public class LevelEditor : EditorWindow {
 		{
 			Refresh();
 		}
-		
+	}
+	
+	private void DrawItemButtons()
+	{
 		GUILayout.Space(20f);
+		GUILayout.Label("Items");
+		GUILayout.BeginHorizontal();
 		
+		float buttonSize = 100f;
+		int btni = 0;
+		int btnPerRow = Mathf.FloorToInt(window.position.width / buttonSize);
+		
+		for ( int i = 0; i < itemPrefabs.Count; i++ )
 		{
-			// Item Prefab buttons
-			GUILayout.Label("Items");
-			GUILayout.BeginHorizontal();
+			LevelItem levelItem = itemPrefabs[i];
 			
-			float buttonSize = 60f;
-			int btni = 0;
-			int btnPerRow = Mathf.FloorToInt(window.position.width / buttonSize);
+			GUILayout.BeginVertical();
 			
-			for ( int i = 0; i < itemPrefabs.Count; i++ )
+			if( GUILayout.Button(levelItem.icon, GUILayout.Height(buttonSize), GUILayout.Width(buttonSize)) )
 			{
-				LevelItem levelItem = itemPrefabs[i];
+				string itemParentName = "items";
+				GameObject itemParent = GameObject.Find("/" + itemParentName);
 				
-				GUILayout.BeginVertical();
-				
-				if( GUILayout.Button(levelItem.icon, GUILayout.Height(buttonSize), GUILayout.Width(buttonSize)) )
+				if(itemParent == null) // Instantiate new parent object if none was found in the scene.
 				{
-					string itemParentName = "items";
-					GameObject itemParent = GameObject.Find("/" + itemParentName);
-					
-					if(itemParent == null) // Instantiate new parent object if none was found in the scene.
-					{
-						itemParent = new GameObject(itemParentName);
-					}
-					
-					GameObject go = (GameObject)EditorUtility.InstantiatePrefab(levelItem.prefab);
-					go.transform.parent = itemParent.transform;
-					
-					Vector3 itemPos = Vector3.zero;
-					
-					if(Selection.gameObjects.Length > 0)
-					{
-						itemPos = Selection.gameObjects[0].transform.position;
-					}
-					
-					go.transform.position = itemPos;
-					
-					Selection.objects = new Object[]{go}; // Select newly created object
+					itemParent = new GameObject(itemParentName);
 				}
-				GUILayout.Label(levelItem.itemName, GUILayout.Width(buttonSize));
 				
-				GUILayout.EndVertical();
-				btni++;
+				GameObject go = (GameObject)EditorUtility.InstantiatePrefab(levelItem.prefab);
+				go.transform.parent = itemParent.transform;
 				
-				if(btni >= btnPerRow)
+				Vector3 itemPos = Vector3.zero;
+				
+				if(Selection.gameObjects.Length > 0)
 				{
-					GUILayout.EndHorizontal();
-					GUILayout.BeginHorizontal();
-					btni = 0;
+					itemPos = Selection.gameObjects[0].transform.position;
 				}
+				
+				go.transform.position = itemPos;
+				
+				Selection.objects = new Object[]{go}; // Select newly created object
 			}
-			GUILayout.FlexibleSpace();
-			GUILayout.EndHorizontal();
+			GUILayout.Label(levelItem.itemName, GUILayout.Width(buttonSize));
+			
+			GUILayout.EndVertical();
+			btni++;
+			
+			if(btni >= btnPerRow)
+			{
+				GUILayout.EndHorizontal();
+				GUILayout.BeginHorizontal();
+				btni = 0;
+			}
 		}
+		GUILayout.FlexibleSpace();
+		GUILayout.EndHorizontal();
+	}
+	
+	private void DrawLevelButtons()
+	{
+		// Level prefab buttons
+		GUILayout.Label("Level");
+		GUILayout.BeginHorizontal();
 		
+		float buttonSize = 100f;
+		int btni = 0;
+		int btnPerRow = Mathf.FloorToInt(window.position.width / (buttonSize + 3f));
+		
+		for ( int i = 0; i < levelPrefabs.Count; i++ )
 		{
-			// Level prefab buttons
-			GUILayout.Label("Level");
-			GUILayout.BeginHorizontal();
+			LevelItem levelItem = levelPrefabs[i];
 			
-			float buttonSize = 65f;
-			int btni = 0;
-			int btnPerRow = Mathf.FloorToInt(window.position.width / (buttonSize + 3f));
+			GUILayout.BeginVertical();
 			
-			for ( int i = 0; i < levelPrefabs.Count; i++ )
+			if( GUILayout.Button(levelItem.icon, GUILayout.Height(buttonSize), GUILayout.Width(buttonSize)) )
 			{
-				LevelItem levelItem = levelPrefabs[i];
+				string itemParentName = "level";
+				GameObject itemParent = GameObject.Find("/" + itemParentName);
 				
-				GUILayout.BeginVertical();
-				
-				if( GUILayout.Button(levelItem.icon, GUILayout.Height(buttonSize), GUILayout.Width(buttonSize)) )
+				if(itemParent == null) // Instantiate new parent object if none was found in the scene.
 				{
-					string itemParentName = "level";
-					GameObject itemParent = GameObject.Find("/" + itemParentName);
-					
-					if(itemParent == null) // Instantiate new parent object if none was found in the scene.
-					{
-						itemParent = new GameObject(itemParentName);
-					}
-					
-					GameObject go = (GameObject)EditorUtility.InstantiatePrefab(levelItem.prefab);
-					go.transform.parent = itemParent.transform;
-					
-					Vector3 itemPos = Vector3.zero;
-					
-					if(Selection.gameObjects.Length > 0)
-					{
-						itemPos = Selection.gameObjects[0].transform.position;
-					}
-					
-					go.transform.position = itemPos;
-					
-					Selection.objects = new Object[]{go}; // Select newly created object
+					itemParent = new GameObject(itemParentName);
 				}
 				
-				GUILayout.Label(levelItem.itemName, GUILayout.Width(buttonSize));
+				GameObject go = (GameObject)EditorUtility.InstantiatePrefab(levelItem.prefab);
+				go.transform.parent = itemParent.transform;
 				
-				GUILayout.EndVertical();
+				Vector3 itemPos = Vector3.zero;
 				
-				btni++;
-				
-				if(btni >= btnPerRow)
+				if(Selection.gameObjects.Length > 0)
 				{
-					GUILayout.EndHorizontal();
-					GUILayout.BeginHorizontal();
-					btni = 0;
+					itemPos = Selection.gameObjects[0].transform.position;
 				}
+				
+				go.transform.position = itemPos;
+				
+				Selection.objects = new Object[]{go}; // Select newly created object
 			}
-			GUILayout.FlexibleSpace();
-			GUILayout.EndHorizontal();
+			
+			GUILayout.Label(levelItem.itemName, GUILayout.Width(buttonSize));
+			
+			GUILayout.EndVertical();
+			
+			btni++;
+			
+			if(btni >= btnPerRow)
+			{
+				GUILayout.EndHorizontal();
+				GUILayout.BeginHorizontal();
+				btni = 0;
+			}
 		}
-		
-		
+		GUILayout.FlexibleSpace();
+		GUILayout.EndHorizontal();
 	}
 	
 }
