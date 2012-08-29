@@ -69,9 +69,9 @@ public class LevelController : MonoBehaviour {
 	
 	private void SpawnPlayer()
 	{
-		EventDispatcher.SendEvent(EventKey.PLAYER_MOVE, spawnPoint);
-		EventDispatcher.SendEvent(EventKey.GAME_SETROTATION, spawnRotation);
-		EventDispatcher.SendEvent(EventKey.PLAYER_TOGGLEACTIVE, true);
+		EventDispatcher.SendEvent(EventKey.PLAYER_MOVE, spawnPoint); // Move player to start position
+		EventDispatcher.SendEvent(EventKey.GAME_SETROTATION, spawnRotation); // Rotate to the level starting rotation
+		EventDispatcher.SendEvent(EventKey.PLAYER_TOGGLEACTIVE, true); // Activate the player
 	}
 	
 	private void Rotate(float rotationDelta)
