@@ -1,24 +1,53 @@
 using UnityEngine;
 using System.Collections;
 
-public class LevelController : MonoBehaviour {
-	
-	public static LevelController Instance;
+public class LevelController : MonoBehaviour
+{
+	private static LevelController _instance;
 	
 	public GameObject playerGroupPrefab;
 	public GameObject HUDGroupPrefab;
 	
 	private float rotation = 0f;
-	private float gravityForce = 9.8f;
+	private float gravityForce = 9.81f;
 	private Vector3 spawnPoint;
 	private float spawnRotation;
+	
+	private float levelTime = 0;
+	
+	private int bonusObjectsCollected = 0;
 	
 	private GameObject playerGroup;
 	private GameObject HUDGroup;
 	
+	public static float LevelTime
+	{
+		get { return _instance.levelTime; }
+	}
+	
+	public static string LevelTimeString
+	{
+		get
+		{
+			int intTime = Mathf.FloorToInt(_instance.levelTime);
+			
+			int num1 = intTime / 100;
+			int num2 = (intTime / 10) % 10;
+			int num3 = intTime % 10;
+			
+			string timeString = num1.ToString() + ":" + num2.ToString() + ":" + num3.ToString();
+			return timeString;
+		}
+	}
+	
+	public static int BonusObjectsCollected
+	{
+		get { return _instance.bonusObjectsCollected; }
+	}
+	
 	void Awake()
 	{
-		Instance = this;
+		_instance = this;
 	}
 	
 	void Start()
@@ -34,6 +63,7 @@ public class LevelController : MonoBehaviour {
 		EventDispatcher.AddHandler(EventKey.GAME_SETROTATION, HandleEvent);
 		EventDispatcher.AddHandler(EventKey.PLAYER_SETCHECKPOINT, HandleEvent);
 		EventDispatcher.AddHandler(EventKey.PLAYER_SPAWN, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.PLAYER_BONUSOBJECT, HandleEvent);
 	}
 	
 	void OnDisable()
@@ -42,6 +72,15 @@ public class LevelController : MonoBehaviour {
 		EventDispatcher.RemoveHandler(EventKey.GAME_SETROTATION, HandleEvent);
 		EventDispatcher.RemoveHandler(EventKey.PLAYER_SETCHECKPOINT, HandleEvent);
 		EventDispatcher.RemoveHandler(EventKey.PLAYER_SPAWN, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.PLAYER_BONUSOBJECT, HandleEvent);
+	}
+	
+	void Update()
+	{
+		if (GameManager.CurrentGameState == GameManager.GameState.PLAYING)
+		{
+			levelTime += Time.deltaTime;
+		}
 	}
 	
 	private void HandleEvent(string eventName, object param)
@@ -60,6 +99,9 @@ public class LevelController : MonoBehaviour {
 			break;
 		case EventKey.PLAYER_SPAWN:
 			SpawnPlayer();
+			break;
+		case EventKey.PLAYER_BONUSOBJECT:
+			bonusObjectsCollected++;
 			break;
 		default:
 			Debug.LogWarning("No handler for this event implemented.");

@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9b8110f61555b42a8fb0584df06736, type: 1}
   m_Name: 
   playerGroupPrefab: {fileID: 100010, guid: 9862a38ac72d2da4dbc7c708a92d4619, type: 2}
-  HUDGroupPrefab: {fileID: 100022, guid: 81e92edf7eec81547b68dd3a483ef727, type: 2}
+  HUDGroupPrefab: {fileID: 100004, guid: 81e92edf7eec81547b68dd3a483ef727, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
