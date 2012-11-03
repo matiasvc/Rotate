@@ -4,7 +4,7 @@ using System.Collections;
 public static class GizmoEx
 {
 	
-	private const int CURCLE_SUBDIVISIONS = 64;
+	private const int CIRCLE_SUBDIVISIONS = 64;
 	
 	public static void DrawCross(Vector3 pos, float size, Color color)
     {
@@ -68,9 +68,9 @@ public static class GizmoEx
 		
 		Matrix4x4 matrix = Matrix4x4.TRS(position, direction, Vector3.one * size);
 		Vector3 lastPos = Vector3.zero;
-		float slice = 2f * Mathf.PI / CURCLE_SUBDIVISIONS;
+		float slice = 2f * Mathf.PI / CIRCLE_SUBDIVISIONS;
 		
-		for (int i = 0; i <= CURCLE_SUBDIVISIONS; i++)
+		for (int i = 0; i <= CIRCLE_SUBDIVISIONS; i++)
 		{
 			float angle = slice * i;
 			Vector3 newPos = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
@@ -134,4 +134,69 @@ public static class GizmoEx
 		Gizmos.color = oldColor;
 	}
 	
+	public static void DrawCameraLineHorizontal(float pos, Color color)
+	{
+		Color oldColor = Gizmos.color;
+		Gizmos.color = color;
+		
+		Vector3 p0 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(0f, pos, 1f));
+		Vector3 p1 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(1f, pos, 1f));
+		
+		Gizmos.DrawLine(p0, p1);
+		
+		Gizmos.color = oldColor;
+	}
+	
+	public static void DrawCameraLineVertical(float pos, Color color)
+	{
+		Color oldColor = Gizmos.color;
+		Gizmos.color = color;
+		
+		Vector3 p0 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(pos, 0f, 1f));
+		Vector3 p1 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(pos, 1f, 1f));
+		
+		Gizmos.DrawLine(p0, p1);
+		
+		Gizmos.color = oldColor;
+	}
+	
+	public static void DrawCameraSafeArea(float safeSize, Color color)
+	{
+		Color oldColor = Gizmos.color;
+		Gizmos.color = color;
+		
+		safeSize = safeSize * 0.5f;
+		
+		Vector3 p0 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(safeSize, safeSize, 1f));
+		Vector3 p1 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(1f-safeSize, safeSize, 1f));
+		Vector3 p2 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(1f-safeSize, 1f-safeSize, 1f));
+		Vector3 p3 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(safeSize, 1f-safeSize, 1f));
+		
+		Gizmos.DrawLine(p0, p1);
+		Gizmos.DrawLine(p1, p2);
+		Gizmos.DrawLine(p2, p3);
+		Gizmos.DrawLine(p3, p0);
+		
+		Gizmos.color = oldColor;
+	}
+	
+	public static void DrawCameraSafeArea(Vector2 safeSize, Color color)
+	{
+		Color oldColor = Gizmos.color;
+		Gizmos.color = color;
+		
+		safeSize = safeSize * 0.5f;
+		
+		Vector3 p0 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(safeSize.x, safeSize.y, 1f));
+		Vector3 p1 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(1f-safeSize.x, safeSize.y, 1f));
+		Vector3 p2 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(1f-safeSize.x, 1f-safeSize.y, 1f));
+		Vector3 p3 = Camera.mainCamera.ViewportToWorldPoint(new Vector3(safeSize.x, 1f-safeSize.y, 1f));
+		
+		Gizmos.DrawLine(p0, p1);
+		Gizmos.DrawLine(p1, p2);
+		Gizmos.DrawLine(p2, p3);
+		Gizmos.DrawLine(p3, p0);
+		
+		Gizmos.color = oldColor;
+	}
 }
