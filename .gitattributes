@@ -10,5 +10,6 @@ README				text eol=fl
 *.prefab			text eol=fl
 *.unity				text eol=fl
 
-# Keep asset files as binary
+# Keep asset and dll files as binary
 *.asset 			binary
+*.dll				binary
