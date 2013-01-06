@@ -274,18 +274,18 @@ public static class MeshEx
 		};
 		
 		int[] trisArray = new int[]{
-			0,1,4,
-			0,4,3,
-			2,3,7,
-			2,7,6,
-			3,4,8,
-			3,8,7,
-			4,5,9,
-			4,9,8,
-			7,8,11,
-			7,11,10,
-			10,11,13,
-			10,13,12
+			0,	1,	4,
+			0,	4,	3,
+			2,	3,	7,
+			2,	7,	6,
+			3,	4,	8,
+			3,	8,	7,
+			4,	5,	9,
+			4,	9,	8,
+			7,	8,	11,
+			7,	11,	10,
+			10,	11,	13,
+			10,	13,	12
 		};
 		
 		Vector2[] uvArray = new Vector2[]{
@@ -317,9 +317,59 @@ public static class MeshEx
 	
 	public static Mesh CreateSphere(int subdivisonsAxis, int subdivisonsHeigth)
 	{
-		Debug.LogError("ERROR! Fucntion not yet implemented");
-		
 		Mesh mesh = new Mesh();
+		
+		if (subdivisonsAxis < 3 || subdivisonsHeigth < 3)
+		{
+			Debug.LogError("ERROR! Minimum subdivisons for sphere is 3");
+			return mesh;
+		}
+		
+		Vector3[] vertsArray 	= new Vector3	[subdivisonsAxis*(subdivisonsHeigth-1)+2];
+		int[] trisArray 		= new int		[subdivisonsAxis*6+(subdivisonsAxis*subdivisonsHeigth-2)*6];
+		Vector2[] uvArray 		= new Vector2	[subdivisonsAxis*(subdivisonsHeigth-1)+2];
+		
+		vertsArray[0] = new Vector3(0.5f, 1f, 0.5f); // Top point
+//		uvArray[0] = new Vector2(0.5f, 0.5f);
+		
+		float slice = 2f * Mathf.PI / subdivisonsAxis;
+		
+		for (int iy = 0; iy < subdivisonsHeigth; iy++)
+		{
+			for (int ix = 0; ix < subdivisonsAxis; ix++)
+			{
+				
+				float angle = slice * ix;
+				float zPos = Mathf.Lerp(1f, 0f, (float)iy / (float)subdivisonsHeigth);
+				
+				float xPos = Mathf.Cos(angle) * 0.5f * Mathf.Abs(zPos-0.5f) + 0.5f;
+				float yPos = Mathf.Sin(angle) * 0.5f * Mathf.Abs(zPos-0.5f) + 0.5f;
+				
+				Debug.Log(iy + "--" + ix + "-+-" + xPos + "-" + yPos + "-" + zPos);
+				
+				GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+				go.transform.position = new Vector3(xPos, zPos, yPos);
+				go.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+				
+				vertsArray[ix+1] 	= new Vector3(xPos, zPos, yPos);
+				//			uvArray[i+1] 		= new Vector2(xPos, yPos);
+				
+				if(ix < subdivisonsAxis -1)
+					trisArray[ix*3] 	= ix+2;
+				else
+					trisArray[ix*3] 	= 1;
+				
+				trisArray[ix*3+1] 	= ix+1;
+				trisArray[ix*3+2] 	= 0;
+			}	
+		}
+
+		mesh.name = "sphere";
+		mesh.vertices = vertsArray;
+		mesh.triangles = trisArray;
+		mesh.uv = uvArray;
+		
+		mesh.Optimize();
 		
 		return mesh;
 	}
