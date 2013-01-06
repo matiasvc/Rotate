@@ -1,0 +1,18 @@
+[
+	{
+		"levelName" : "Level1",
+		"sceneName" : "testLevel",
+		"thumbPath" : "thumbnails/level1",
+		"starScore1" : 100,
+		"starScore2" : 200,
+		"starScore3" : 300
+	},
+	{
+		"levelName" : "Level2",
+		"sceneName" : "testLevel",
+		"thumbPath" : "thumbnails/level1",
+		"starScore1" : 100,
+		"starScore2" : 200,
+		"starScore3" : 300
+	}
+]

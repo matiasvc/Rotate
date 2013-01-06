@@ -3,7 +3,7 @@ using System.Collections;
 
 public class StartMenuManager : MonoBehaviour {
 	
-	public string[] levels;
+//	public string[] levels;
 	
 	private enum MenuState {HIDDEN, MAIN, OPTIONS, ABOUT, LEVEL_SCREEN, SELECTED_LEVEL}
 	private MenuState state = MenuState.HIDDEN;
@@ -27,7 +27,7 @@ public class StartMenuManager : MonoBehaviour {
 	private float levelGridTitleHeigth = 20f;
 	private float levelGridTitleWidth = 60f;
 	
-	private int selectedLevel = -1;
+	private LevelManager.Level selectedLevel;
 	
 	private Vector2 screenCenter;
 	
@@ -36,7 +36,6 @@ public class StartMenuManager : MonoBehaviour {
 	protected void Start()
 	{
 		screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
-		
 		state = MenuState.MAIN;
 	}
 	
@@ -89,17 +88,17 @@ public class StartMenuManager : MonoBehaviour {
 			}
 			
 			int i = 0;
-			foreach(string level in levels)
+			foreach(LevelManager.Level level in LevelManager.Levels)
 			{
 				Vector2 buttonPos = levelGrid.GetNodePostion(i);
 				
 				if(GUI.Button(new Rect(buttonPos.x - levelGridButtonWidth / 2f, buttonPos.y - levelGridButtonHeigth / 2f, levelGridButtonWidth, levelGridButtonHeigth), i.ToString()))
 				{
-					selectedLevel = i;
+					selectedLevel = level;
 					state = MenuState.SELECTED_LEVEL;
 				}
 				
-				GUI.Label(new Rect(buttonPos.x - levelGridTitleWidth / 2f, buttonPos.y + levelGridTitleHeigth / 2f + levelGridTitleHeigth, levelGridTitleWidth, levelGridTitleHeigth), level);
+				GUI.Label(new Rect(buttonPos.x - levelGridTitleWidth / 2f, buttonPos.y + levelGridTitleHeigth / 2f + levelGridTitleHeigth, levelGridTitleWidth, levelGridTitleHeigth), level.levelName);
 				
 				i++;
 			}
@@ -113,12 +112,11 @@ public class StartMenuManager : MonoBehaviour {
 		else if (state == MenuState.SELECTED_LEVEL)
 		{
 			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth), "SELECTED LEVEL SCREEN");
-			
-			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - 5f + titlePos.y, titleWidth, titleHeigth), levels[selectedLevel]);
+			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - 5f + titlePos.y, titleWidth, titleHeigth), selectedLevel.levelName);
 			
 			if(GUI.Button(new Rect(screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), "PLAY"))
 			{
-				Application.LoadLevel(levels[selectedLevel]);
+				Application.LoadLevel(selectedLevel.sceneName);
 			}
 			
 			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth + 30f, buttonWidth, buttonHeigth), "BACK"))
