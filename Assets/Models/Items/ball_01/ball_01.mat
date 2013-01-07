@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ball_01
-  m_Shader: {fileID: 4800000, guid: 32277f20b4c3e824ca8c65a70133d54f, type: 1}
+  m_Shader: {fileID: 7, guid: 0000000000000000e000000000000000, type: 0}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
