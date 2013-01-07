@@ -14,6 +14,14 @@
 		"starScore1" : 100,
 		"starScore2" : 200,
 		"starScore3" : 300
+	},
+	{
+		"levelName" : "Level3",
+		"sceneName" : "level_simonsTestLevel",
+		"thumbPath" : "thumbnails/level1",
+		"starScore1" : 100,
+		"starScore2" : 200,
+		"starScore3" : 300
 	}
 ]
 
