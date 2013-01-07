@@ -14,15 +14,15 @@ public class LevelEditor : EditorWindow {
 		{
 			get
 			{
-				int i = 0;
+				long timeOut = System.DateTime.Now.AddSeconds(0.5).Ticks;
 				
 				while(this._icon == null)
 				{
-					if(i > 25)
+					if(System.DateTime.Now.Ticks > timeOut)
 						break;
 					
+					
 					_icon = EditorUtility.GetAssetPreview(this.prefab);
-					i++;
 				}
 				
 				if (this._icon == null)
@@ -235,7 +235,7 @@ public class LevelEditor : EditorWindow {
 		GUILayout.Label("Items");
 		GUILayout.BeginHorizontal();
 		
-		float buttonSize = 100f;
+		float buttonSize = 60f;
 		int btni = 0;
 		int btnPerRow = Mathf.FloorToInt(window.position.width / buttonSize);
 		
@@ -291,7 +291,7 @@ public class LevelEditor : EditorWindow {
 		GUILayout.Label("Level");
 		GUILayout.BeginHorizontal();
 		
-		float buttonSize = 100f;
+		float buttonSize = 60f;
 		int btni = 0;
 		int btnPerRow = Mathf.FloorToInt(window.position.width / (buttonSize + 3f));
 		
