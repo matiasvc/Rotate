@@ -97,8 +97,35 @@ public class LevelEditor : EditorWindow {
 	void OnGUI ()
 	{
 		DrawToolButtons();
+		DrawLevelIntegrity();
 		DrawItemButtons();
 		DrawLevelButtons();
+		GUI.enabled = true;
+	}
+	
+	private void DrawLevelIntegrity()
+	{
+		GameObject ligthGroup = GameObject.Find("LigthGroup");
+		GameObject levelController = GameObject.Find("LevelController");
+		GameObject gameManager = GameObject.Find("GameManager");
+		
+		
+		if (ligthGroup == null || levelController == null || gameManager == null)
+		{
+			if (GUILayout.Button("INITIALIZE LEVEL"))
+			{
+				if (ligthGroup == null)
+					PrefabUtility.InstantiatePrefab((GameObject)AssetDatabase.LoadAssetAtPath(@"Assets/Prefabs/Other/LigthGroup.prefab", typeof(GameObject)));
+				
+				if (levelController == null)
+					PrefabUtility.InstantiatePrefab((GameObject)AssetDatabase.LoadAssetAtPath(@"Assets/Prefabs/Other/LevelController.prefab", typeof(GameObject)));
+				
+				if (gameManager == null)
+					PrefabUtility.InstantiatePrefab((GameObject)AssetDatabase.LoadAssetAtPath(@"Assets/Prefabs/Other/GameManager.prefab", typeof(GameObject)));
+			}
+			
+			GUI.enabled = false;
+		}
 	}
 	
 	private void DrawToolButtons()
@@ -266,7 +293,7 @@ public class LevelEditor : EditorWindow {
 					itemParent = new GameObject(itemParentName);
 				}
 				
-				GameObject go = (GameObject)EditorUtility.InstantiatePrefab(levelItem.prefab);
+				GameObject go = (GameObject)PrefabUtility.InstantiatePrefab(levelItem.prefab);
 				go.transform.parent = itemParent.transform;
 				
 				Vector3 itemPos = Vector3.zero;
@@ -296,8 +323,6 @@ public class LevelEditor : EditorWindow {
 		GUILayout.EndHorizontal();
 	}
 	
-	
-	
 	private void DrawLevelButtons()
 	{
 		// Level prefab buttons
@@ -324,7 +349,7 @@ public class LevelEditor : EditorWindow {
 					itemParent = new GameObject(itemParentName);
 				}
 				
-				GameObject go = (GameObject)EditorUtility.InstantiatePrefab(levelItem.prefab);
+				GameObject go = (GameObject)PrefabUtility.InstantiatePrefab(levelItem.prefab);
 				go.transform.parent = itemParent.transform;
 				
 				Vector3 itemPos = Vector3.zero;
