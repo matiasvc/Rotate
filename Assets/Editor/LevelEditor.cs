@@ -97,6 +97,7 @@ public class LevelEditor : EditorWindow {
 	void OnGUI ()
 	{
 		DrawToolButtons();
+		DrawComponentButtons();
 		DrawLevelIntegrity();
 		DrawItemButtons();
 		DrawLevelButtons();
@@ -126,6 +127,19 @@ public class LevelEditor : EditorWindow {
 			
 			GUI.enabled = false;
 		}
+	}
+	
+	private void DrawComponentButtons()
+	{
+		if (GUILayout.Button("Add Timer", GUILayout.Width(100f)))
+		{
+			foreach( GameObject selected in Selection.gameObjects )
+			{
+				Undo.RegisterUndo(selected, "Added ItemTimer.");
+				selected.AddComponent<ItemTimer>();
+			}
+		}
+		
 	}
 	
 	private void DrawToolButtons()

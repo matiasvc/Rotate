@@ -9,6 +9,8 @@ public class FlamerController : LevelItem {
 	private BoxCollider flameCollider = null;
 	private ParticleSystem flameParticles = null;
 	
+	private float enabledFlameLength = 0f;
+	
 	public float FireLength
 	{
 		get { return fireLength; }
@@ -39,13 +41,61 @@ public class FlamerController : LevelItem {
 	void Awake()
 	{
 		flameParticles = gameObject.GetComponentInChildren<ParticleSystem>();
-		Debug.Log(flameParticles);
+		enabledFlameLength = fireLength;
 	}
 	
 	void Start()
 	{
 		if (itemEnabled)
 			FlameParticleEmitter.Play();
+	}
+	
+	public override void ItemToggle ()
+	{
+		base.ItemToggle ();
+		
+		if (itemEnabled)
+			StartCoroutine(ToggleCoroutine(true));
+		else
+			StartCoroutine(ToggleCoroutine(false));
+	}
+	
+	public IEnumerator ToggleCoroutine(bool toggleTo)
+	{
+		
+		float length = 0.3f;
+		
+		float fromLength;
+		float toLength;
+		
+		float t = 0f;
+		
+		if(toggleTo)
+		{
+			FlameParticleEmitter.enableEmission = true;
+			fromLength = 0f;
+			toLength = enabledFlameLength;
+		}
+		else
+		{
+			fromLength = enabledFlameLength;
+			toLength = 0f;
+		}
+		
+		
+		
+		while(t <= length)
+		{
+			float lerp = Mathf.InverseLerp(0f, length, t);
+			SetFlameLength(Mathf.Lerp(fromLength, toLength, lerp));
+			yield return null;
+			t += Time.deltaTime;
+		}
+		
+		SetFlameLength(toLength);
+		
+		if (!toggleTo)
+			FlameParticleEmitter.enableEmission = false;
 	}
 	
 	public void SetFlameLength(float length)
