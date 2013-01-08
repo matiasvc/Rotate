@@ -8,6 +8,9 @@ public class LevelController : MonoBehaviour
 	public GameObject playerGroupPrefab;
 	public GameObject HUDGroupPrefab;
 	
+	public enum GameState {PLAYING, PAUSED};
+	private GameState gameState = GameState.PLAYING;
+	
 	private float rotation = 0f;
 	private float gravityForce = 9.81f;
 	private Vector3 spawnPoint;
@@ -45,6 +48,20 @@ public class LevelController : MonoBehaviour
 		get { return _instance.bonusObjectsCollected; }
 	}
 	
+	public static GameState CurrentGameState
+	{
+		set
+		{
+			_instance.gameState = value;
+			
+			if (value == GameState.PAUSED)
+				Time.timeScale = 0f;
+			else
+				Time.timeScale = 1f;
+		}
+		get { return _instance.gameState; }
+	}
+	
 	void Awake()
 	{
 		_instance = this;
@@ -77,7 +94,7 @@ public class LevelController : MonoBehaviour
 	
 	void Update()
 	{
-		if (GameManager.CurrentGameState == GameManager.GameState.PLAYING)
+		if (LevelController.CurrentGameState == LevelController.GameState.PLAYING)
 		{
 			levelTime += Time.deltaTime;
 		}

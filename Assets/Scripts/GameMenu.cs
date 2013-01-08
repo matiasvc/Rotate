@@ -48,12 +48,12 @@ public class GameMenu : MonoBehaviour {
 		if (state == MenuState.HIDDEN)
 		{
 			state = MenuState.MAIN;
-			GameManager.CurrentGameState = GameManager.GameState.PAUSED;
+			LevelController.CurrentGameState = LevelController.GameState.PAUSED;
 		}
 		else
 		{
 			state = MenuState.HIDDEN;
-			GameManager.CurrentGameState = GameManager.GameState.PLAYING;
+			LevelController.CurrentGameState = LevelController.GameState.PLAYING;
 		}
 			
 	}
@@ -61,13 +61,13 @@ public class GameMenu : MonoBehaviour {
 	private void Show()
 	{
 		state = MenuState.MAIN;
-		GameManager.CurrentGameState = GameManager.GameState.PAUSED;
+		LevelController.CurrentGameState = LevelController.GameState.PAUSED;
 	}
 	
 	private void Hide()
 	{
 		state = MenuState.HIDDEN;
-		GameManager.CurrentGameState = GameManager.GameState.PLAYING;
+		LevelController.CurrentGameState = LevelController.GameState.PLAYING;
 	}
 	
 	
@@ -98,7 +98,7 @@ public class GameMenu : MonoBehaviour {
 			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y + buttonHeigth * 1.5f, buttonWidth, buttonHeigth), "RETURN"))
 			{
 				state = MenuState.HIDDEN;
-				GameManager.CurrentGameState = GameManager.GameState.PLAYING;
+				LevelController.CurrentGameState = LevelController.GameState.PLAYING;
 			}
 			
 			break;
@@ -109,8 +109,7 @@ public class GameMenu : MonoBehaviour {
 			if(GUI.Button(new Rect(screenCenter.x - buttonWidth, screenCenter.y, buttonWidth, buttonHeigth), "YES"))
 			{
 				state = MenuState.HIDDEN;
-				GameManager.CurrentGameState = GameManager.GameState.PLAYING;
-				Application.LoadLevel(Application.loadedLevel);
+				LevelManager.RestatLevel();
 			}
 			
 			if(GUI.Button(new Rect(screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), "NO"))
@@ -126,8 +125,7 @@ public class GameMenu : MonoBehaviour {
 			if(GUI.Button(new Rect(screenCenter.x - buttonWidth, screenCenter.y, buttonWidth, buttonHeigth), "YES"))
 			{
 				state = MenuState.HIDDEN;
-				GameManager.CurrentGameState = GameManager.GameState.PLAYING;
-				Application.LoadLevel("mainMenu");
+				LevelManager.LoadMainMenu();
 			}
 			
 			if(GUI.Button(new Rect(screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), "NO"))

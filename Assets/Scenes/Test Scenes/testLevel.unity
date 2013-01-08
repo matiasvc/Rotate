@@ -1860,7 +1860,7 @@ Transform:
   m_PrefabInternal: {fileID: 300}
   m_GameObject: {fileID: 65}
   m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0, z: -2}
+  m_LocalPosition: {x: -7, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 145}
@@ -4559,7 +4559,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b8cba2267fda6bc4994168ddf76b9ed8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: b8cba2267fda6bc4994168ddf76b9ed8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -7977,7 +7977,7 @@ Transform:
   m_PrefabInternal: {fileID: 1563890678}
   m_GameObject: {fileID: 910391963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: -2}
+  m_LocalPosition: {x: -6, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 23275574}
@@ -7997,7 +7997,7 @@ MonoBehaviour:
   m_Name: 
   beamController: {fileID: 23275575}
   otherCheckpoint: {fileID: 1556556016}
-  checkpointLength: 4
+  checkpointLength: 5
 --- !u!65 &910391966
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8009,8 +8009,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 1, z: .5}
-  m_Center: {x: 3, y: 0, z: .5}
+  m_Size: {x: 5, y: 1, z: .5}
+  m_Center: {x: 3.5, y: 0, z: .5}
 --- !u!114 &910391967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11140,7 +11140,7 @@ Transform:
   m_PrefabInternal: {fileID: 1563890678}
   m_GameObject: {fileID: 1556556015}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 6, y: 0, z: 1}
+  m_LocalPosition: {x: 7, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 298845584}
@@ -11157,7 +11157,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400012, guid: 6ed14cddcae8a8945bd4054e1eb38179, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 6ed14cddcae8a8945bd4054e1eb38179, type: 2}
       propertyPath: m_LocalPosition.y
@@ -11185,19 +11185,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 6ed14cddcae8a8945bd4054e1eb38179, type: 2}
       propertyPath: checkpointLength
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6500000, guid: 6ed14cddcae8a8945bd4054e1eb38179, type: 2}
       propertyPath: m_Size.x
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6500000, guid: 6ed14cddcae8a8945bd4054e1eb38179, type: 2}
       propertyPath: m_Center.x
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6ed14cddcae8a8945bd4054e1eb38179, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ed14cddcae8a8945bd4054e1eb38179, type: 2}
@@ -12131,8 +12131,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1901408943}
   - {fileID: 221281386}
+  - {fileID: 1901408943}
   - {fileID: 1152668993}
   - {fileID: 1212491606}
   - {fileID: 910391964}

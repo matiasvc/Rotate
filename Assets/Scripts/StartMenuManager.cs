@@ -116,7 +116,7 @@ public class StartMenuManager : MonoBehaviour {
 			
 			if(GUI.Button(new Rect(screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), "PLAY"))
 			{
-				Application.LoadLevel(selectedLevel.sceneName);
+				LevelManager.LoadLevel(selectedLevel);
 			}
 			
 			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth + 30f, buttonWidth, buttonHeigth), "BACK"))

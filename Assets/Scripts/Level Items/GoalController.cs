@@ -85,8 +85,6 @@ public class GoalController : LevelItem {
 		float t = 0;
 		float length = (distance / velocity) * 2.0f;
 		
-		Debug.Log(velocity + " - " + distance + " - " + length);
-		
 		Vector2 startPos = new Vector2(player.transform.position.x, player.transform.position.z);
 		Vector2 goalPos = new Vector2(transform.position.x, transform.position.z);
 		

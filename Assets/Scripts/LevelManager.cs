@@ -4,7 +4,31 @@ using UnityEngine;
 
 public static class LevelManager {
 	
-	public struct Level
+	static LevelManager()
+	{
+		TextAsset levelData = Resources.Load("levelData") as TextAsset;
+		JSONObject jsonObject = new JSONObject(System.Text.RegularExpressions.Regex.Replace(levelData.text, @"\t|\n|\r|\s", ""));
+		
+		for (int i = 0; i < jsonObject.list.Count; i++)
+		{
+			JSONObject levelObject = jsonObject.list[i] as JSONObject;
+			
+			string levelName = (levelObject.list[0] as JSONObject).str;
+			string sceneName = (levelObject.list[1] as JSONObject).str;
+			string thumbPath = (levelObject.list[2] as JSONObject).str;
+			int starScore1 = (int)(levelObject.list[3] as JSONObject).n;
+			int starScore2 = (int)(levelObject.list[4] as JSONObject).n;
+			int starScore3 = (int)(levelObject.list[5] as JSONObject).n;
+			
+			if (string.IsNullOrEmpty(levelName) || string.IsNullOrEmpty(sceneName) || string.IsNullOrEmpty(thumbPath))
+				Debug.LogError("Unable to parse level data file.");
+			
+			levels.Add(new Level(levelName, sceneName, thumbPath, starScore1, starScore2, starScore3));
+			
+		}
+	}
+	
+	public class Level
 	{
 		public Level(string levelName, string sceneName, string thumbPath, int starScore1, int starScore2, int starScore3)
 		{
@@ -30,30 +54,33 @@ public static class LevelManager {
 		get { return levels; }
 	}
 	
-	static LevelManager()
+	private static Level previusLoadedLevel = null;
+	
+	public static void LoadMainMenu()
 	{
-		TextAsset levelData = Resources.Load("levelData") as TextAsset;
-		JSONObject jsonObject = new JSONObject(System.Text.RegularExpressions.Regex.Replace(levelData.text, @"\t|\n|\r|\s", ""));
+		previusLoadedLevel = null;
+		Application.LoadLevel("mainMenu");
+	}
+	
+	public static void LoadLevel(Level level)
+	{
+		Time.timeScale = 1f;
 		
-		for (int i = 0; i < jsonObject.list.Count; i++)
+		previusLoadedLevel = level;
+		Application.LoadLevel(level.sceneName);
+	}
+	
+	public static void RestatLevel()
+	{
+		Time.timeScale = 1f;
+		
+		if (previusLoadedLevel == null)
 		{
-			JSONObject levelObject = jsonObject.list[i] as JSONObject;
-			
-			string levelName = (levelObject.list[0] as JSONObject).str;
-			string sceneName = (levelObject.list[1] as JSONObject).str;
-			string thumbPath = (levelObject.list[2] as JSONObject).str;
-			int starScore1 = (int)(levelObject.list[3] as JSONObject).n;
-			int starScore2 = (int)(levelObject.list[4] as JSONObject).n;
-			int starScore3 = (int)(levelObject.list[5] as JSONObject).n;
-			
-			if (string.IsNullOrEmpty(levelName) || string.IsNullOrEmpty(sceneName) || string.IsNullOrEmpty(thumbPath))
-				Debug.LogError("Unable to parse level data file.");
-			
-			levels.Add(new Level(levelName, sceneName, thumbPath, starScore1, starScore2, starScore3));
-			
+			Application.LoadLevel(Application.loadedLevel);
+			return;
 		}
 		
-		Debug.Log(levels.Count);
+		LoadLevel(previusLoadedLevel);
 	}
 	
 }
