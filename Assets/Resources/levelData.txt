@@ -9,7 +9,7 @@
 	},
 	{
 		"levelName" : "Level2",
-		"sceneName" : "testLevel",
+		"sceneName" : "level_0",
 		"thumbPath" : "thumbnails/level1",
 		"starScore1" : 100,
 		"starScore2" : 200,
