@@ -26,6 +26,8 @@ public static class LevelManager {
 			levels.Add(new Level(levelName, sceneName, thumbPath, starScore1, starScore2, starScore3));
 			
 		}
+		
+		Debug.Log(levels.Count);
 	}
 	
 	public class Level

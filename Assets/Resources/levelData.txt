@@ -17,10 +17,10 @@
 	},
 	{
 		"levelName" : "Level3",
-		"sceneName" : "level_simonsTestLevel",
+		"sceneName" : "level_simonsTestlevel",
 		"thumbPath" : "thumbnails/level1",
 		"starScore1" : 100,
 		"starScore2" : 200,
 		"starScore3" : 300
 	}
-[
+]

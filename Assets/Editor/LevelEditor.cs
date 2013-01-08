@@ -248,8 +248,6 @@ public class LevelEditor : EditorWindow {
 		float buttonSize = 60f;
 		int btni = 0;
 		
-		Debug.Log(window);
-		
 		int btnPerRow = Mathf.FloorToInt(window.position.width / buttonSize);
 		
 		for ( int i = 0; i < itemPrefabs.Count; i++ )
