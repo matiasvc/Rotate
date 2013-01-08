@@ -15,12 +15,10 @@ public class LevelEditor : EditorWindow {
 			get
 			{
 				long timeOut = System.DateTime.Now.AddSeconds(0.5).Ticks;
-				
 				while(this._icon == null)
 				{
 					if(System.DateTime.Now.Ticks > timeOut)
 						break;
-					
 					
 					_icon = EditorUtility.GetAssetPreview(this.prefab);
 				}
@@ -36,7 +34,19 @@ public class LevelEditor : EditorWindow {
 		public GameObject prefab;
 	}
 	
-	public static LevelEditor window;
+	private static LevelEditor _window = null;
+	private static LevelEditor window
+	{
+		get
+		{
+			if (_window == null)
+			{
+				_window = (LevelEditor)EditorWindow.GetWindow (typeof (LevelEditor));
+			}
+			return _window;
+		}
+	}
+	
 	
 	private List<LevelItem> itemPrefabs;
 	private List<LevelItem> levelPrefabs;
@@ -44,7 +54,7 @@ public class LevelEditor : EditorWindow {
 	[MenuItem ("Tools/Level Editor")]
 	static void Init()
 	{
-		window = (LevelEditor)EditorWindow.GetWindow (typeof (LevelEditor));
+		_window = (LevelEditor)EditorWindow.GetWindow (typeof (LevelEditor));
 	}
 	
 	void OnEnable ()
@@ -237,6 +247,9 @@ public class LevelEditor : EditorWindow {
 		
 		float buttonSize = 60f;
 		int btni = 0;
+		
+		Debug.Log(window);
+		
 		int btnPerRow = Mathf.FloorToInt(window.position.width / buttonSize);
 		
 		for ( int i = 0; i < itemPrefabs.Count; i++ )
@@ -284,6 +297,8 @@ public class LevelEditor : EditorWindow {
 		GUILayout.FlexibleSpace();
 		GUILayout.EndHorizontal();
 	}
+	
+	
 	
 	private void DrawLevelButtons()
 	{
