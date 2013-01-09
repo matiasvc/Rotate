@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: corner_01
-  m_Shader: {fileID: 10703, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: a83a2ab6987943043a9d47fdf34460ce, type: 1}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -34,6 +34,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _ColorMap
+        second:
+          m_Texture: {fileID: 2800000, guid: 2b9ab06d643a4f847a15d6085ef168ad, type: 1}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
@@ -44,6 +51,14 @@ Material:
         first:
           name: _Shininess
         second: .078125
+      data:
+        first:
+          name: _FresnelOpacity
+        second: .76119405
+      data:
+        first:
+          name: _AmbientLight
+        second: .731343269
       data:
         first:
           name: _Parallax

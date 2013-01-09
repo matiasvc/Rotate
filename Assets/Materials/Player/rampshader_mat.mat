@@ -29,7 +29,14 @@ Material:
         first:
           name: _Gradient
         second:
-          m_Texture: {fileID: 2800000, guid: e48227dd1b74bc2429f2b3b7c019ee30, type: 1}
+          m_Texture: {fileID: 2800000, guid: 1987b97f0a526d249b4482a45b92d820, type: 1}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Normal
+        second:
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:

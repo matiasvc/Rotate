@@ -58,7 +58,6 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  debugUnloadMode: 0
   iPhoneBundleIdentifier: com.matiaschristensen.rotate
   iPhoneBundleVersion: 1.0
   AndroidBundleVersionCode: 1
@@ -71,7 +70,7 @@ PlayerSettings:
   ForceInternetPermission: 0
   ForceSDCardPermission: 0
   CreateWallpaper: 0
-  StripUnusedMeshComponents: 1
+  StripUnusedMeshChannels: 0
   iPhoneSdkVersion: 18
   iPhoneTargetOSVersion: 18
   uIPrerenderedIcon: 0
@@ -133,10 +132,6 @@ PlayerSettings:
   ps3TrophyCommId: 
   ps3TrophyPackagePath: 
   ps3ReservedMemorySizeMB: 2
-  ps3BootCheckMaxSaveGameSizeKB: 128
-  ps3TrophyCommSig: 
-  ps3SaveGameSlots: 1
-  ps3TrialMode: 0
   flashStrippingLevel: 2
   firstStreamedLevelWithResources: 0
   unityRebuildLibraryVersion: 9
