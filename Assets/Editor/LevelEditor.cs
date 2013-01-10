@@ -14,14 +14,11 @@ public class LevelEditor : EditorWindow {
 		{
 			get
 			{
-				long timeOut = System.DateTime.Now.AddSeconds(0.5).Ticks;
-				while(this._icon == null)
-				{
-					if(System.DateTime.Now.Ticks > timeOut)
-						break;
-					
-					_icon = EditorUtility.GetAssetPreview(this.prefab);
+				do
+				{	
+					_icon = AssetPreview.GetAssetPreview(this.prefab);
 				}
+				while (AssetPreview.IsLoadingAssetPreviews());
 				
 				if (this._icon == null)
 					_icon = (Texture2D)AssetDatabase.LoadAssetAtPath(@"Assets/Editor/Icons/missingIcon.png", typeof(Texture2D));
@@ -29,7 +26,6 @@ public class LevelEditor : EditorWindow {
 				return _icon;
 			}
 		}
-		
 		
 		public GameObject prefab;
 	}
@@ -91,8 +87,6 @@ public class LevelEditor : EditorWindow {
 			levelPrefabs.Add(newLevelObject);
 		}
 	}
-	
-	
 	
 	void OnGUI ()
 	{
