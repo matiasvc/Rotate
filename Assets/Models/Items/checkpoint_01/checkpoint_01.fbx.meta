@@ -1,26 +1,45 @@
 fileFormatVersion: 2
 guid: 01b648c6a4835b749ac7e5b48aab546e
 ModelImporter:
+  serializedVersion: 15
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: checkpoint_top
+    100004: checkpoint_sprite
+    100006: checkpoint_body
+    100008: checkpoint_collider
+    400000: //RootNode
+    400002: checkpoint_top
+    400004: checkpoint_sprite
+    400006: checkpoint_body
+    400008: checkpoint_collider
+    2300000: checkpoint_top
+    2300002: checkpoint_sprite
+    2300004: checkpoint_body
+    2300006: checkpoint_collider
+    3300000: checkpoint_top
+    3300002: checkpoint_sprite
+    3300004: checkpoint_body
+    3300006: checkpoint_collider
     4300000: checkpoint_sprite
     4300002: checkpoint_body
     4300004: checkpoint_top
     4300006: checkpoint_collider
-  serializedVersion: 10
+    11100000: //RootNode
   materials:
     importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
-    generateAnimations: 0
+    legacyGenerateAnimations: 0
     bakeSimulation: 0
-    splitAnimations: 1
     animationCompression: 0
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
     animationWrapMode: 0
     clipAnimations: []
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -29,7 +48,7 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMesh: 1
+    optimizeMeshForGPU: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -39,63 +58,21 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  textMetaNamesToFileIDs:
-    //RootNode:
-      data:
-        first: 1
-        second: a0860100
-      data:
-        first: 4
-        second: 801a0600
-    checkpoint_body:
-      data:
-        first: 1
-        second: a6860100
-      data:
-        first: 4
-        second: 861a0600
-      data:
-        first: 23
-        second: 64182300
-      data:
-        first: 33
-        second: a45a3200
-    checkpoint_collider:
-      data:
-        first: 1
-        second: a8860100
-      data:
-        first: 4
-        second: 881a0600
-      data:
-        first: 23
-        second: 66182300
-      data:
-        first: 33
-        second: a65a3200
-    checkpoint_sprite:
-      data:
-        first: 1
-        second: a4860100
-      data:
-        first: 4
-        second: 841a0600
-      data:
-        first: 23
-        second: 62182300
-      data:
-        first: 33
-        second: a25a3200
-    checkpoint_top:
-      data:
-        first: 1
-        second: a2860100
-      data:
-        first: 4
-        second: 821a0600
-      data:
-        first: 23
-        second: 60182300
-      data:
-        first: 33
-        second: a05a3200
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 1
+  userData: 
