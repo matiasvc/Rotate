@@ -176,7 +176,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: .845857859
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9500000, guid: e55342d29b1cdf142a02b048dc222ef7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e55342d29b1cdf142a02b048dc222ef7, type: 2}
   m_RootGameObject: {fileID: 1343857991}
   m_IsPrefabParent: 0
@@ -189,7 +190,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 345300445}
-  - 111: {fileID: 345300444}
   - 111: {fileID: 345300446}
   m_Layer: 0
   m_Name: barnDoors
@@ -198,26 +198,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!111 &345300444
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: dcc451f2ca8fea4449b1232acf352fa2,
-    type: 3}
-  m_PrefabInternal: {fileID: 1020746941}
-  m_GameObject: {fileID: 345300443}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: dcc451f2ca8fea4449b1232acf352fa2, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: dcc451f2ca8fea4449b1232acf352fa2, type: 3}
-  - {fileID: 7400002, guid: dcc451f2ca8fea4449b1232acf352fa2, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
-  m_UserAABB:
-    m_Center: {x: .000160098076, y: .00616315007, z: -.0465000868}
-    m_Extent: {x: .328335822, y: .026089251, z: .438667893}
 --- !u!4 &345300445
 Transform:
   m_ObjectHideFlags: 0
@@ -791,7 +771,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1343857992}
-  - 95: {fileID: 1343857993}
   m_Layer: 0
   m_Name: mainMenu_background_02
   m_TagString: Untagged
@@ -811,19 +790,6 @@ Transform:
   m_Children:
   - {fileID: 1553486922}
   m_Father: {fileID: 0}
---- !u!95 &1343857993
-Animator:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: e55342d29b1cdf142a02b048dc222ef7,
-    type: 2}
-  m_PrefabInternal: {fileID: 301742522}
-  m_GameObject: {fileID: 1343857991}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a22a03b327d5b8e4ab5a8c32d740f4c2, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_ApplyRootMotion: 1
-  m_AnimatePhysics: 0
 --- !u!1 &1380515335
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,7 +881,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1473574388}
   - 111: {fileID: 1473574389}
-  - 111: {fileID: 1473574390}
   m_Layer: 0
   m_Name: mainMenuCamera_fbx
   m_TagString: Untagged
@@ -941,24 +906,6 @@ Animation:
   m_PrefabParentObject: {fileID: 11100000, guid: dcfc5d2fe1ee38242a8841132cf6406e,
     type: 3}
   m_PrefabInternal: {fileID: 1677343114}
-  m_GameObject: {fileID: 1473574387}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: dcfc5d2fe1ee38242a8841132cf6406e, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: dcfc5d2fe1ee38242a8841132cf6406e, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
-  m_UserAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
---- !u!111 &1473574390
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1473574387}
   m_Enabled: 1
   serializedVersion: 3
@@ -1035,7 +982,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1560655505}
-  - 95: {fileID: 1560655506}
   m_Layer: 0
   m_Name: mainMenu_background_01
   m_TagString: Untagged
@@ -1062,19 +1008,6 @@ Transform:
   - {fileID: 1095070111}
   - {fileID: 1219023858}
   m_Father: {fileID: 0}
---- !u!95 &1560655506
-Animator:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9500000, guid: a3eb3e1b4de054045b59e8633bcfab13,
-    type: 3}
-  m_PrefabInternal: {fileID: 1825093596}
-  m_GameObject: {fileID: 1560655504}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a3eb3e1b4de054045b59e8633bcfab13, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_ApplyRootMotion: 1
-  m_AnimatePhysics: 0
 --- !u!1 &1631767819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,7 +1155,8 @@ Prefab:
       propertyPath: m_Name
       value: mainMenu_background_01
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9500000, guid: a3eb3e1b4de054045b59e8633bcfab13, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: a3eb3e1b4de054045b59e8633bcfab13, type: 3}
   m_RootGameObject: {fileID: 1560655504}
   m_IsPrefabParent: 0
