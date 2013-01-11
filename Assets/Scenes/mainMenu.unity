@@ -216,8 +216,8 @@ Animation:
   m_AnimatePhysics: 0
   m_CullingType: 0
   m_UserAABB:
-    m_Center: {x: .000160098076, y: .00616315193, z: -.0465000272}
-    m_Extent: {x: .328335822, y: .0260892529, z: .438667893}
+    m_Center: {x: .000160098076, y: .00616315007, z: -.0465000868}
+    m_Extent: {x: .328335822, y: .026089251, z: .438667893}
 --- !u!4 &345300445
 Transform:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 5d7ca945cfb06ab488c83e68410b9f75, type: 2}
+  - {fileID: 2100000, guid: 9d49ad18fed0046ca8668a6e84b6f6da, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -346,7 +346,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 5d7ca945cfb06ab488c83e68410b9f75, type: 2}
+  - {fileID: 2100000, guid: 9d49ad18fed0046ca8668a6e84b6f6da, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -401,7 +401,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 5d7ca945cfb06ab488c83e68410b9f75, type: 2}
+  - {fileID: 2100000, guid: 9d49ad18fed0046ca8668a6e84b6f6da, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -456,7 +456,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 5d7ca945cfb06ab488c83e68410b9f75, type: 2}
+  - {fileID: 2100000, guid: 9d49ad18fed0046ca8668a6e84b6f6da, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -569,7 +569,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 5d7ca945cfb06ab488c83e68410b9f75, type: 2}
+  - {fileID: 2100000, guid: 9d49ad18fed0046ca8668a6e84b6f6da, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -769,7 +769,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 5d7ca945cfb06ab488c83e68410b9f75, type: 2}
+  - {fileID: 2100000, guid: 9d49ad18fed0046ca8668a6e84b6f6da, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -865,7 +865,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 5d7ca945cfb06ab488c83e68410b9f75, type: 2}
+  - {fileID: 2100000, guid: 9d49ad18fed0046ca8668a6e84b6f6da, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1305,7 +1305,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 5d7ca945cfb06ab488c83e68410b9f75, type: 2}
+  - {fileID: 2100000, guid: 9d49ad18fed0046ca8668a6e84b6f6da, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

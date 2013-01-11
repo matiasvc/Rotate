@@ -6,10 +6,16 @@
   </activeDistributionLists>
   <replaceSameBuilds>true</replaceSameBuilds>
   <notifyUsers>true</notifyUsers>
-  <lastBuildAppTime>97.0603943</lastBuildAppTime>
-  <lastPackageIpaTime>8.507683</lastPackageIpaTime>
-  <lastUploadTime>64.63332</lastUploadTime>
+  <lastBuildAppTime>83.75181</lastBuildAppTime>
+  <lastPackageIpaTime>6.645546</lastPackageIpaTime>
+  <lastUploadTime>106.97049</lastUploadTime>
   <messageHistory>
+    <string>New message...</string>
+    <string />
+    <string>Rotate Alpha Release Notes - Current Build: a0.1
+
+a0.1
+- Initial Alpha release.</string>
     <string>
 
 

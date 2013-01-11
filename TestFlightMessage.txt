@@ -1,5 +1,4 @@
+Rotate Alpha Release Notes - Current Build: a0.1
 
-
-
-
--- Built & Uploaded using AutoPilot
+a0.1
+- Initial Alpha release.
