@@ -1,4 +1,0 @@
-Rotate Alpha Release Notes - Current Build: a0.1
-
-a0.1
-- Initial Alpha release.

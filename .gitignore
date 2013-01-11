@@ -13,3 +13,9 @@ Library/
 *.suo
 *.sln
 *.svd
+
+# AutoPilot Cache and Settings
+TestFlightMessage.txt
+TestFlightMobileProvisionCache.xml
+TestFlightTeamPreferences.xml
+TestFlightUserPreferences.xml
