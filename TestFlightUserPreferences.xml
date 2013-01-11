@@ -6,25 +6,25 @@
   </activeDistributionLists>
   <replaceSameBuilds>true</replaceSameBuilds>
   <notifyUsers>true</notifyUsers>
-  <lastBuildAppTime>86.33551</lastBuildAppTime>
-  <lastPackageIpaTime>6.952291</lastPackageIpaTime>
-  <lastUploadTime>40.8573151</lastUploadTime>
+  <lastBuildAppTime>97.0603943</lastBuildAppTime>
+  <lastPackageIpaTime>8.507683</lastPackageIpaTime>
+  <lastUploadTime>64.63332</lastUploadTime>
   <messageHistory>
     <string>
-Enjoy this new alpha version of Rotate :)
+
 
 
 -- Built &amp; Uploaded using AutoPilot</string>
     <string>
-
+Enjoy this new alpha version of Rotate :)
 
 
 -- Built &amp; Uploaded using AutoPilot</string>
   </messageHistory>
   <testFlightSDKEmbedType>ForTestflightTesters</testFlightSDKEmbedType>
   <customProvisionProfile>
-    <Name>iOS Team Provisioning Profile: * (P66MG9728U.*)</Name>
-    <UUID>2CF5EC55-FD3F-4FBB-84DE-229210C0B3E0</UUID>
+    <Name>TestFligth Provisioning Profile (P66MG9728U.*)</Name>
+    <UUID>DB94D4F9-2F86-4D1B-8575-A9188E54195A</UUID>
     <Expired>false</Expired>
     <AppIdentifier>P66MG9728U.*</AppIdentifier>
     <Certificates>

@@ -3,18 +3,6 @@
   <CachedProvision>
     <provision>
       <Name>iOS Team Provisioning Profile: * (P66MG9728U.*)</Name>
-      <UUID>2CF5EC55-FD3F-4FBB-84DE-229210C0B3E0</UUID>
-      <Expired>false</Expired>
-      <AppIdentifier>P66MG9728U.*</AppIdentifier>
-      <Certificates>
-        <string>iPhone Developer: Matias Varnum Christensen (HQPSYK2GC4)</string>
-      </Certificates>
-    </provision>
-    <hash>2wl9O22F7TJyB/79EUuCug==</hash>
-  </CachedProvision>
-  <CachedProvision>
-    <provision>
-      <Name>iOS Team Provisioning Profile: * (P66MG9728U.*)</Name>
       <UUID>78F9AD15-90B8-489B-B828-A089DEF1156D</UUID>
       <Expired>false</Expired>
       <AppIdentifier>P66MG9728U.*</AppIdentifier>
@@ -35,5 +23,17 @@
       </Certificates>
     </provision>
     <hash>/AkMBLdq7NZYUrriU8Pcfg==</hash>
+  </CachedProvision>
+  <CachedProvision>
+    <provision>
+      <Name>TestFligth Provisioning Profile (P66MG9728U.*)</Name>
+      <UUID>DB94D4F9-2F86-4D1B-8575-A9188E54195A</UUID>
+      <Expired>false</Expired>
+      <AppIdentifier>P66MG9728U.*</AppIdentifier>
+      <Certificates>
+        <string>iPhone Developer: Matias Varnum Christensen (HQPSYK2GC4)</string>
+      </Certificates>
+    </provision>
+    <hash>oUa78YmIbVtNYVwEZcYCIg==</hash>
   </CachedProvision>
 </ArrayOfCachedProvision>
