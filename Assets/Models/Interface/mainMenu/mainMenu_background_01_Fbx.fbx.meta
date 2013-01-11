@@ -1,0 +1,98 @@
+fileFormatVersion: 2
+guid: a3eb3e1b4de054045b59e8633bcfab13
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: backgroundImage_ballAndContraption1
+    100002: backgroundImage_ballAndContraption2
+    100004: backgroundImage_ballAndContraption3
+    100006: backgroundImage_ballAndContraption4
+    100008: backgroundImage_environment1
+    100010: backgroundImage_environment2
+    100012: backgroundImage_environment3
+    100014: backgroundImage_environment4
+    100016: //RootNode
+    400000: backgroundImage_ballAndContraption1
+    400002: backgroundImage_ballAndContraption2
+    400004: backgroundImage_ballAndContraption3
+    400006: backgroundImage_ballAndContraption4
+    400008: backgroundImage_environment1
+    400010: backgroundImage_environment2
+    400012: backgroundImage_environment3
+    400014: backgroundImage_environment4
+    400016: //RootNode
+    2300000: backgroundImage_ballAndContraption1
+    2300002: backgroundImage_ballAndContraption2
+    2300004: backgroundImage_ballAndContraption3
+    2300006: backgroundImage_ballAndContraption4
+    2300008: backgroundImage_environment1
+    2300010: backgroundImage_environment2
+    2300012: backgroundImage_environment3
+    2300014: backgroundImage_environment4
+    3300000: backgroundImage_ballAndContraption1
+    3300002: backgroundImage_ballAndContraption2
+    3300004: backgroundImage_ballAndContraption3
+    3300006: backgroundImage_ballAndContraption4
+    3300008: backgroundImage_environment1
+    3300010: backgroundImage_environment2
+    3300012: backgroundImage_environment3
+    3300014: backgroundImage_environment4
+    4300000: backgroundImage_ballAndContraption1
+    4300002: backgroundImage_environment1
+    4300004: backgroundImage_ballAndContraption2
+    4300006: backgroundImage_environment2
+    4300008: backgroundImage_ballAndContraption3
+    4300010: backgroundImage_environment3
+    4300012: backgroundImage_ballAndContraption4
+    4300014: backgroundImage_environment4
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .25
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

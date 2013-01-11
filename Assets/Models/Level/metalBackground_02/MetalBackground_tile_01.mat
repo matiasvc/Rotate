@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: MetalBackground_tile_01
+  m_Shader: {fileID: 4800000, guid: a83a2ab6987943043a9d47fdf34460ce, type: 3}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _ColorMap
+        second:
+          m_Texture: {fileID: 2800000, guid: e813e5b6ea74874459062e88d9a37871, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _FresnelOpacity
+        second: .74626863
+      data:
+        first:
+          name: _AmbientLight
+        second: .731343269
+    m_Colors: {}
