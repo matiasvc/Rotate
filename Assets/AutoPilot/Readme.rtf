@@ -1,0 +1,190 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf320
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue128;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+{\info
+{\author Kieran Lord}}\paperw11900\paperh16840\margl1134\margr1134\margb1134\margt1134\vieww16280\viewh13980\viewkind0
+\deftab709
+\pard\pardeftab709
+
+\f0\b\fs36 \cf0 AutoPilot 3 for TestFlight
+\b0\fs24 \
+- Copyright Cratesmith (Kieran Lord), 2011\
+- {\field{\*\fldinst{HYPERLINK "mailto:cratesmith@cratesmith.com"}}{\fldrslt \cf2 \ul \ulc0 cratesmith@cratesmith.com}}\
+\
+
+\b\fs28 About:
+\b0\fs24 \
+AutoPilot integrates the fantastic, cloud based iPhone testing and deployment system TestFlight (http://testflightapp.com) directly into unity. Send your latest builds to testers anywhere in the world without leaving Unity\
+\
+
+\b\fs28 Features:
+\b0\fs24 \
+	Automatic TestFlight SDK integration (requires Unity Pro)\
+\pard\pardeftab709\li720\fi-360\ri-6
+\ls1\ilvl0\cf0 	Single click to send a build to your testers, anywhere in the world!\
+	Integrates unity with the fantastic testing and feedback tools of TestFlight\
+	Manage TestFlight upload settings from within Unity\
+	Simple to use, fast to configure. \
+\pard\pardeftab709
+
+\b\fs28 \cf0 \
+\
+Requirements:
+\b0\fs24 \
+\pard\pardeftab709\li720\fi-360\ri-6
+\ls2\ilvl0\cf0 	Unity3d iPhone (Pro or Basic), running on OSX\
+	XCode 4.3.3 or later\
+	An active connection to the internet\
+\pard\pardeftab709
+\cf0 \
+\
+
+\b\fs28 Step by step instructions:
+\b0\fs24 \
+	0. Remove your old AutoPilot installation if updating. To do so delete the following folders:\
+	- Assets/AutoPilot\
+	- Plugins/TestFlightSDK\
+\
+	1. Ensure you have an account at http://www.testflightapp.com. \
+	(if you don't it only takes a minute, and it's free).\
+\
+	2. Follow the instructions on http://www.testflightapp.com to set up\
+	your user account and create a team if you haven't done so already.\
+\
+	3. Import AutoPilot into your project. \
+\
+	4. Click "AutoPilot: TestFlight Build Preferences" from Unity's "File" menu.\
+\
+	5. Click the "Get your Team API Token" and scroll to the bottom of the page \
+	it opens, copy it and paste it in the text field marked "Team Token".\
+\
+	6. Repeat step 5 for "User Token"\
+\
+	7. Check that all the other settings suit your project, and hit "Save & Build"\
+	(assuming of course that your project is set up for iPhone builds, otherwise\
+	just hit Save)\
+\
+	9. Enter a message into the upload message window that pops up (this is what\
+	your testers will see as the description for the new build) and click "Build & Upload"\
+\
+	10. From now on, you can select "AutoPilot : Build and Upload to TestFlight" from\
+	Unity's "File" menu to quickly upload a new build with your current preferences.\
+\
+	11. Make awesome games!\
+\
+\
+
+\b\fs28 TestFlight SDK	
+\b0\fs24 \
+	To install the TestFlight SDK into your project: \
+	1. Click "AutoPilot: TestFlight Build Preferences" from Unity's "File" menu.\
+	2. Find the TestFlight SDK line and click the "Download" button\
+	3. Download and unzip the SDK\
+	4. Now click the "Install" button, and select the folder where you unzipped the SDK.\
+	5. Your project should now be configured to use the TestFlight SDK!\
+\
+	At any time in your code, you can call the following functions to interface with the TestFlight SDK:\
+\
+	// open the testflight dialog for user feedback on this build\
+	TestFlightSDK.OpenFeedbackView(); \
+\
+	// marks that the user has passed the checkpoint of this name, for example "level 1 complete"\
+	TestFlightSDK.PassCheckpoint(string checkPointName); \
+\
+	// adds extra environment information to this user's session, see the testflight SDK docs for more info\
+	TestFlightSDK.AddCustomEnvironmentInformation(string information, string forKey);\
+\
+\
+
+\b\fs28 TestFlight Live!\
+
+\b0\fs24 	Testflight Live is now supported and can be selected as one of the SDK options on the preferences\
+	and build windows.\
+\
+	Unlike "Testflight SDK for testers"  Builds made with "build for Testflight Live" option can be \
+	submitted to the asset store.  You'll have access  to the functionality of the Testflight SDK and \
+	app store usage statistics from the Testflight Live tab on your Testflightapp.com dashboard.\
+\
+	When using test flight live all user statistics are recorded anonymously, so it's advised not to use it\
+	except when packaging your app up for final testing and release.\
+\
+
+\b\fs28 Pre-Build Callback (Advanced):
+\b0\fs24 \
+	If you have a custom build process, AutoPilot now provides a delegate callback:\
+	- TestFlightBuildPipeline.onPreBuild(TestFlightPreferences preferences)\
+\
+	To use it, create your own method such as:\
+	void MyMethod(TestFlightPreferences preferences) \{\}\
+\
+	and then at some point before triggering a build add that method to the desired callback like this:\
+	TestFlightBuildPipeline.onPreBuild = MyMethod;\
+	\
+	This will call "MyMethod" before the build starts.\
+\
+	Note: Unity will clear this callback after a build, this is sadly unavoidable due to the way unity \
+	handles scripts (and therefore delegates) during a build. So always remember to set the callback before \
+	you start a build.\
+\
+\
+
+\b\fs28 Disabling the Menu & Triggering Autopilot builds from code (Advanced):
+\b0\fs24 \
+	If your custom build process means that you don't want people triggering an autopilot build from the \
+	or the "file->Autopilot: Build & upload to testflight" and the preferences window's "Save & Upload" button\
+	\
+	These can be disabled as follows:\
+	TestFlightBuildPipeline.MenuItemAllowed = false; // call this in initialisation somewhere\
+\
+	Once this is done, the only way to trigger a build is by calling:\
+	TestFlightBuildPipeline.BuildAndUploadToTestFlight();  // show the message window and start the build process\
+\
+	Or alternatively:\
+	TestFlightBuildPipeline.BuildAndUploadToTestFlight("my custom message");  // build and upload with this message\
+\
+
+\b\fs28 Troubleshooting	
+\b0\fs24 \
+	Build fails in autopilot but unity can build it just fine.\
+	- Check that you haven't selected "iPhone-Simulator" as your schema in your Autopilot build options.\
+	- If it's possible to delete your output folder and make a fresh build, this will fix many causes of this issue.\
+\
+	All developer identities are listed as "Unverified"\
+	- Either you don't have access to the internet, or the certificate signing server is currently unavailable \
+\
+	CodeSign error in "Package IPA" step (disappears on next build attempt)\
+	- This is a known bug with AutoPilot that's being looked into, for now the workaround is to simply re-attempt the build \
+	   with the same settings.\
+	- If that doesn't work, please contact the developer via cratesmith@cratesmith.com.\
+\
+	Build errors after updating unity\
+	- When unity is updated, quite often the Xcode project from the previous version cannot be appended to safely\
+	- Deleting your build output folder should make this problem go away\
+\
+	Nullpointer exception errors when opening the Autopilot settings screen\
+	- Usually this is caused by moving autopilot to a different folder. \
+	- You must leave autopilot installed in Assets/Autopilot and not move any of it's internal files around for it to work\
+\
+	Build errors/Unity errors after updating Autopilot\
+	- This is usually caused by not uninstalling autopilot completely from your project before updating\
+	- Completely delete Assets/Autopilot and any files it has placed in the Plugins and Plugins/iOS folders and then reinstall\
+\
+	WIN32Exception error in "Build App"\
+	- This error implies AutoPilot was unable to execute the Xcode command line tools. The most common cause for this is\
+	  if you have had multiple versions of Xcode installed at once, and the most recently installed one has been removed.\
+	- The simplest fix for this is to simply reinstall your newest version of Xcode over itself to ensure all paths and variables\
+	  have been set up right.\
+	- If that doesn't work, please contact the developer via cratesmith@cratesmith.com.\
+\
+	My provisioning files rare showing up as "Not validated"\
+	- Validating your provisions requires you to be online, they will be validated next time you use Autopilot while online\
+	- You can still use these provisions, however you will need to manually select the associated identity \
+\
+	My users say my app is crashing, but I don't get any logs. I'm even building a dSYM!\
+	- If you have "Fast but no exceptions" enabled in iOS player settings, some types of crashes will not be caught by\
+	  testflight's crash reporter.\
+	- If you suspect this is happening, try sending a build to testers using the "Slow & Safe" iOS player setting instead.\
+	- Also, try enabling "Development build" in "File->Build Settings\'85" if you still can't see the crash.}

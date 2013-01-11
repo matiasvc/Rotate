@@ -65,7 +65,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   iPhoneBundleIdentifier: com.matiaschristensen.rotate
-  iPhoneBundleVersion: 1.0
+  iPhoneBundleVersion: a0.1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 6
   AndroidPreferredInstallLocation: 1
@@ -123,7 +123,7 @@ PlayerSettings:
   wiiFloatingPointExceptions: 0
   wiiScreenCrashDumps: 1
   wiiMemoryLabelCount: 155
-  wiiMemorySetup: 00000000000000a0100000000000000000000000
+  wiiMemorySetup: 0000000000000000000000000000000000000000
   XboxTitleId: 
   XboxImageXexPath: 
   XboxSpaPath: 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<TestFlightTeamPreferences xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <teamAPIKey>d1cbc5e5acae18de9587218577be5d09_MjE0NzMyMDExLTA4LTE1IDE4OjExOjQ4LjExNzY1MA</teamAPIKey>
+  <distributionLists>
+    <string>Devs</string>
+    <string>Testers</string>
+  </distributionLists>
+  <buildPath>../Builds/Rotate_iOS</buildPath>
+</TestFlightTeamPreferences>
