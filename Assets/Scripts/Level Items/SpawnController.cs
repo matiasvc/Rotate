@@ -5,7 +5,7 @@ public class SpawnController : MonoBehaviour {
 	
 	public float spawnRotation = 0f;
 	
-	public void Awake()
+	public void Start()
 	{
 		Vector3 pos = transform.position;
 		EventDispatcher.SendEvent(EventKey.PLAYER_SETCHECKPOINT, new Vector4(pos.x, pos.y, pos.z, spawnRotation));

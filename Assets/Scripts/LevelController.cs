@@ -135,14 +135,14 @@ public class LevelController : MonoBehaviour
 	
 	private void Rotate(float rotationDelta)
 	{
-		float newRotation = rotation + rotationDelta * Time.deltaTime;
+		float newRotation = rotation + rotationDelta;
 		
 		EventDispatcher.SendEvent(EventKey.GAME_SETROTATION, newRotation);
 	}
 	
 	private void SetRotation(float degrees)
 	{
-		rotation = degrees;
+		rotation = Mathf.Repeat(degrees, 360f);
 		
 		float rad = rotation * Mathf.Deg2Rad;
 		Physics.gravity = new Vector3 (Mathf.Sin (rad), 0f, Mathf.Cos (rad)) * -gravityForce;
