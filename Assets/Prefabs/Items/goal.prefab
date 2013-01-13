@@ -221,7 +221,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400026}
   - 108: {fileID: 10800000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
