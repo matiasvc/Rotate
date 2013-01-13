@@ -9,6 +9,30 @@
 	},
 	{
 		"levelName" : "Level2",
+		"sceneName" : "Level 2, easy test",
+		"thumbPath" : "thumbnails/level1",
+		"starScore1" : 100,
+		"starScore2" : 200,
+		"starScore3" : 300
+	},
+	{
+		"levelName" : "Level3",
+		"sceneName" : "Level 3, hard test",
+		"thumbPath" : "thumbnails/level1",
+		"starScore1" : 100,
+		"starScore2" : 200,
+		"starScore3" : 300
+	},
+	{
+		"levelName" : "Level4",
+		"sceneName" : "Level 4, medium test",
+		"thumbPath" : "thumbnails/level1",
+		"starScore1" : 100,
+		"starScore2" : 200,
+		"starScore3" : 300
+	},
+	{
+		"levelName" : "Level2",
 		"sceneName" : "level_0",
 		"thumbPath" : "thumbnails/level1",
 		"starScore1" : 100,

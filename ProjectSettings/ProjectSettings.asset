@@ -123,7 +123,7 @@ PlayerSettings:
   wiiFloatingPointExceptions: 0
   wiiScreenCrashDumps: 1
   wiiMemoryLabelCount: 155
-  wiiMemorySetup: 0000000000000000000000000000000000000000
+  wiiMemorySetup: 00000000000000a0100000000000000000000000
   XboxTitleId: 
   XboxImageXexPath: 
   XboxSpaPath: 

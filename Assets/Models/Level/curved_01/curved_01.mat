@@ -29,11 +29,11 @@ Material:
       data:
         first:
           name: _FresnelOpacity
-        second: .671641767
+        second: 1
       data:
         first:
           name: _AmbientLight
-        second: .552238822
+        second: .820895553
     m_Colors:
       data:
         first:
