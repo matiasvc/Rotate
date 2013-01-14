@@ -190,7 +190,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 345300445}
-  - 111: {fileID: 345300446}
+  - 111: {fileID: 345300444}
   m_Layer: 0
   m_Name: barnDoors
   m_TagString: Untagged
@@ -198,6 +198,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!111 &345300444
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11100000, guid: dcc451f2ca8fea4449b1232acf352fa2,
+    type: 3}
+  m_PrefabInternal: {fileID: 1020746941}
+  m_GameObject: {fileID: 345300443}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: dcc451f2ca8fea4449b1232acf352fa2, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: dcc451f2ca8fea4449b1232acf352fa2, type: 3}
+  - {fileID: 7400002, guid: dcc451f2ca8fea4449b1232acf352fa2, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+  m_UserAABB:
+    m_Center: {x: .000160098076, y: .00616315007, z: -.0465000868}
+    m_Extent: {x: .328335822, y: .026089251, z: .438667893}
 --- !u!4 &345300445
 Transform:
   m_ObjectHideFlags: 0
@@ -211,25 +231,6 @@ Transform:
   - {fileID: 1211050542}
   - {fileID: 221374616}
   m_Father: {fileID: 0}
---- !u!111 &345300446
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 345300443}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: dcc451f2ca8fea4449b1232acf352fa2, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: dcc451f2ca8fea4449b1232acf352fa2, type: 3}
-  - {fileID: 7400002, guid: dcc451f2ca8fea4449b1232acf352fa2, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
-  m_UserAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!1 &416286020
 GameObject:
   m_ObjectHideFlags: 0
