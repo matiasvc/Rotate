@@ -8,14 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/mainMenu.unity
   - enabled: 1
-    path: Assets/Scenes/Test Scenes/testLevel.unity
-  - enabled: 1
-    path: Assets/Scenes/Test Scenes/level_0.unity
+    path: Assets/Scenes/Levels/level1.unity
   - enabled: 1
     path: Assets/Scenes/Levels/level2.unity
   - enabled: 1
     path: Assets/Scenes/Levels/level3.unity
-  - enabled: 1
-    path: Assets/Scenes/Test Scenes/level_simonsTestlevel.unity
   - enabled: 1
     path: Assets/Scenes/Levels/level4.unity
