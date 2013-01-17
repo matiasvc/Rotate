@@ -69,8 +69,21 @@ public class StartMenuManager : MonoBehaviour {
 		{
 			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth), "OPTIONS");
 			
+			float deltaSwipeStrength = PlayerPrefs.GetFloat("DELTA_SWIPE_STRENGTH", 6500f); // 3000f - 8000f
+			float swipeStrength = PlayerPrefs.GetFloat("SWIPE_STRENGTH", 160f); // 100f - 250f
+			
+			GUI.Label(new Rect(screenCenter.x - 250f, screenCenter.y - 180f, 300f, 30f), "DELTA ROTATION STRENGTH");
+			deltaSwipeStrength = GUI.HorizontalSlider(new Rect(screenCenter.x - 250f, screenCenter.y - 150f, 500f, 50f), deltaSwipeStrength, 1000f, 10000f);
+			
+			GUI.Label(new Rect(screenCenter.x - 250f, screenCenter.y - 80f, 300f, 30f), "POSITION ROTATION STRENGTH");
+			swipeStrength = GUI.HorizontalSlider(new Rect(screenCenter.x - 250f, screenCenter.y - 50f, 500f, 50f), swipeStrength, 80f, 350f);
+			
+			PlayerPrefs.SetFloat("DELTA_SWIPE_STRENGTH", deltaSwipeStrength);
+			PlayerPrefs.SetFloat("SWIPE_STRENGTH", swipeStrength);
+			
 			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), "BACK"))
 			{
+				PlayerPrefs.Save();
 				state = MenuState.MAIN;
 			}
 		}

@@ -65,7 +65,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   iPhoneBundleIdentifier: com.matiaschristensen.rotate
-  iPhoneBundleVersion: a0.2
+  iPhoneBundleVersion: a0.3
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 6
   AndroidPreferredInstallLocation: 1

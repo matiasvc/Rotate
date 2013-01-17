@@ -14,10 +14,16 @@ public class PlayerInput : MonoBehaviour {
 	
 	private InputType inputType = InputType.BUTTONS;
 	
+	private float deltaSwipeStrength;
+	private float swipeStrength;
+	
 	void Start()
 	{
 		InputSwipe.RegisterOnSwipeListner(OnSwipe);
 		InputSwipe.RegisterOnSwipeCompletedListner(OnSwipeComplete);
+		
+		deltaSwipeStrength = PlayerPrefs.GetFloat("DELTA_SWIPE_STRENGTH", 6500f); // 3000f - 8000f
+		swipeStrength = PlayerPrefs.GetFloat("SWIPE_STRENGTH", 160f); // 100f - 250f
 	}
 	
 	void Update()
@@ -61,7 +67,7 @@ public class PlayerInput : MonoBehaviour {
 			break;
 		case InputType.DELTA_SWIPE:
 			
-			if (GUI.RepeatButton(new Rect(screenCenter.x - 300f, Screen.height - 100f, 600f, 100f), "<--SWIPE TO ROTATE (DELTA)-->"))
+			if (GUI.RepeatButton(new Rect(screenCenter.x - 300f, Screen.height - 100f, 600f, 100f), "<--SWIPE TO ROTATE (DELTA)-->\nADJUST ROTATION STRENGTH IN OPTIONS MENU"))
 				deltaSwipeButton = true;
 			else
 				deltaSwipeButton = false;
@@ -69,7 +75,7 @@ public class PlayerInput : MonoBehaviour {
 			break;
 		case InputType.SWIPE:
 			
-			if (GUI.RepeatButton(new Rect(screenCenter.x - 300f, Screen.height - 100f, 600f, 100f), "<--SWIPE TO ROTATE (POSITION)-->"))
+			if (GUI.RepeatButton(new Rect(screenCenter.x - 300f, Screen.height - 100f, 600f, 100f), "<--SWIPE TO ROTATE (POSITION)-->\nADJUST ROTATION STRENGTH IN OPTIONS MENU"))
 				swipeButton = true;
 			else
 				swipeButton = false;
@@ -98,9 +104,9 @@ public class PlayerInput : MonoBehaviour {
 	private void OnSwipe(InputSwipe.Swipe swipe)
 	{
 		if (inputType == InputType.DELTA_SWIPE)
-			swipeDelta = (swipe.frameDelta.x / Screen.width) * 6500f;
+			swipeDelta = (swipe.frameDelta.x / Screen.width) * deltaSwipeStrength;
 		else if (inputType == InputType.SWIPE)
-			swipeDelta = (swipe.endPos.x / (Screen.width*0.5f) - 1f) * 160f;
+			swipeDelta = (swipe.endPos.x / (Screen.width*0.5f) - 1f) * swipeStrength;
 	}
 	
 	private void OnSwipeComplete(InputSwipe.Swipe swipe)
