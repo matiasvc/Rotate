@@ -43,6 +43,7 @@ public class LevelEditor : EditorWindow {
 		}
 	}
 	
+	private Vector2 scrollPos;
 	
 	private List<LevelItem> itemPrefabs;
 	private List<LevelItem> levelPrefabs;
@@ -55,6 +56,7 @@ public class LevelEditor : EditorWindow {
 	
 	void OnEnable ()
 	{
+		scrollPos = Vector2.zero;
 		Refresh();
 	}
 	
@@ -90,12 +92,14 @@ public class LevelEditor : EditorWindow {
 	
 	void OnGUI ()
 	{
+		scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
 		DrawToolButtons();
 		DrawComponentButtons();
 		DrawLevelIntegrity();
 		DrawItemButtons();
 		DrawLevelButtons();
 		GUI.enabled = true;
+		EditorGUILayout.EndScrollView();
 	}
 	
 	private void DrawLevelIntegrity()
