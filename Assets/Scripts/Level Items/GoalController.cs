@@ -111,7 +111,7 @@ public class GoalController : LevelItem {
 		while(anim.isPlaying)
 			yield return null;
 		
-		EventDispatcher.SendEvent(EventKey.GAME_LEVELCOMPLETE);
+		EventDispatcher.SendEvent(EventKey.GAME_LEVEL_COMPLETE);
 	}
 	
 	void OnDrawGizmosSelected()

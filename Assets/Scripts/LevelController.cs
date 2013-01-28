@@ -77,19 +77,19 @@ public class LevelController : MonoBehaviour
 	void OnEnable()
 	{
 		EventDispatcher.AddHandler(EventKey.INPUT_ROTATE, HandleEvent);
-		EventDispatcher.AddHandler(EventKey.GAME_SETROTATION, HandleEvent);
-		EventDispatcher.AddHandler(EventKey.PLAYER_SETCHECKPOINT, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.GAME_SET_ROTATION, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.PLAYER_SET_CHECKPOINT, HandleEvent);
 		EventDispatcher.AddHandler(EventKey.PLAYER_SPAWN, HandleEvent);
-		EventDispatcher.AddHandler(EventKey.PLAYER_BONUSOBJECT, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.PLAYER_BONUS_OBJECT, HandleEvent);
 	}
 	
 	void OnDisable()
 	{
 		EventDispatcher.RemoveHandler(EventKey.INPUT_ROTATE, HandleEvent);
-		EventDispatcher.RemoveHandler(EventKey.GAME_SETROTATION, HandleEvent);
-		EventDispatcher.RemoveHandler(EventKey.PLAYER_SETCHECKPOINT, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.GAME_SET_ROTATION, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.PLAYER_SET_CHECKPOINT, HandleEvent);
 		EventDispatcher.RemoveHandler(EventKey.PLAYER_SPAWN, HandleEvent);
-		EventDispatcher.RemoveHandler(EventKey.PLAYER_BONUSOBJECT, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.PLAYER_BONUS_OBJECT, HandleEvent);
 	}
 	
 	void Update()
@@ -107,17 +107,17 @@ public class LevelController : MonoBehaviour
 		case EventKey.INPUT_ROTATE:
 			Rotate((float)param);
 			break;
-		case EventKey.GAME_SETROTATION:
+		case EventKey.GAME_SET_ROTATION:
 			SetRotation((float)param);
 			break;
-		case EventKey.PLAYER_SETCHECKPOINT:
+		case EventKey.PLAYER_SET_CHECKPOINT:
 			Vector4 cpParam = (Vector4)param;
 			SetCheckpoint(new Vector3(cpParam.x, cpParam.y, cpParam.z), cpParam.w);
 			break;
 		case EventKey.PLAYER_SPAWN:
 			SpawnPlayer();
 			break;
-		case EventKey.PLAYER_BONUSOBJECT:
+		case EventKey.PLAYER_BONUS_OBJECT:
 			bonusObjectsCollected++;
 			break;
 		default:
@@ -129,15 +129,15 @@ public class LevelController : MonoBehaviour
 	private void SpawnPlayer()
 	{
 		EventDispatcher.SendEvent(EventKey.PLAYER_MOVE, spawnPoint); // Move player to start position
-		EventDispatcher.SendEvent(EventKey.GAME_SETROTATION, spawnRotation); // Rotate to the level starting rotation
-		EventDispatcher.SendEvent(EventKey.PLAYER_TOGGLEACTIVE, true); // Activate the player
+		EventDispatcher.SendEvent(EventKey.GAME_SET_ROTATION, spawnRotation); // Rotate to the level starting rotation
+		EventDispatcher.SendEvent(EventKey.PLAYER_TOGGLE_ACTIVE, true); // Activate the player
 	}
 	
 	private void Rotate(float rotationDelta)
 	{
 		float newRotation = rotation + rotationDelta;
 		
-		EventDispatcher.SendEvent(EventKey.GAME_SETROTATION, newRotation);
+		EventDispatcher.SendEvent(EventKey.GAME_SET_ROTATION, newRotation);
 	}
 	
 	private void SetRotation(float degrees)

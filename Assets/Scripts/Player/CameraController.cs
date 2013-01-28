@@ -24,19 +24,19 @@ public class CameraController : MonoBehaviour {
 	
 	void OnEnable()
 	{
-		EventDispatcher.AddHandler(EventKey.GAME_SETROTATION, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.GAME_SET_ROTATION, HandleEvent);
 	}
 	
 	void OnDisable()
 	{
-		EventDispatcher.RemoveHandler(EventKey.GAME_SETROTATION, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.GAME_SET_ROTATION, HandleEvent);
 	}
 	
 	private void HandleEvent(string eventName, object param)
 	{
 		switch (eventName)
 		{
-		case EventKey.GAME_SETROTATION:
+		case EventKey.GAME_SET_ROTATION:
 			SetRotation((float)param);
 			break;
 		default:

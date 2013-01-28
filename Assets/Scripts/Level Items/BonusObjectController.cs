@@ -5,7 +5,7 @@ public class BonusObjectController : MonoBehaviour
 {	
 	void OnTriggerEnter()
 	{
-		EventDispatcher.SendEvent(EventKey.PLAYER_BONUSOBJECT);
+		EventDispatcher.SendEvent(EventKey.PLAYER_BONUS_OBJECT);
 		Destroy(gameObject);
 	}
 }

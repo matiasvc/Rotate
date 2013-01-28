@@ -8,7 +8,7 @@ public class SpawnController : MonoBehaviour {
 	public void Start()
 	{
 		Vector3 pos = transform.position;
-		EventDispatcher.SendEvent(EventKey.PLAYER_SETCHECKPOINT, new Vector4(pos.x, pos.y, pos.z, spawnRotation));
+		EventDispatcher.SendEvent(EventKey.PLAYER_SET_CHECKPOINT, new Vector4(pos.x, pos.y, pos.z, spawnRotation));
 	}
 	
 	void OnDrawGizmosSelected()

@@ -12,7 +12,7 @@ public class CheckpointOnEnter : MonoBehaviour {
 		{
 			Vector3 checkpointPos = transform.position + checkpointOffset;
 			
-			EventDispatcher.SendEvent(EventKey.PLAYER_SETCHECKPOINT, new Vector4(checkpointPos.x, checkpointPos.y, checkpointPos.z, checkpointRotation + transform.localEulerAngles.y));
+			EventDispatcher.SendEvent(EventKey.PLAYER_SET_CHECKPOINT, new Vector4(checkpointPos.x, checkpointPos.y, checkpointPos.z, checkpointRotation + transform.localEulerAngles.y));
 		}
 	}
 	
