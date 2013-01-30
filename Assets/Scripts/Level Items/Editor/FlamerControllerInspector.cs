@@ -15,7 +15,7 @@ public class FlamerControllerInspector : Editor {
 	
 	public override void OnInspectorGUI ()
 	{
-		float newLength = (float)EditorGUILayout.IntSlider(Mathf.RoundToInt(editorTarget.FireLength), 1, 8 );
+		float newLength = (float)EditorGUILayout.IntSlider("Flame length", Mathf.RoundToInt(editorTarget.FireLength), 1, 8 );
 		
 		if (newLength != editorTarget.FireLength)
 		{
