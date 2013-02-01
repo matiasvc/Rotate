@@ -1,0 +1,3 @@
+[submodule "Assets/ISFramework"]
+	path = Assets/ISFramework
+	url = https://mattivc@github.com/Mattivc/ISFramework.git
