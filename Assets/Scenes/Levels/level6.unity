@@ -26085,8 +26085,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1, z: 3}
-  m_Center: {x: 1.5, y: 0, z: 2.5}
+  m_Size: {x: 1.5, y: 1, z: 6}
+  m_Center: {x: 1.5, y: 0, z: 4}
 --- !u!114 &522510778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26099,7 +26099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9783531508f854198cc8a951b8e5b3, type: 3}
   m_Name: 
   itemEnabled: 1
-  airflowLength: 3
+  airflowLength: 6
   fanForce: 20
   airflowParticles: {fileID: 1833303147}
   fanAnimator: {fileID: 1131061291}
@@ -56185,6 +56185,22 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: .707106829
       objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cd81aa956e6ab3e4ea9f31049e39f457, type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: .625
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500002, guid: cd81aa956e6ab3e4ea9f31049e39f457, type: 2}
+      propertyPath: m_Size.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500002, guid: cd81aa956e6ab3e4ea9f31049e39f457, type: 2}
+      propertyPath: m_Center.z
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: cd81aa956e6ab3e4ea9f31049e39f457, type: 2}
+      propertyPath: airflowLength
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd81aa956e6ab3e4ea9f31049e39f457, type: 2}
   m_RootGameObject: {fileID: 1392349302}
@@ -63626,7 +63642,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: .375
+      scalar: .625
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -70568,8 +70584,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1, z: 3}
-  m_Center: {x: 1.5, y: 0, z: 2.5}
+  m_Size: {x: 1.5, y: 1, z: 5}
+  m_Center: {x: 1.5, y: 0, z: 3.5}
 --- !u!114 &1392349305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70582,7 +70598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9783531508f854198cc8a951b8e5b3, type: 3}
   m_Name: 
   itemEnabled: 1
-  airflowLength: 3
+  airflowLength: 5
   fanForce: 20
   airflowParticles: {fileID: 1254629528}
   fanAnimator: {fileID: 1571025475}
@@ -80181,6 +80197,22 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -.707106829
       objectReference: {fileID: 0}
+    - target: {fileID: 6500002, guid: cd81aa956e6ab3e4ea9f31049e39f457, type: 2}
+      propertyPath: m_Size.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500002, guid: cd81aa956e6ab3e4ea9f31049e39f457, type: 2}
+      propertyPath: m_Center.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: cd81aa956e6ab3e4ea9f31049e39f457, type: 2}
+      propertyPath: airflowLength
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: cd81aa956e6ab3e4ea9f31049e39f457, type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: .75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd81aa956e6ab3e4ea9f31049e39f457, type: 2}
   m_RootGameObject: {fileID: 522510775}
@@ -89307,7 +89339,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: .375
+      scalar: .75
       maxCurve:
         serializedVersion: 2
         m_Curve:
