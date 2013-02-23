@@ -3,37 +3,33 @@ using System.Collections;
 
 public class ElectroController : LevelItem {
 	
-	[SerializeField]
-	private Vector3[] electroPointsPos;
+	public ElectroController connectedElectro = null;
+	public ElectricBeamAnimator beamAnimator;
 	
-	public Vector3 ElectroPoint
-	{
-		get
-		{
-			return transform.position + ( ( transform.forward * 0.5f ) + ( transform.right * 0.85f ) );
-		}
+	public Vector3 BeamPoint {
+		get { return transform.position + transform.rotation * new Vector3(0.85f, 0f, 0.5f); }
 	}
 	
-	[SerializeField]
-	private ElectroController electroTarget;
+	public override void ItemEnable () {
+		base.ItemEnable();
+	}
 	
-	public ElectroController ElectroTarget
-	{
-		get { return electroTarget; }
-		set
-		{
-			int points = Mathf.FloorToInt( Vector3.Distance( ElectroPoint, value.ElectroPoint ) );
-			if( points < 3 )
-				points = 3;
-			
-			float lerpStep = 1f / (float)points;
-			
-			electroPointsPos = new Vector3[points];
-			
-			for (int i = 0; i < points; i++)
-			{
-				electroPointsPos[i] = Vector3.Lerp( ElectroPoint, value.ElectroPoint, lerpStep * i );
-			}
+	public override void ItemDisable () {
+		base.ItemDisable();
+	}
+	
+	public override void ItemSwitch ( bool setTo ) {
+		base.ItemSwitch( setTo );
+	}
+	
+	public override void ItemToggle () {
+		base.ItemToggle();
+	}
+	
+	void OnDrawGizmos() {
+		if ( connectedElectro != null ) {
+			Gizmos.color = Color.blue;
+			Gizmos.DrawLine(BeamPoint, connectedElectro.BeamPoint);
 		}
 	}
 	
