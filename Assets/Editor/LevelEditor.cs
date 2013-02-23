@@ -6,7 +6,7 @@ using System.IO;
 
 public class LevelEditor : EditorWindow {
 	
-	private const float UISize = 20f;
+	private const float UISize = 18f;
 	
 	public class PrefabItem : Object {
 		public string itemName;
@@ -54,10 +54,10 @@ public class LevelEditor : EditorWindow {
 	
 	void OnEnable ()
 	{
-		Refresh();
+		BuildAssetLists();
 	}
 	
-	private void Refresh()
+	private void BuildAssetLists()
 	{
 		itemPrefabs = new List<PrefabItem>();
 		string[] itemPrefabPaths = Directory.GetFiles((@"Assets\Prefabs\Items\").Replace(@"\", Path.AltDirectorySeparatorChar.ToString()), "*.prefab");
@@ -95,13 +95,15 @@ public class LevelEditor : EditorWindow {
 		
 		
 		if (IsLevelInitialized()) {
-			toolbarSelected = GUI.Toolbar(new Rect(1f, 11f, 18f, 1f).Multiply(UISize), toolbarSelected, new string[]{"Level", "Items", "Components", "Properties"});
+			toolbarSelected = GUI.Toolbar(new Rect(0.25f, 10f, 18f, 1f).Multiply(UISize), toolbarSelected, new string[]{"Level", "Items", "Components", "Properties"});
 			
 			switch (toolbarSelected) {
 			case 0:
+				BuildAssetLists();
 				DrawLevelButtons();
 				break;
 			case 1:
+				BuildAssetLists();
 				DrawItemButtons();
 				break;
 			case 2:
@@ -113,7 +115,7 @@ public class LevelEditor : EditorWindow {
 			}
 			
 		} else {
-			if (GUI.Button(new Rect(1f, 11f, 18f, 1f).Multiply(UISize), new GUIContent("Initialize Level"))) {
+			if (GUI.Button(new Rect(0.25f, 10f, 18f, 1f).Multiply(UISize), new GUIContent("Initialize Level"))) {
 				InitializeLevel();
 			}
 		}
@@ -163,13 +165,7 @@ public class LevelEditor : EditorWindow {
 	private void DrawToolButtons()
 	{
 		// Move Buttons
-		
-		
-		if (GUI.Button(new Rect(0f, 0f, 1f, 1f).Multiply(UISize) ,"R")) {
-			Refresh();
-		}
-		
-		Rect[] posRotButtons = RectEx.RectGrid(new Rect(1f, 1f, 9f, 9f), 3, 3);
+		Rect[] posRotButtons = RectEx.RectGrid(new Rect(0.25f, 0.25f, 9f, 9f), 3, 3);
 		
 		if (GUI.Button(posRotButtons[0].Multiply(UISize), new GUIContent("Rotate\nLeft", "Rotates selected objects counter-clockwise"))) {
 			RotateSelectedObjects(new Vector3(0f, -90f, 0f));
@@ -211,8 +207,8 @@ public class LevelEditor : EditorWindow {
 			MoveSelectedObjects(new Vector3(0f, 1f, 0f));
 		}
 		
-		
-		Rect[] toolButtons = RectEx.RectGrid(new Rect(11f, 1f, 8f, 9f), 2, 4);
+		// Tool Buttons
+		Rect[] toolButtons = RectEx.RectGrid(new Rect(10f, 0.25f, 8f, 9f), 2, 4);
 		
 		if (GUI.Button(toolButtons[0].Multiply(UISize), "Rotate UV")) {
 			RotateSelectedUVs();
@@ -281,7 +277,7 @@ public class LevelEditor : EditorWindow {
 			PrefabUtility.InstantiatePrefab((GameObject)AssetDatabase.LoadAssetAtPath(@"Assets/Prefabs/Other/GameManager.prefab", typeof(GameObject)));
 	}
 	
-	private void DrawComponentButtons()
+	private void DrawComponentButtons() // TODO Update this
 	{
 		if (GUILayout.Button("Add Timer", GUILayout.Width(100f)))
 		{
@@ -324,7 +320,7 @@ public class LevelEditor : EditorWindow {
 		int btnCount = itemPrefabs.Count;
 		int rowCount = Mathf.CeilToInt((float)btnCount / 6f);
 		
-		Rect[] itemBtnPosArray = RectEx.RectGrid(new Rect(1f, 13f, 18f, 3f * (float)rowCount), 6, rowCount);
+		Rect[] itemBtnPosArray = RectEx.RectGrid(new Rect(0.25f, 12f, 18f, 3f * (float)rowCount), 6, rowCount);
 		
 		for (int i = 0; i < btnCount; i++) {
 			DrawPrefabButton(itemBtnPosArray[i].Multiply(UISize), itemPrefabs[i]);
@@ -336,7 +332,7 @@ public class LevelEditor : EditorWindow {
 		int btnCount = levelPrefabs.Count;
 		int rowCount = Mathf.CeilToInt((float)btnCount / 6f);
 		
-		Rect[] itemBtnPosArray = RectEx.RectGrid(new Rect(1f, 13f, 18f, 3f * (float)rowCount), 6, rowCount);
+		Rect[] itemBtnPosArray = RectEx.RectGrid(new Rect(0.25f, 12f, 18f, 3f * (float)rowCount), 6, rowCount);
 		
 		for (int i = 0; i < btnCount; i++) {
 			DrawPrefabButton(itemBtnPosArray[i].Multiply(UISize), levelPrefabs[i]);
