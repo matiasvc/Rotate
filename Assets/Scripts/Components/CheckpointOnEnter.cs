@@ -19,7 +19,7 @@ public class CheckpointOnEnter : MonoBehaviour {
 	void OnDrawGizmosSelected()
 	{
 		Vector2 rotVec = VectorEx.AngleToVector(checkpointRotation + transform.localEulerAngles.y);
-		GizmoEx.DrawNormal(transform.position + checkpointOffset, new Vector3(rotVec.x, 0f, rotVec.y), 1f, Color.yellow);
+		GizmoEx.DrawNormal(transform.position + checkpointOffset, new Vector3(rotVec.x, 0f, rotVec.y), 1f);
 	}
 	
 }

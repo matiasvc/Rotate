@@ -14,6 +14,6 @@ public class SpawnController : MonoBehaviour {
 	void OnDrawGizmosSelected()
 	{
 		Vector2 rotVec = VectorEx.AngleToVector(spawnRotation - 180f);
-		GizmoEx.DrawNormal(transform.position, new Vector3(rotVec.x, 0f, rotVec.y), 2f, Color.yellow);
+		GizmoEx.DrawNormal(transform.position, new Vector3(rotVec.x, 0f, rotVec.y), 2f);
 	}
 }
