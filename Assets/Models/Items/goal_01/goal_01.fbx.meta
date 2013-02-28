@@ -63,11 +63,11 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -81,7 +81,7 @@ ModelImporter:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 0
   importAnimation: 0
   copyAvatar: 0
   humanDescription:

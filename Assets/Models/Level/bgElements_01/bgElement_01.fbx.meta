@@ -24,11 +24,11 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: .5
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -41,9 +41,9 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
-    normalImportMode: 2
-    tangentImportMode: 2
-  importAnimation: 1
+    normalImportMode: 0
+    tangentImportMode: 0
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
@@ -59,5 +59,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
-  animationType: 2
+  animationType: 0
   userData: 
