@@ -30,5 +30,29 @@
 		"starScore1" : 100,
 		"starScore2" : 200,
 		"starScore3" : 300
+	},
+	{
+		"levelName" : "Level 5",
+		"sceneName" : "level5",
+		"thumbPath" : "thumbnails/level1",
+		"starScore1" : 100,
+		"starScore2" : 200,
+		"starScore3" : 300
+	},
+	{
+		"levelName" : "Level 6",
+		"sceneName" : "level6",
+		"thumbPath" : "thumbnails/level1",
+		"starScore1" : 100,
+		"starScore2" : 200,
+		"starScore3" : 300
+	},
+	{
+		"levelName" : "Level 7",
+		"sceneName" : "level7",
+		"thumbPath" : "thumbnails/level1",
+		"starScore1" : 100,
+		"starScore2" : 200,
+		"starScore3" : 300
 	}
 ]
