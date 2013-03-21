@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public static class LevelManager {
 	
@@ -9,28 +10,28 @@ public static class LevelManager {
 		TextAsset levelData = Resources.Load("levelData") as TextAsset;
 		JSONObject jsonObject = new JSONObject(System.Text.RegularExpressions.Regex.Replace(levelData.text, @"\t|\n|\r|\s", ""));
 		
-		for (int i = 0; i < jsonObject.list.Count; i++)
+		for ( int i = 0; i < jsonObject.list.Count; i++ )
 		{
 			JSONObject levelObject = jsonObject.list[i] as JSONObject;
 			
-			string levelName = (levelObject.list[0] as JSONObject).str;
-			string sceneName = (levelObject.list[1] as JSONObject).str;
-			string thumbPath = (levelObject.list[2] as JSONObject).str;
-			int starScore1 = (int)(levelObject.list[3] as JSONObject).n;
-			int starScore2 = (int)(levelObject.list[4] as JSONObject).n;
-			int starScore3 = (int)(levelObject.list[5] as JSONObject).n;
+			string levelName = ( levelObject.GetField( "levelName" ) as JSONObject ).str;
+			string sceneName = ( levelObject.GetField( "sceneName" ) as JSONObject ).str;
+			string thumbPath = ( levelObject.GetField( "thumbPath" ) as JSONObject ).str;
+			int starScore1 = ( int )( levelObject.GetField( "starScore1" ) as JSONObject ).n;
+			int starScore2 = ( int )( levelObject.GetField( "starScore2" ) as JSONObject ).n;
+			int starScore3 = ( int )( levelObject.GetField( "starScore3" ) as JSONObject ).n;
 			
-			if (string.IsNullOrEmpty(levelName) || string.IsNullOrEmpty(sceneName) || string.IsNullOrEmpty(thumbPath))
+			if ( string.IsNullOrEmpty( levelName ) || string.IsNullOrEmpty( sceneName ) || string.IsNullOrEmpty( thumbPath ) )
 				Debug.LogError("Unable to parse level data file.");
 			
-			levels.Add(new Level(levelName, sceneName, thumbPath, starScore1, starScore2, starScore3));
+			levels.Add( new Level( levelName, sceneName, thumbPath, starScore1, starScore2, starScore3 ) );
 			
 		}
 	}
 	
 	public class Level
 	{
-		public Level(string levelName, string sceneName, string thumbPath, int starScore1, int starScore2, int starScore3)
+		public Level( string levelName, string sceneName, string thumbPath, int starScore1, int starScore2, int starScore3 )
 		{
 			this.levelName = levelName;
 			this.sceneName = sceneName;
@@ -59,28 +60,40 @@ public static class LevelManager {
 	public static void LoadMainMenu()
 	{
 		previusLoadedLevel = null;
-		Application.LoadLevel("mainMenu");
+		Application.LoadLevel( "mainMenu" );
 	}
 	
-	public static void LoadLevel(Level level)
+	public static void LoadLevel( Level level )
 	{
 		Time.timeScale = 1f;
 		
 		previusLoadedLevel = level;
-		Application.LoadLevel(level.sceneName);
+		Application.LoadLevel( level.sceneName );
 	}
 	
 	public static void RestatLevel()
 	{
 		Time.timeScale = 1f;
 		
-		if (previusLoadedLevel == null)
+		if ( previusLoadedLevel == null )
 		{
-			Application.LoadLevel(Application.loadedLevel);
+			Application.LoadLevel( Application.loadedLevel );
 			return;
 		}
 		
 		LoadLevel(previusLoadedLevel);
 	}
 	
+	public static Level GetLevel( string levelName )
+	{
+		foreach ( Level level in levels )
+		{
+			if ( level.levelName == levelName )
+			{
+				return level;
+			}
+		}
+		
+		return null;
+	}
 }
