@@ -234,11 +234,13 @@ public class LevelEditor : EditorWindow
 			RotateSelectedUVs();
 		}
 		
+		if ( GUI.Button( toolButtons[1].Multiply( UISize ), "Primitive\nEditor" ) )
+		{
+			PrimitiveEditor.Init();
+		}
+		
 		GUI.enabled = false; // Disable unused buttons
 		
-		if ( GUI.Button( toolButtons[1].Multiply( UISize ), "----" ) )
-		{	
-		}
 		if ( GUI.Button( toolButtons[2].Multiply( UISize ), "----" ) )
 		{	
 		}
