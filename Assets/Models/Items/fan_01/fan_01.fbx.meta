@@ -6,15 +6,20 @@ ModelImporter:
     100000: //RootNode
     100002: fan_blade
     100004: fan_body
+    100006: decorativeThingy
     400000: //RootNode
     400002: fan_blade
     400004: fan_body
+    400006: decorativeThingy
     2300000: fan_blade
     2300002: fan_body
+    2300004: decorativeThingy
     3300000: fan_blade
     3300002: fan_body
+    3300004: decorativeThingy
     4300000: fan_blade
     4300002: fan_body
+    4300004: decorativeThingy
     9500000: //RootNode
   materials:
     importMaterials: 1
