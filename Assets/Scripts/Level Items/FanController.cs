@@ -6,9 +6,45 @@ public class FanController : LevelItem {
 	public float airflowLength = 1f;
 	public float fanForce = 20f;
 	
-	public ParticleSystem airflowParticles;
-	public FanAnimator fanAnimator;
-	public BoxCollider fanTrigger;
+	
+	public ParticleSystem airflowParticles
+	{
+		get
+		{
+			if ( _airflowParticles == null )
+			{
+				_airflowParticles = gameObject.GetComponentInChildren<ParticleSystem>();
+			}
+			return _airflowParticles;
+		}
+	}
+	public FanAnimator fanAnimator
+	{
+		get
+		{
+			if ( _fanAnimator == null )
+			{
+				_fanAnimator = gameObject.GetComponentInChildren<FanAnimator>();
+			}
+			return _fanAnimator;
+		}
+	}
+	public BoxCollider fanTrigger
+	{
+		get
+		{
+			if ( _fanTrigger == null )
+			{
+				_fanTrigger = gameObject.GetComponentInChildren<BoxCollider>();
+			}
+			return _fanTrigger;
+		}
+	}
+	
+	// Property caching variables
+	public ParticleSystem _airflowParticles = null;
+	public FanAnimator _fanAnimator = null;
+	public BoxCollider _fanTrigger = null;
 	
 	private bool playerInTrigger = false;
 	

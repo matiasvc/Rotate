@@ -16,7 +16,7 @@ public class FanControllerInspector : Editor {
 		float newLength = (float)EditorGUILayout.IntSlider("Airflow Length", Mathf.RoundToInt(editorTarget.airflowLength), 1, 8 );
 		float newForce = EditorGUILayout.Slider("Force", editorTarget.fanForce, 5f, 40f);
 		
-		if (GUI.changed) {
+		if ( GUI.changed ) {
 			// Resize trigger collider
 			Vector3 oldPos = editorTarget.fanTrigger.center;
 			Vector3 oldSize = editorTarget.fanTrigger.size;
