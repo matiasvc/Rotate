@@ -45,6 +45,8 @@ GameObject:
   - 4: {fileID: 400004}
   - 114: {fileID: 11400002}
   - 65: {fileID: 6500002}
+  - 65: {fileID: 6500004}
+  - 114: {fileID: 11400004}
   m_Layer: 8
   m_Name: fan_01
   m_TagString: Untagged
@@ -115,8 +117,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: -7}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400008}
@@ -245,6 +247,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1, z: 4}
   m_Center: {x: 1.5, y: 0, z: 3}
+--- !u!65 &6500004
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1, z: 1}
+  m_Center: {x: 1.5, y: 0, z: 1.5}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,9 +283,25 @@ MonoBehaviour:
   itemEnabled: 1
   airflowLength: 4
   fanForce: 23
-  airflowParticles: {fileID: 19800000}
-  fanAnimator: {fileID: 0}
-  fanTrigger: {fileID: 6500002}
+  _airflowParticles: {fileID: 0}
+  _fanAnimator: {fileID: 0}
+  _fanTrigger: {fileID: 0}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9783531508f854198cc8a951b8e5b3, type: 3}
+  m_Name: 
+  itemEnabled: 1
+  airflowLength: 1
+  fanForce: 20
+  _airflowParticles: {fileID: 0}
+  _fanAnimator: {fileID: 0}
+  _fanTrigger: {fileID: 0}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
