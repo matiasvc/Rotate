@@ -8,7 +8,6 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: sawblade_color_3dcoat
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: []
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -16,7 +15,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 1e5735043a808a848836015024b420fa, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
