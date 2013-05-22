@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public static class LevelManager {
 	
@@ -21,9 +22,7 @@ public static class LevelManager {
 			int starScore3 = ( int )( levelObject.GetField( "starScore3" ) as JSONObject ).n;
 			
 			if ( string.IsNullOrEmpty( levelName ) || string.IsNullOrEmpty( sceneName ) || string.IsNullOrEmpty( thumbPath ) )
-			{
 				Debug.LogError("Unable to parse level data file.");
-			}
 			
 			levels.Add( new Level( levelName, sceneName, thumbPath, starScore1, starScore2, starScore3 ) );
 			
