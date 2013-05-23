@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0c0342116464e26abb476a494c827a, type: 3}
+  m_Name: GA_Settings
+  TotalMessagesSubmitted: 24
+  TotalMessagesFailed: 0
+  DesignMessagesSubmitted: 4
+  DesignMessagesFailed: 0
+  QualityMessagesSubmitted: 20
+  QualityMessagesFailed: 0
+  BusinessMessagesSubmitted: 0
+  BusinessMessagesFailed: 0
+  UserMessagesSubmitted: 0
+  UserMessagesFailed: 0
+  CustomArea: 
+  TrackTarget: {fileID: 0}
+  GameKey: e805acb7aebc2e48c0a76d200549e779
+  SecretKey: 3fbf46a84efce47ca0d03ba5fe7d3108641ecfc1
+  ApiKey: 928dbd60b69955886e6083138dd7f8caf66309a7
+  Build: 0.5
+  DebugMode: 1
+  RunInEditorPlayMode: 1
+  AllowRoaming: 0
+  ArchiveData: 0
+  HeatmapGridSize: {x: 1, y: 1, z: 1}
+  CustomUserID: 0
+  SubmitInterval: 10
+  InternetConnectivity: 1
+  CurrentInspectorState: 0
+  ClosedHints: 
+  DisplayHints: 0
+  DisplayHintsScrollState: {x: 0, y: 0}
+  Logo: {fileID: 2800000, guid: 00ab0042267904964b8686dec9230a6c, type: 3}
