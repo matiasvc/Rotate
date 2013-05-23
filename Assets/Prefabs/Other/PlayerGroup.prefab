@@ -11,7 +11,7 @@ GameObject:
   - 20: {fileID: 2000000}
   - 81: {fileID: 8100000}
   - 92: {fileID: 9200000}
-  - 124: {fileID: 12400000}
+  - 114: {fileID: 11400004}
   m_Layer: 10
   m_Name: playerCamera
   m_TagString: MainCamera
@@ -503,13 +503,18 @@ MonoBehaviour:
   camRot: {fileID: 400014}
   cameraFollowRate: 2
   cameraTiltRate: 3
---- !u!124 &12400000
-Behaviour:
+--- !u!114 &11400004
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a53d1bf593c1424f9570b182dbf2ef3, type: 3}
+  m_Name: 
+  intensity: 6
+  vignettShader: {fileID: 4800000, guid: 627943dc7a9a74286b70a4f694a0acd5, type: 3}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

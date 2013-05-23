@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 4a53d1bf593c1424f9570b182dbf2ef3
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - vignettShader: {fileID: 4800000, guid: 627943dc7a9a74286b70a4f694a0acd5, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
