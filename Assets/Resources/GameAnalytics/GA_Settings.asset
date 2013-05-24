@@ -34,7 +34,7 @@ MonoBehaviour:
   CustomUserID: 0
   SubmitInterval: 10
   InternetConnectivity: 1
-  CurrentInspectorState: 0
+  CurrentInspectorState: 4
   ClosedHints: 
   DisplayHints: 0
   DisplayHintsScrollState: {x: 0, y: 0}
