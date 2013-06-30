@@ -1,6 +1,3 @@
 [submodule "Assets/ISFramework"]
 	path = Assets/ISFramework
 	url = https://github.com/infinitysquared/ISFramework.git
-[submodule "Assets/OUYA"]
-	path = Assets/OUYA
-	url = https://github.com/infinitysquared/ouya-unity-plugin
