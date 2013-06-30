@@ -59,11 +59,6 @@ public class StartMenuManager : MonoBehaviour {
 			{
 				state = MenuState.ABOUT;
 			}
-			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth * 2f, buttonWidth, buttonHeigth), "GIVE FEEDBACK"))
-			{
-				TestFlightSDK.OpenFeedbackView();
-			}
 		}
 		else if (state == MenuState.OPTIONS)
 		{
