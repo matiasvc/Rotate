@@ -830,8 +830,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfc3eaab5f3dea3429191724f83b7d4c, type: 3}
   m_Name: 
-  DEVELOPER_ID: 310a8f51-4d6e-4ae5-bda0-b93878e5f5d0
-  debugOff: 1
+  DEVELOPER_ID: c558732b-4f1e-4568-a350-e4cb6a906767
+  debugOff: 0
   showRawAxis: 0
   Purchasables: []
   UseLegacyInput: 1
@@ -1017,6 +1017,14 @@ Prefab:
     - target: {fileID: 400000, guid: ad92c5da04e1b904ead8291e00d4c927, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ad92c5da04e1b904ead8291e00d4c927, type: 2}
+      propertyPath: debugOff
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ad92c5da04e1b904ead8291e00d4c927, type: 2}
+      propertyPath: DEVELOPER_ID
+      value: c558732b-4f1e-4568-a350-e4cb6a906767
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad92c5da04e1b904ead8291e00d4c927, type: 2}
