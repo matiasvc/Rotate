@@ -91,7 +91,7 @@ public class FanController : LevelItem {
 	void FixedUpdate()
 	{
 		if (itemEnabled && playerInTrigger)
-			EventDispatcher.SendEvent(EventKey.PLAYER_APPLY_FORCE, new object[]{transform.forward * fanForce, ForceMode.Force}, false);
+			EventDispatcher.SendEvent( EventKey.PLAYER_APPLY_FORCE, new object[]{transform.forward * fanForce, ForceMode.Force} );
 	}
 	
 	private void ToogleFan(bool setTo)

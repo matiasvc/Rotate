@@ -372,7 +372,6 @@ public class LevelEditor : EditorWindow
 	
 	private void DrawItemButtons()
 	{
-		float buttonSize = 3f;
 		int btnCount = itemPrefabs.Count;
 		int rowCount = Mathf.CeilToInt( (float)btnCount/6f );
 		Rect[] itemBtnPosArray = RectEx.RectGrid( new Rect( 0.25f, 14f, 18f, 3f*(float)rowCount), 6, rowCount );
@@ -384,7 +383,6 @@ public class LevelEditor : EditorWindow
 	
 	private void DrawLevelButtons()
 	{
-		float buttonSize = 3f;
 		int btnCount = levelPrefabs.Count;
 		int rowCount = Mathf.CeilToInt( (float)btnCount/6f );
 		

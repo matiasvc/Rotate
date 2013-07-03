@@ -18,8 +18,6 @@ public class ElectricBeamAnimator : MonoBehaviour {
 		positionArray[0] = startPos;
 		positionArray[pointCount-1] = endPos;
 		
-		Vector3 lineVector = endPos - startPos;
-		
 		for ( int i = 1; i < pointCount-1; i++ ) {
 			float lerp = 1f/( pointCount-1 );
 			positionArray[i] = Vector3.Lerp( startPos, endPos, lerp*i );

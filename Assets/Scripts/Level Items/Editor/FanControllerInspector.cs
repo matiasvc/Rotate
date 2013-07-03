@@ -18,8 +18,6 @@ public class FanControllerInspector : Editor {
 		
 		if ( GUI.changed ) {
 			// Resize trigger collider
-			Vector3 oldPos = editorTarget.fanTrigger.center;
-			Vector3 oldSize = editorTarget.fanTrigger.size;
 			editorTarget.fanTrigger.center = new Vector3(1.5f, 0f, (newLength * 0.5f) + 1f);
 			editorTarget.fanTrigger.size = new Vector3(1.5f, 1f, newLength);
 			

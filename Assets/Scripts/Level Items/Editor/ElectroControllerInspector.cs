@@ -18,7 +18,7 @@ public class ElectroControllerInspector : Editor {
 	
 	public override void OnInspectorGUI () {
 		
-		editorTarget.connectedElectro = EditorGUILayout.ObjectField( "Connected electro", editorTarget.connectedElectro, typeof( ElectroController ) ) as ElectroController;
+		editorTarget.connectedElectro = EditorGUILayout.ObjectField( "Connected electro", editorTarget.connectedElectro, typeof( ElectroController ), true ) as ElectroController;
 		
 		if ( editorTarget.connectedElectro != null )
 		{

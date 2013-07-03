@@ -15,10 +15,8 @@ public class PistonController : LevelItem {
 		{
 #if UNITY_EDITOR
 			Vector2 editorTempVector = VectorEx.RotateVector2(transform.right, directionAngle);
-				
 			return new Vector3(editorTempVector.x, editorTempVector.y, 0f);
-#endif
-			
+#else
 			if(_directionVector == null)
 			{
 				Vector2 tempVector = VectorEx.RotateVector2(transform.right, directionAngle);
@@ -28,6 +26,7 @@ public class PistonController : LevelItem {
 			}
 			else
 				return _directionVector;
+#endif
 		}
 	}
 	

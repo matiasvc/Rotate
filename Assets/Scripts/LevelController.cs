@@ -20,9 +20,6 @@ public class LevelController : MonoBehaviour
 	
 	private int bonusObjectsCollected = 0;
 	
-	private GameObject playerGroup;
-	private GameObject HUDGroup;
-	
 	public static float LevelTime
 	{
 		get { return _instance.levelTime; }
@@ -69,8 +66,8 @@ public class LevelController : MonoBehaviour
 	
 	void Start()
 	{
-		playerGroup = GameObject.Instantiate(playerGroupPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-		HUDGroup = GameObject.Instantiate(HUDGroupPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		GameObject.Instantiate(playerGroupPrefab, Vector3.zero, Quaternion.identity);
+		GameObject.Instantiate(HUDGroupPrefab, Vector3.zero, Quaternion.identity);
 		SpawnPlayer();
 	}
 	
