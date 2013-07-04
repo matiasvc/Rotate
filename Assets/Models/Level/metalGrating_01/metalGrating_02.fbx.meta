@@ -5,11 +5,21 @@ ModelImporter:
   fileIDToRecycleName:
     100000: metalGrating_02
     100002: //RootNode
+    100004: fan
+    100006: frame
     400000: metalGrating_02
     400002: //RootNode
+    400004: fan
+    400006: frame
     2300000: metalGrating_02
+    2300002: fan
+    2300004: frame
     3300000: metalGrating_02
+    3300002: fan
+    3300004: frame
     4300000: metalGrating_02
+    4300002: fan
+    4300004: frame
     11100000: //RootNode
   materials:
     importMaterials: 0
