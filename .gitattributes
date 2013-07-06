@@ -12,6 +12,7 @@ README            text eol=fl
 *.png             binary
 *.tga             binary
 *.asset           binary
+*.mat             binary
 *.dll             binary
 *.meta            binary
 *.prefab          binary
