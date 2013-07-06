@@ -12,7 +12,7 @@ public class FanControllerInspector : Editor {
 	}
 	
 	public override void OnInspectorGUI () {
-		bool newEnabled = EditorGUILayout.Toggle("Item Enabled", editorTarget.itemEnabled);
+		bool newEnabled = EditorGUILayout.Toggle("Item Enabled", editorTarget.ItemEnabled );
 		float newLength = (float)EditorGUILayout.IntSlider("Airflow Length", Mathf.RoundToInt(editorTarget.airflowLength), 1, 8 );
 		float newForce = EditorGUILayout.Slider("Force", editorTarget.fanForce, 5f, 40f);
 		
@@ -25,7 +25,7 @@ public class FanControllerInspector : Editor {
 			editorTarget.airflowParticles.startLifetime = newLength / editorTarget.airflowParticles.startSpeed;
 			
 			editorTarget.airflowLength = newLength;
-			editorTarget.itemEnabled = newEnabled;
+			editorTarget.ItemEnabled = newEnabled;
 			editorTarget.fanForce = newForce;
 			EditorUtility.SetDirty(editorTarget);
 		}
