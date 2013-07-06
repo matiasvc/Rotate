@@ -1,19 +1,18 @@
 # Convert all text files to Unix file endings
-README				text eol=fl
-*.gitignore			text eol=fl
-*.gitattributes		text eol=fl
-*.cs				text eol=fl
-*.js				text eol=fl
-*.txt				text eol=fl
-*.meta				text eol=fl
-
-# Text serialized files
-*.prefab			text eol=fl
-*.unity				text eol=fl
+README            text eol=fl
+*.gitignore       text eol=fl
+*.gitattributes   text eol=fl
+*.gitmodules      text eol=fl
+*.cs              text eol=fl
+*.js              text eol=fl
+*.txt             text eol=fl
 
 # Keep asset and dll files as binary
-*.fbx				binary
-*.png				binary
-*.tga				binary
-*.asset 			binary
-*.dll				binary
+*.fbx             binary
+*.png             binary
+*.tga             binary
+*.asset           binary
+*.dll             binary
+*.meta            binary
+*.prefab          binary
+*.unity           binary
