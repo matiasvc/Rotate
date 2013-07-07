@@ -7,8 +7,8 @@ public class GoalController : LevelItem {
 	private bool playerReachedGoal = false;
 	private GameObject player;
 	
-	private float atractionRadius = 3f;
-	private float atractionForce = 30f;
+	private float atractionRadius = 4f;
+	private float atractionForce = 50f;
 	private float goalRadius = 0.6f;
 	
 	private ParticleSystem particles;
@@ -66,7 +66,7 @@ public class GoalController : LevelItem {
 				Vector3 pullVector = (transform.position - player.transform.position).normalized;
 				
 				float pullLerp = Mathf.InverseLerp(atractionRadius, 0f, distance);
-				pullVector *= Mathf.Lerp(0f, atractionForce, pullLerp);
+				pullVector *= Easing.easeInExpo( atractionForce * 0.25f, atractionForce, pullLerp );
 				
 				player.rigidbody.AddForce(pullVector, ForceMode.Force);	
 			}
