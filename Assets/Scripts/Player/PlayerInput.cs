@@ -12,7 +12,8 @@ public class PlayerInput : MonoBehaviour {
 		float input = 0f; 
 		
 		//input += Input.GetAxis("Horizontal") * 120f;
-		input += OuyaInputManager.GetAxis( "LX", PLAYER ) * ROTATE_SPEED;
+		input += OuyaInput.GetAxis( OuyaAxis.LX,OuyaPlayer.P01 ) * ROTATE_SPEED;
+		
 		
 		if(Mathf.Abs(input) > Mathf.Epsilon)
 			EventDispatcher.SendEvent(EventKey.INPUT_ROTATE, input * Time.deltaTime);

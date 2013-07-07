@@ -1,11 +1,31 @@
 using UnityEngine;
 using System.Collections;
 
-public class MetalGrateController : MonoBehaviour {
+public class MetalGrateController : LevelItem {
 	
 	public Transform fanMesh;
 	public Transform fanSmoke;
 	private float fanSpeed = 75.0f;
+	
+	public override void ItemEnable ()
+	{
+		base.ItemEnable ();
+	}
+	
+	public override void ItemDisable ()
+	{
+		base.ItemDisable ();
+	}
+	
+	public override void ItemSwitch (bool setTo)
+	{
+		base.ItemSwitch (setTo);
+	}
+	
+	public override void ItemToggle ()
+	{
+		base.ItemToggle ();
+	}
 	
 	void OnEnable() {
 		EventDispatcher.AddHandler( EventKey.GAME_SET_ROTATION, HandleEvent );

@@ -3,7 +3,13 @@ using System.Collections;
 
 public abstract class LevelItem : MonoBehaviour {
 	
-	public bool itemEnabled = true;
+	[SerializeField]
+	protected bool itemEnabled;
+	
+	public bool ItemEnabled{
+		get { return itemEnabled; }
+		set { ItemSwitch( value ); }
+	}
 	
 	public virtual void ItemEnable ()
 	{

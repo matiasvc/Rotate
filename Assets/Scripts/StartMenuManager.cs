@@ -28,75 +28,78 @@ public class StartMenuManager : MonoBehaviour {
 	private float levelGridTitleWidth = 60f;
 	
 	private LevelManager.Level selectedLevel;
-	
 	private Vector2 screenCenter;
-	
 	private Grid levelGrid;
 	
-	protected void Start()
-	{
+	private int selected = 0;
+	private bool selectedPress = false;
+	
+	protected void Awake() {
 		screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
 		state = MenuState.MAIN;
 	}
 	
-	protected void OnGUI()
-	{
-		if (state == MenuState.MAIN)
-		{
-			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth), "MAIN MENU");
+	void Update() {
+		if( OuyaInput.GetButtonDown( OuyaButton.O, OuyaPlayer.P01 ) ) {
+			selectedPress = true;
+		}
+		
+		if( OuyaInput.GetButtonDown( OuyaButton.DU, OuyaPlayer.P01 ) ) {
+			selected++;
+		}
+		
+		if( OuyaInput.GetButtonDown( OuyaButton.DD, OuyaPlayer.P01 ) ) {
+			selected--;
+		}
+	}
+	
+	protected void OnGUI() {
+		
+		switch ( state ) {
+		case MenuState.MAIN:
+			GUI.Label( new Rect( screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth ), "MAIN MENU" );
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f - buttonHeigth, buttonWidth, buttonHeigth), "PLAY"))
-			{
+			if ( selected > 2 ) { selected = 2; }
+			if ( selected < 0 ) { selected = 0; }
+			
+			if ( GUI.Button( new Rect( screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f - buttonHeigth, buttonWidth, buttonHeigth), selected == 0 ? "X PLAY" : "PLAY" ) || selected == 0 && selectedPress ) {
+				selected = 0;
 				state = MenuState.LEVEL_SCREEN;
 			}
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f, buttonWidth, buttonHeigth), "OPTIONS"))
-			{
+			if ( GUI.Button( new Rect( screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f, buttonWidth, buttonHeigth), selected == 1 ? "X OPTIONS" : "OPTIONS" ) || selected == 1 && selectedPress ) {
+				selected = 0;
 				state = MenuState.OPTIONS;
 			}
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), "ABOUT"))
-			{
+			if ( GUI.Button( new Rect( screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), selected == 2 ? "X ABOUT" : "ABOUT" ) || selected == 2 && selectedPress ) {
+				selected = 0;
 				state = MenuState.ABOUT;
 			}
-		}
-		else if (state == MenuState.OPTIONS)
-		{
+			
+			break;
+		case MenuState.OPTIONS:
+			
 			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth), "OPTIONS");
-			
-			float deltaSwipeStrength = PlayerPrefs.GetFloat("DELTA_SWIPE_STRENGTH", 6500f); // 3000f - 8000f
-			float swipeStrength = PlayerPrefs.GetFloat("SWIPE_STRENGTH", 160f); // 100f - 250f
-			
-			GUI.Label(new Rect(screenCenter.x - 250f, screenCenter.y - 180f, 300f, 30f), "DELTA ROTATION STRENGTH");
-			deltaSwipeStrength = GUI.HorizontalSlider(new Rect(screenCenter.x - 250f, screenCenter.y - 150f, 500f, 50f), deltaSwipeStrength, 1000f, 10000f);
-			
-			GUI.Label(new Rect(screenCenter.x - 250f, screenCenter.y - 80f, 300f, 30f), "POSITION ROTATION STRENGTH");
-			swipeStrength = GUI.HorizontalSlider(new Rect(screenCenter.x - 250f, screenCenter.y - 50f, 500f, 50f), swipeStrength, 80f, 350f);
-			
-			PlayerPrefs.SetFloat("DELTA_SWIPE_STRENGTH", deltaSwipeStrength);
-			PlayerPrefs.SetFloat("SWIPE_STRENGTH", swipeStrength);
-			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), "BACK"))
-			{
-				PlayerPrefs.Save();
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), "BACK")  || selected == 0 && selectedPress ) {
+				selected = 0;
 				state = MenuState.MAIN;
 			}
-		}
-		else if (state == MenuState.ABOUT)
-		{
+			
+			break;
+		case MenuState.ABOUT:
+			
 			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth), "ABOUT");
-			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), "BACK"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), "BACK")) {
+				selected = 0;
 				state = MenuState.MAIN;
 			}
-		}
-		else if (state == MenuState.LEVEL_SCREEN)
-		{
-			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth), "LEVEL SCREEN");
 			
-			if (levelGrid == null) // Initialize grid
-			{
+			break;
+		case MenuState.LEVEL_SCREEN:
+			
+			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth), "LEVEL SCREEN");
+			if (levelGrid == null) { // Initialize grid
 				levelGrid = new Grid(screenCenter.x - levelGridWidth / 2, screenCenter.y - levelGridHeigth / 2, levelGridWidth, levelGridHeigth, levelGridColloms, levelGridRows);
 			}
 			
@@ -104,39 +107,36 @@ public class StartMenuManager : MonoBehaviour {
 			foreach(LevelManager.Level level in LevelManager.Levels)
 			{
 				Vector2 buttonPos = levelGrid.GetNodePostion(i);
-				
-				if(GUI.Button(new Rect(buttonPos.x - levelGridButtonWidth / 2f, buttonPos.y - levelGridButtonHeigth / 2f, levelGridButtonWidth, levelGridButtonHeigth), i.ToString()))
-				{
+				if(GUI.Button(new Rect(buttonPos.x - levelGridButtonWidth / 2f, buttonPos.y - levelGridButtonHeigth / 2f, levelGridButtonWidth, levelGridButtonHeigth), i.ToString())) {
 					selectedLevel = level;
+					selected = 0;
 					state = MenuState.SELECTED_LEVEL;
 				}
-				
 				GUI.Label(new Rect(buttonPos.x - levelGridTitleWidth / 2f, buttonPos.y + levelGridTitleHeigth / 2f + levelGridTitleHeigth, levelGridTitleWidth, levelGridTitleHeigth), level.levelName);
-				
 				i++;
 			}
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth + 30f, buttonWidth, buttonHeigth), "BACK"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth + 30f, buttonWidth, buttonHeigth), "BACK")) {
+				selected = 0;
 				state = MenuState.MAIN;
 			}
+			break;
+		case MenuState.SELECTED_LEVEL:
 			
-		}
-		else if (state == MenuState.SELECTED_LEVEL)
-		{
 			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth), "SELECTED LEVEL SCREEN");
 			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - 5f + titlePos.y, titleWidth, titleHeigth), selectedLevel.levelName);
 			
-			if(GUI.Button(new Rect(screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), "PLAY"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), "PLAY")) {
 				LevelManager.LoadLevel(selectedLevel);
 			}
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth + 30f, buttonWidth, buttonHeigth), "BACK"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth + 30f, buttonWidth, buttonHeigth), "BACK")) {
+				selected = 0;
 				state = MenuState.LEVEL_SCREEN;
 			}
+			break;
 		}
+		
+		selectedPress = false;
 	}
-	
 }
