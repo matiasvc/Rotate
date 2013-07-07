@@ -24,7 +24,6 @@ public class FanController : LevelItem {
 		}
 	}
 	
-	private bool fanEnabled = false;
 	private float fanEnabledSpeed = 360f * 3f;
 	private float dampening = 0.1f;
 	private float motorForce = 360 * 3f;

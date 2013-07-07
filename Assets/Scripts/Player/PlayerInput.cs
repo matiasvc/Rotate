@@ -9,14 +9,23 @@ public class PlayerInput : MonoBehaviour {
 	
 	void Update()
 	{
-		float input = 0f; 
+		float rotationInput = 0f; 
 		
 		//input += Input.GetAxis("Horizontal") * 120f;
-		input += OuyaInput.GetAxis( OuyaAxis.LX,OuyaPlayer.P01 ) * ROTATE_SPEED;
+		rotationInput += OuyaInput.GetAxis( OuyaAxis.LX,OuyaPlayer.P01 );
 		
+		if ( Input.GetKey(KeyCode.A) ) { // Keyboard input for testing.
+			rotationInput += 1.0f;
+		}
+		if ( Input.GetKey( KeyCode.D ) ) {
+			rotationInput -= 1.0f;
+		}
 		
-		if(Mathf.Abs(input) > Mathf.Epsilon)
-			EventDispatcher.SendEvent(EventKey.INPUT_ROTATE, input * Time.deltaTime);
+		rotationInput *= ROTATE_SPEED;
+		
+		if(Mathf.Abs(rotationInput) > Mathf.Epsilon) {
+			EventDispatcher.SendEvent(EventKey.INPUT_ROTATE, rotationInput * Time.deltaTime);
+		}
 	}
 	
 }
