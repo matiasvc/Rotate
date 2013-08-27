@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MetalBackground_tile_01
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 7, guid: 0000000000000000e000000000000000, type: 0}
   m_ShaderKeywords: []
   m_SavedProperties:
     serializedVersion: 2
@@ -35,4 +35,8 @@ Material:
         first:
           name: _AmbientLight
         second: .731343269
-    m_Colors: {}
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}

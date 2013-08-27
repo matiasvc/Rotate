@@ -797,6 +797,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8600dc7a3c4c4e3f82fc499be7384d5, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   xSpeed: .800000012
   xMagnitude: 3
   ySpeed: 1
@@ -830,6 +831,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfc3eaab5f3dea3429191724f83b7d4c, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   DEVELOPER_ID: c558732b-4f1e-4568-a350-e4cb6a906767
   debugOff: 1
   showRawAxis: 0
@@ -1194,6 +1196,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67c8717d3273b9d48a68f2741b97d545, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   debug: 1
   continiousScan: 1
   observedPlayer: 1
@@ -1212,6 +1215,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1284fbc6dd928401a8b53cef34e416c0, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
   updateInterval: .5
   placement: 1
 --- !u!114 &1472583494
@@ -1225,6 +1229,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81019799d014af8429c634c1c47574b2, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1472583495
 Transform:
   m_ObjectHideFlags: 0
@@ -1625,6 +1630,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aecfa9b9d0749874bb40057c2e5a687e, type: 3}
   m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2073542910
 GameObject:
   m_ObjectHideFlags: 0
