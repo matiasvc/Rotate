@@ -299,6 +299,8 @@ public class OuyaPanel : EditorWindow
     public static string pathAAPT = string.Empty;
     public static string pathSDK = string.Empty;
 
+    private string m_browserUrl = "https://devs.ouya.tv/developers/docs/unity";
+
     static string GetPathAndroidJar()
     {
         return string.Format("{0}/platforms/android-{1}/android.jar", pathSDK, (int)PlayerSettings.Android.minSdkVersion);
@@ -586,16 +588,53 @@ public class OuyaPanel : EditorWindow
                 XmlDocument xDoc = new XmlDocument();
                 xDoc.Load(path);
 
-                foreach (XmlNode level1 in xDoc.ChildNodes)
+                //Debug.Log("Processing Android.manifest");
+
+                foreach (XmlNode nodeManifest in xDoc.ChildNodes)
                 {
-                    if (level1.Name.ToUpper() == "MANIFEST")
+                    if (!(nodeManifest is XmlElement))
                     {
-                        XmlElement element = (XmlElement)level1;
-                        foreach (XmlAttribute attribute in element.Attributes)
+                        continue;
+                    }
+
+                    //Debug.Log(nodeManifest.Name);
+
+                    XmlElement manifest = nodeManifest as XmlElement;
+                    
+                    //Debug.Log(manifest.Name);
+
+                    if (nodeManifest.Name.ToUpper() == "MANIFEST")
+                    {
+                        foreach (XmlAttribute attribute in manifest.Attributes)
                         {
                             if (attribute.Name.ToUpper() == "PACKAGE")
                             {
                                 attribute.Value = bundleId;
+                            }
+                        }
+                        foreach (XmlElement application in manifest.ChildNodes)
+                        {
+                            //Debug.Log(application.Name);
+
+                            if (application.Name.ToUpper() == "APPLICATION")
+                            {
+                                foreach (XmlElement activity in application.ChildNodes)
+                                {
+                                    //Debug.Log(activity.Name);
+
+                                    if (activity.Name.ToUpper() == "ACTIVITY")
+                                    {
+                                        foreach (XmlAttribute attribute in activity.Attributes)
+                                        {
+                                            if (attribute.Name.ToUpper() == "ANDROID:NAME")
+                                            {
+                                                attribute.Value = string.Format(".{0}", javaAppName);
+                                                break; //only update the first activity
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
                             }
                         }
                     }
@@ -1493,9 +1532,7 @@ public class OuyaPanel : EditorWindow
             "SceneShowDrumkit",
             "SceneShowGuitar",
             "SceneShowJavaScript",
-            "SceneMultipleControllers",
             "SceneSetResolution",
-            "SceneShowController",
             "SceneShowMeshPerformance",
             "SceneShowNDK",
             "SceneShowProducts",
@@ -1762,7 +1799,7 @@ public class OuyaPanel : EditorWindow
 
                 if (GUILayout.Button("Check for plugin updates"))
                 {
-                    Application.OpenURL("http://tagenigma.com/ouya/OuyaSDK-1.0.0/");
+                    Application.OpenURL("http://github.com/ouya/ouya-unity-plugin");
                 }
 
                 if (GUILayout.Button("Visit Unity3d on OUYA Forum"))
@@ -1827,7 +1864,7 @@ public class OuyaPanel : EditorWindow
 
                 if (GUILayout.Button("Download JDK 6 32-bit"))
                 {
-                    Application.OpenURL("http://www.oracle.com/technetwork/java/javase/downloads/jdk6downloads-1902814.html");
+                    Application.OpenURL("http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-javase6-419409.html#jdk-6u45-oth-JPR");
                 }
 
                 break;
@@ -1889,6 +1926,180 @@ public class OuyaPanel : EditorWindow
                                         };
                         p.Start();
                     }
+                    EditorGUIUtility.ExitGUI();
+                }
+
+                if (GUILayout.Button("Advanced Settings"))
+                {
+                    ThreadStart ts = new ThreadStart(() =>
+                    {
+                        if (File.Exists(pathADB))
+                        {
+                            //Debug.Log(appPath);
+                            //Debug.Log(pathADB);
+                            string args =
+                                string.Format(
+                                    @"shell su -c am start com.android.settings");
+                            //Debug.Log(args);
+                            ProcessStartInfo ps = new ProcessStartInfo(pathADB,
+                                                                       args);
+                            Process p = new Process();
+                            ps.RedirectStandardOutput = false;
+                            ps.UseShellExecute = true;
+                            ps.CreateNoWindow = false;
+                            ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                            p.StartInfo = ps;
+                            p.Exited += (object sender, EventArgs e) =>
+                            {
+                                p.Dispose();
+                            };
+                            p.Start();
+
+                            p.WaitForExit();
+                        }
+                    });
+                    Thread thread = new Thread(ts);
+                    thread.Start();
+                    EditorGUIUtility.ExitGUI();
+                }
+
+                GUILayout.BeginHorizontal();
+
+                if (GUILayout.Button("Ethernet Mode"))
+                {
+                    ThreadStart ts = new ThreadStart(() =>
+                    {
+                        if (File.Exists(pathADB))
+                        {
+                            //Debug.Log(appPath);
+                            //Debug.Log(pathADB);
+                            string args =
+                                string.Format(
+                                    @"shell su -c ifconfig eth0 up");
+                            //Debug.Log(args);
+                            ProcessStartInfo ps = new ProcessStartInfo(pathADB,
+                                                                       args);
+                            Process p = new Process();
+                            ps.RedirectStandardOutput = false;
+                            ps.UseShellExecute = true;
+                            ps.CreateNoWindow = false;
+                            ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                            p.StartInfo = ps;
+                            p.Exited += (object sender, EventArgs e) =>
+                            {
+                                p.Dispose();
+                            };
+                            p.Start();
+
+                            p.WaitForExit();
+                        }
+                    });
+                    Thread thread = new Thread(ts);
+                    thread.Start();
+                    EditorGUIUtility.ExitGUI();
+                }
+
+                if (GUILayout.Button("Wifi Mode"))
+                {
+                    ThreadStart ts = new ThreadStart(() =>
+                    {
+                        if (File.Exists(pathADB))
+                        {
+                            //Debug.Log(appPath);
+                            //Debug.Log(pathADB);
+                            string args =
+                                string.Format(
+                                    @"shell su -c ifconfig eth0 down");
+                            //Debug.Log(args);
+                            ProcessStartInfo ps = new ProcessStartInfo(pathADB,
+                                                                       args);
+                            Process p = new Process();
+                            ps.RedirectStandardOutput = false;
+                            ps.UseShellExecute = true;
+                            ps.CreateNoWindow = false;
+                            ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                            p.StartInfo = ps;
+                            p.Exited += (object sender, EventArgs e) =>
+                            {
+                                p.Dispose();
+                            };
+                            p.Start();
+
+                            p.WaitForExit();
+                        }
+                    });
+                    Thread thread = new Thread(ts);
+                    thread.Start();
+                    EditorGUIUtility.ExitGUI();
+                }
+
+                if (GUILayout.Button("Wifi Settings"))
+                {
+                    ThreadStart ts = new ThreadStart(() =>
+                    {
+                        if (File.Exists(pathADB))
+                        {
+                            //Debug.Log(appPath);
+                            //Debug.Log(pathADB);
+                            string args =
+                                string.Format(
+                                    @"shell su -c am start -n com.android.settings/com.android.settings.wifi.WifiSettings");
+                            //Debug.Log(args);
+                            ProcessStartInfo ps = new ProcessStartInfo(pathADB,
+                                                                       args);
+                            Process p = new Process();
+                            ps.RedirectStandardOutput = false;
+                            ps.UseShellExecute = true;
+                            ps.CreateNoWindow = false;
+                            ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                            p.StartInfo = ps;
+                            p.Exited += (object sender, EventArgs e) =>
+                            {
+                                p.Dispose();
+                            };
+                            p.Start();
+
+                            p.WaitForExit();
+                        }
+                    });
+                    Thread thread = new Thread(ts);
+                    thread.Start();
+                    EditorGUIUtility.ExitGUI();
+                }
+
+                GUILayout.EndHorizontal();
+
+                if (GUILayout.Button("Toggle Safe Overlay"))
+                {
+                    ThreadStart ts = new ThreadStart(() =>
+                    {
+                        if (File.Exists(pathADB))
+                        {
+                            //Debug.Log(appPath);
+                            //Debug.Log(pathADB);
+                            string args =
+                                string.Format(
+                                    @"shell su -c am start -n tv.ouya.console/tv.ouya.console.launcher.ToggleSafeZoneActivity");
+                            //Debug.Log(args);
+                            ProcessStartInfo ps = new ProcessStartInfo(pathADB,
+                                                                       args);
+                            Process p = new Process();
+                            ps.RedirectStandardOutput = false;
+                            ps.UseShellExecute = true;
+                            ps.CreateNoWindow = false;
+                            ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                            p.StartInfo = ps;
+                            p.Exited += (object sender, EventArgs e) =>
+                            {
+                                p.Dispose();
+                            };
+                            p.Start();
+
+                            p.WaitForExit();
+                        }
+                    });
+                    Thread thread = new Thread(ts);
+                    thread.Start();
                     EditorGUIUtility.ExitGUI();
                 }
 
@@ -1972,7 +2183,9 @@ public class OuyaPanel : EditorWindow
                     EditorGUIUtility.ExitGUI();
                 }
 
-                if (GUILayout.Button("Open Logcat"))
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("Logcat");
+                if (GUILayout.Button("Open"))
                 {
                     if (File.Exists(pathADB))
                     {
@@ -1996,6 +2209,31 @@ public class OuyaPanel : EditorWindow
                     }
                     EditorGUIUtility.ExitGUI();
                 }
+                if (GUILayout.Button("Clear"))
+                {
+                    if (File.Exists(pathADB))
+                    {
+                        //Debug.Log(appPath);
+                        //Debug.Log(pathADB);
+                        string args = string.Format(@"shell logcat -c");
+                        //Debug.Log(args);
+                        ProcessStartInfo ps = new ProcessStartInfo(pathADB, args);
+                        Process p = new Process();
+                        ps.RedirectStandardOutput = false;
+                        ps.UseShellExecute = true;
+                        ps.CreateNoWindow = false;
+                        ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                        p.StartInfo = ps;
+                        p.Exited += (object sender, EventArgs e) =>
+                        {
+                            p.Dispose();
+                        };
+                        p.Start();
+                        //p.WaitForExit();
+                    }
+                    EditorGUIUtility.ExitGUI();
+                }
+                GUILayout.EndHorizontal();
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("Language:");
@@ -2123,6 +2361,257 @@ public class OuyaPanel : EditorWindow
                         }
                     }
                 }
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("Volume:");
+                if (GUILayout.Button("Down"))
+                {
+                    string args = string.Format("shell input keyevent VOLUME_DOWN");
+
+                    if (File.Exists(pathADB))
+                    {
+                        //Debug.Log(appPath);
+                        //Debug.Log(pathADB);
+                        //Debug.Log(args);
+                        ProcessStartInfo ps = new ProcessStartInfo(pathADB, args);
+                        Process p = new Process();
+                        ps.RedirectStandardOutput = false;
+                        ps.UseShellExecute = true;
+                        ps.CreateNoWindow = false;
+                        ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                        p.StartInfo = ps;
+                        p.Exited += (object sender, EventArgs e) =>
+                        {
+                            p.Dispose();
+                        };
+                        p.Start();
+                        //p.WaitForExit();
+                    }
+                    EditorGUIUtility.ExitGUI();
+                }
+                if (GUILayout.Button("Up"))
+                {
+                    string args = string.Format("shell input keyevent VOLUME_UP");
+
+                    if (File.Exists(pathADB))
+                    {
+                        //Debug.Log(appPath);
+                        //Debug.Log(pathADB);
+                        //Debug.Log(args);
+                        ProcessStartInfo ps = new ProcessStartInfo(pathADB, args);
+                        Process p = new Process();
+                        ps.RedirectStandardOutput = false;
+                        ps.UseShellExecute = true;
+                        ps.CreateNoWindow = false;
+                        ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                        p.StartInfo = ps;
+                        p.Exited += (object sender, EventArgs e) =>
+                        {
+                            p.Dispose();
+                        };
+                        p.Start();
+                        //p.WaitForExit();
+                    }
+                    EditorGUIUtility.ExitGUI();
+                }
+                GUILayout.EndHorizontal();
+
+                GUILayout.Label("Browser:");
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(25);
+                if (GUILayout.Button("Explorer"))
+                {
+                    string args = string.Format("shell input keyevent EXPLORER");
+                    if (File.Exists(pathADB))
+                    {
+                        //Debug.Log(appPath);
+                        //Debug.Log(pathADB);
+                        //Debug.Log(args);
+                        ProcessStartInfo ps = new ProcessStartInfo(pathADB, args);
+                        Process p = new Process();
+                        ps.RedirectStandardOutput = false;
+                        ps.UseShellExecute = true;
+                        ps.CreateNoWindow = false;
+                        ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                        p.StartInfo = ps;
+                        p.Exited += (object sender, EventArgs e) =>
+                        {
+                            p.Dispose();
+                        };
+                        p.Start();
+                        //p.WaitForExit();
+                    }
+                    EditorGUIUtility.ExitGUI();
+                }
+                if (GUILayout.Button("Search"))
+                {
+                    string args = string.Format("shell input keyevent SEARCH");
+
+                    if (File.Exists(pathADB))
+                    {
+                        //Debug.Log(appPath);
+                        //Debug.Log(pathADB);
+                        //Debug.Log(args);
+                        ProcessStartInfo ps = new ProcessStartInfo(pathADB, args);
+                        Process p = new Process();
+                        ps.RedirectStandardOutput = false;
+                        ps.UseShellExecute = true;
+                        ps.CreateNoWindow = false;
+                        ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                        p.StartInfo = ps;
+                        p.Exited += (object sender, EventArgs e) =>
+                        {
+                            p.Dispose();
+                        };
+                        p.Start();
+                        //p.WaitForExit();
+                    }
+                    EditorGUIUtility.ExitGUI();
+                }
+                if (GUILayout.Button("Back"))
+                {
+                    string args = string.Format("shell input keyevent BACK");
+
+                    if (File.Exists(pathADB))
+                    {
+                        //Debug.Log(appPath);
+                        //Debug.Log(pathADB);
+                        //Debug.Log(args);
+                        ProcessStartInfo ps = new ProcessStartInfo(pathADB, args);
+                        Process p = new Process();
+                        ps.RedirectStandardOutput = false;
+                        ps.UseShellExecute = true;
+                        ps.CreateNoWindow = false;
+                        ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                        p.StartInfo = ps;
+                        p.Exited += (object sender, EventArgs e) =>
+                        {
+                            p.Dispose();
+                        };
+                        p.Start();
+                        //p.WaitForExit();
+                    }
+                    EditorGUIUtility.ExitGUI();
+                }
+                if (GUILayout.Button("Home"))
+                {
+                    string args = string.Format("shell input keyevent HOME");
+
+                    if (File.Exists(pathADB))
+                    {
+                        //Debug.Log(appPath);
+                        //Debug.Log(pathADB);
+                        //Debug.Log(args);
+                        ProcessStartInfo ps = new ProcessStartInfo(pathADB, args);
+                        Process p = new Process();
+                        ps.RedirectStandardOutput = false;
+                        ps.UseShellExecute = true;
+                        ps.CreateNoWindow = false;
+                        ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                        p.StartInfo = ps;
+                        p.Exited += (object sender, EventArgs e) =>
+                        {
+                            p.Dispose();
+                        };
+                        p.Start();
+                        //p.WaitForExit();
+                    }
+                    EditorGUIUtility.ExitGUI();
+                }
+                GUILayout.EndHorizontal();
+
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(25);
+                m_browserUrl = GUILayout.TextField(m_browserUrl, GUILayout.MinWidth(100));
+                if (GUILayout.Button("Go"))
+                {
+                    string args = string.Format("shell input keyevent EXPLORER");
+                    if (File.Exists(pathADB))
+                    {
+                        //Debug.Log(appPath);
+                        //Debug.Log(pathADB);
+                        //Debug.Log(args);
+                        ProcessStartInfo ps = new ProcessStartInfo(pathADB, args);
+                        Process p = new Process();
+                        ps.RedirectStandardOutput = false;
+                        ps.UseShellExecute = true;
+                        ps.CreateNoWindow = false;
+                        ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                        p.StartInfo = ps;
+                        p.Exited += (object sender, EventArgs e) =>
+                        {
+                            p.Dispose();
+                        };
+                        p.Start();
+                        //p.WaitForExit();
+                    }
+                    Thread.Sleep(1000);
+                    args = string.Format("shell input keyevent SEARCH");
+                    if (File.Exists(pathADB))
+                    {
+                        //Debug.Log(appPath);
+                        //Debug.Log(pathADB);
+                        //Debug.Log(args);
+                        ProcessStartInfo ps = new ProcessStartInfo(pathADB, args);
+                        Process p = new Process();
+                        ps.RedirectStandardOutput = false;
+                        ps.UseShellExecute = true;
+                        ps.CreateNoWindow = false;
+                        ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                        p.StartInfo = ps;
+                        p.Exited += (object sender, EventArgs e) =>
+                        {
+                            p.Dispose();
+                        };
+                        p.Start();
+                        //p.WaitForExit();
+                    }
+                    Thread.Sleep(500);
+                    args = string.Format("shell input text {0}", m_browserUrl);
+                    if (File.Exists(pathADB))
+                    {
+                        //Debug.Log(appPath);
+                        //Debug.Log(pathADB);
+                        //Debug.Log(args);
+                        ProcessStartInfo ps = new ProcessStartInfo(pathADB, args);
+                        Process p = new Process();
+                        ps.RedirectStandardOutput = false;
+                        ps.UseShellExecute = true;
+                        ps.CreateNoWindow = false;
+                        ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                        p.StartInfo = ps;
+                        p.Exited += (object sender, EventArgs e) =>
+                        {
+                            p.Dispose();
+                        };
+                        p.Start();
+                        //p.WaitForExit();
+                    }
+                    Thread.Sleep(4000);
+                    args = "shell input keyevent ENTER";
+                    if (File.Exists(pathADB))
+                    {
+                        //Debug.Log(appPath);
+                        //Debug.Log(pathADB);
+                        //Debug.Log(args);
+                        ProcessStartInfo ps = new ProcessStartInfo(pathADB, args);
+                        Process p = new Process();
+                        ps.RedirectStandardOutput = false;
+                        ps.UseShellExecute = true;
+                        ps.CreateNoWindow = false;
+                        ps.WorkingDirectory = Path.GetDirectoryName(pathADB);
+                        p.StartInfo = ps;
+                        p.Exited += (object sender, EventArgs e) =>
+                        {
+                            p.Dispose();
+                        };
+                        p.Start();
+                        //p.WaitForExit();
+                    }
+                    EditorGUIUtility.ExitGUI();
+                }
+                GUILayout.EndHorizontal();
 
                 break;
 

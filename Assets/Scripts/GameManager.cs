@@ -23,15 +23,11 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	void Update() {
+		
 		if ( OuyaInput.GetButtonDown( OuyaButton.LB, OuyaPlayer.P01 ) ) {
 			HUDFPS hudFps = gameObject.GetComponent<HUDFPS>();
 			hudFps.enabled = !hudFps.enabled;
 		}
 		
-		if ( OuyaInput.GetButtonDown( OuyaButton.RB, OuyaPlayer.P01 ) ) {
-			OuyaInputTester inputTester = gameObject.GetComponent<OuyaInputTester>();
-			inputTester.enabled = !inputTester.enabled;
-		}
 	}
-	
 }
