@@ -11,6 +11,7 @@ GameObject:
   - 20: {fileID: 2000000}
   - 81: {fileID: 8100000}
   - 92: {fileID: 9200000}
+  - 114: {fileID: 11400004}
   m_Layer: 10
   m_Name: playerCamera
   m_TagString: MainCamera
@@ -504,6 +505,25 @@ MonoBehaviour:
   camRot: {fileID: 400014}
   cameraFollowRate: 2
   cameraTiltRate: 3
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8622425a97b41e998bc9362adf6050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioFeedback: 0
+  audioFeedbackVolume: .5
+  graphMultiply: 2
+  graphPosition: {x: 1, y: 0}
+  frameHistoryLength: 180
+  CpuColor: {r: .20784314, g: .533333361, b: .654901981, a: 1}
+  RenderColor: {r: .43921569, g: .611764729, b: .0235294122, a: 1}
+  OtherColor: {r: .75686276, g: .423529416, b: .00392156886, a: 1}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -14,6 +14,10 @@ public class GameMenu : MonoBehaviour {
 	
 	private Vector2 screenCenter;
 	
+	private int selected = 0;
+	private bool selectedPress = false;
+	private bool menuPress = false;
+	
 	protected void OnEnable()
 	{
 		EventDispatcher.AddHandler(EventKey.INPUT_PAUSE, HandleEvent);
@@ -40,6 +44,25 @@ public class GameMenu : MonoBehaviour {
 		else if (eventName == EventKey.GAME_LEVEL_COMPLETE)
 		{
 			state = MenuState.LEVEL_COMPLETE;
+		}
+	}
+	
+	void Update() {
+		
+		if( OuyaInput.GetButtonDown( OuyaButton.O, OuyaPlayer.P01 ) ) {
+			selectedPress = true;
+		}
+		
+		if( OuyaInput.GetButtonDown( OuyaButton.U, OuyaPlayer.P01 ) ) {
+			menuPress = true;
+		}
+		
+		if( OuyaInput.GetButtonDown( OuyaButton.DU, OuyaPlayer.P01 ) || OuyaInput.GetButtonDown( OuyaButton.DL, OuyaPlayer.P01 ) ) {
+			selected++;
+		}
+		
+		if( OuyaInput.GetButtonDown( OuyaButton.DD, OuyaPlayer.P01 ) || OuyaInput.GetButtonDown( OuyaButton.DR, OuyaPlayer.P01 ) ) {
+			selected--;
 		}
 	}
 	
@@ -73,30 +96,29 @@ public class GameMenu : MonoBehaviour {
 	
 	protected void OnGUI()
 	{
-		if(GUI.Button(new Rect(3f, 3f, 50f, 50f), "M"))
-		{
-			Toggle();
+		if(GUI.Button(new Rect(3f, 3f, 50f, 50f), "M") || menuPress ) {
+				Toggle();
 		}
 		
-		switch(state)
-		{
-		case MenuState.HIDDEN:
+		switch(state) {
 			
+		case MenuState.HIDDEN:
 			break;
 		case MenuState.MAIN:
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2, buttonWidth, buttonHeigth), "RESTART"))
-			{
+			if ( selected < 0 ) { selected = 2; }
+			if ( selected > 2 ) { selected = 0; }
+			
+			
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2, buttonWidth, buttonHeigth), selected == 2 ? "--RESTART--" : "RESTART" ) || selected == 2 && selectedPress ) {
 				state = MenuState.RESTART_CHECK;
 			}
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y + buttonHeigth / 2, buttonWidth, buttonHeigth), "MAIN MENU"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y + buttonHeigth / 2, buttonWidth, buttonHeigth), selected == 1 ? "--MAIN MENU--" : "MAIN MENU" ) || selected == 1 && selectedPress ) {
 				state = MenuState.MAIN_MENU_CHECK;
 			}
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y + buttonHeigth * 1.5f, buttonWidth, buttonHeigth), "RETURN"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y + buttonHeigth * 1.5f, buttonWidth, buttonHeigth), selected == 0 ? "--RETURN--" : "RETURN" ) || selected == 0 && selectedPress ) {
 				state = MenuState.HIDDEN;
 				LevelController.CurrentGameState = LevelController.GameState.PLAYING;
 			}
@@ -104,51 +126,57 @@ public class GameMenu : MonoBehaviour {
 			break;
 		case MenuState.RESTART_CHECK:
 			
+			if ( selected < 0 ) { selected = 1; }
+			if ( selected > 1 ) { selected = 0; }
+			
 			GUI.Label(new Rect(screenCenter.x - titleWidth / 2f, screenCenter.y - 100f, titleWidth, titleHeigth), "Are you shure you wish to restart the level.");
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth, screenCenter.y, buttonWidth, buttonHeigth), "YES"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth, screenCenter.y, buttonWidth, buttonHeigth), selected == 1 ? "--YES--" : "YES") || selected == 1 && selectedPress ) {
 				state = MenuState.HIDDEN;
 				LevelManager.RestatLevel();
 			}
 			
-			if(GUI.Button(new Rect(screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), "NO"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), selected == 0 ? "--NO--" : "NO") || selected == 0 && selectedPress ) {
 				state = MenuState.MAIN;
 			}
 			
 			break;
 		case MenuState.MAIN_MENU_CHECK:
 			
+			if ( selected < 0 ) { selected = 1; }
+			if ( selected > 1 ) { selected = 0; }
+			
 			GUI.Label(new Rect(screenCenter.x - titleWidth / 2f, screenCenter.y - 100f, titleWidth, titleHeigth), "Are you shure you wish to return to the Main Menu.");
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth, screenCenter.y, buttonWidth, buttonHeigth), "YES"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth, screenCenter.y, buttonWidth, buttonHeigth), selected == 1 ? "--YES--" : "YES") || selected == 1 && selectedPress ) {
 				state = MenuState.HIDDEN;
 				LevelManager.LoadMainMenu();
 			}
 			
-			if(GUI.Button(new Rect(screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), "NO"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), selected == 0 ? "--NO--" : "NO") || selected == 0 && selectedPress ) {
 				state = MenuState.MAIN;
 			}
 			
 			break;
 		case MenuState.LEVEL_COMPLETE:
 			
+			if ( selected < 0 ) { selected = 1; }
+			if ( selected > 1 ) { selected = 0; }
+			
 			GUI.Label(new Rect(screenCenter.x - titleWidth / 2f, screenCenter.y - 100f, titleWidth, titleHeigth), "Level complete.");
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2, buttonWidth, buttonHeigth), "RESTART"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2, buttonWidth, buttonHeigth), selected == 1 ? "--RESTART--" : "RESTART" ) ) {
 				state = MenuState.RESTART_CHECK;
 			}
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y + buttonHeigth / 2, buttonWidth, buttonHeigth), "MAIN MENU"))
-			{
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y + buttonHeigth / 2, buttonWidth, buttonHeigth), selected == 0 ? "--MAIN MENU--" : "MAIN MENU" ) ) {
 				state = MenuState.MAIN_MENU_CHECK;
 			}
 			
 			break;
 		}
+		
+		selectedPress = false;
+		menuPress = false;
 	}
 }

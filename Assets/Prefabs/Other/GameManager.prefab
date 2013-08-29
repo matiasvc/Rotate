@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400002}
-  - 114: {fileID: 11400000}
   - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: GameManager
@@ -29,19 +28,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1284fbc6dd928401a8b53cef34e416c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateInterval: .5
-  placement: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -59,13 +45,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 313ba1ef9a9924ae9861a2a0776e4660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
-  continuousScan: 1
+  debug: 1
+  continuousScan: 0
   observedPlayer: 1
   deadzoneType: 2
   deadzone: .25
