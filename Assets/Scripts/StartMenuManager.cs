@@ -62,17 +62,17 @@ public class StartMenuManager : MonoBehaviour {
 			if ( selected > 2 ) { selected = 0; }
 			if ( selected < 0 ) { selected = 2; }
 			
-			if ( GUI.Button( new Rect( screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f - buttonHeigth, buttonWidth, buttonHeigth), selected == 0 ? "X PLAY" : "PLAY" ) || selected == 0 && selectedPress ) {
+			if ( GUI.Button( new Rect( screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f - buttonHeigth, buttonWidth, buttonHeigth), selected == 0 ? "--PLAY--" : "PLAY" ) || selected == 0 && selectedPress ) {
 				selected = 0;
 				state = MenuState.LEVEL_SCREEN;
 			}
 			
-			if ( GUI.Button( new Rect( screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f, buttonWidth, buttonHeigth), selected == 1 ? "X OPTIONS" : "OPTIONS" ) || selected == 1 && selectedPress ) {
+			if ( GUI.Button( new Rect( screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f, buttonWidth, buttonHeigth), selected == 1 ? "--OPTIONS--" : "OPTIONS" ) || selected == 1 && selectedPress ) {
 				selected = 0;
 				state = MenuState.OPTIONS;
 			}
 			
-			if ( GUI.Button( new Rect( screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), selected == 2 ? "X ABOUT" : "ABOUT" ) || selected == 2 && selectedPress ) {
+			if ( GUI.Button( new Rect( screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), selected == 2 ? "--ABOUT--" : "ABOUT" ) || selected == 2 && selectedPress ) {
 				selected = 0;
 				state = MenuState.ABOUT;
 			}
@@ -84,7 +84,7 @@ public class StartMenuManager : MonoBehaviour {
 			if ( selected < 0 ) { selected = 0; }
 			
 			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth), "OPTIONS");
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), selected == 0 ? "X BACK" : "BACK" )  || selected == 0 && selectedPress ) {
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), selected == 0 ? "--BACK--" : "BACK" )  || selected == 0 && selectedPress ) {
 				selected = 0;
 				state = MenuState.MAIN;
 			}
@@ -96,7 +96,7 @@ public class StartMenuManager : MonoBehaviour {
 			if ( selected < 0 ) { selected = 0; }
 			
 			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth), "ABOUT");
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), selected == 0 ? "X BACK" : "BACK" )  || selected == 0 && selectedPress ) {
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth, buttonWidth, buttonHeigth), selected == 0 ? "--BACK--" : "BACK" )  || selected == 0 && selectedPress ) {
 				selected = 0;
 				state = MenuState.MAIN;
 			}
@@ -112,7 +112,7 @@ public class StartMenuManager : MonoBehaviour {
 				levelGrid = new Grid(screenCenter.x - levelGridWidth / 2, screenCenter.y - levelGridHeigth / 2, levelGridWidth, levelGridHeigth, levelGridColloms, levelGridRows);
 			}
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth + 30f, buttonWidth, buttonHeigth), selected == 0 ? "X BACK" : "BACK" )  || selected == 0 && selectedPress ) {
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth + 30f, buttonWidth, buttonHeigth), selected == 0 ? "--BACK--" : "BACK" )  || selected == 0 && selectedPress ) {
 				selected = 0;
 				state = MenuState.MAIN;
 			}
@@ -121,7 +121,7 @@ public class StartMenuManager : MonoBehaviour {
 			foreach(LevelManager.Level level in LevelManager.Levels) {
 				
 				Vector2 buttonPos = levelGrid.GetNodePostion(i);
-				if(GUI.Button(new Rect(buttonPos.x - levelGridButtonWidth / 2f, buttonPos.y - levelGridButtonHeigth / 2f, levelGridButtonWidth, levelGridButtonHeigth), selected == i+1 ? "X "+(i+1).ToString() : (i+1).ToString() ) || selected == i+1 && selectedPress ) {
+				if(GUI.Button(new Rect(buttonPos.x - levelGridButtonWidth / 2f, buttonPos.y - levelGridButtonHeigth / 2f, levelGridButtonWidth, levelGridButtonHeigth), selected == i+1 ? "--"+(i+1).ToString()+"--" : (i+1).ToString() ) || selected == i+1 && selectedPress ) {
 					selectedLevel = level;
 					selected = 0;
 					state = MenuState.SELECTED_LEVEL;
@@ -139,11 +139,11 @@ public class StartMenuManager : MonoBehaviour {
 			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - titleHeigth + titlePos.y, titleWidth, titleHeigth), "SELECTED LEVEL SCREEN" );
 			GUI.Label(new Rect(screenCenter.x - titleWidth + titlePos.x/ 2f, screenCenter.y - 5f + titlePos.y, titleWidth, titleHeigth), selectedLevel.levelName);
 			
-			if( GUI.Button( new Rect( screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), selected == 1 ? "X PLAY" : "PLAY") || selected == 1 && selectedPress ) {
+			if( GUI.Button( new Rect( screenCenter.x, screenCenter.y, buttonWidth, buttonHeigth), selected == 1 ? "--PLAY--" : "PLAY") || selected == 1 && selectedPress ) {
 				LevelManager.LoadLevel( selectedLevel );
 			}
 			
-			if( GUI.Button( new Rect( screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth + 30f, buttonWidth, buttonHeigth ), selected == 0 ? "X BACK" : "BACK" )  || selected == 0 && selectedPress ) {
+			if( GUI.Button( new Rect( screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f + buttonHeigth + 30f, buttonWidth, buttonHeigth ), selected == 0 ? "--BACK--" : "BACK" )  || selected == 0 && selectedPress ) {
 				selected = 0;
 				state = MenuState.LEVEL_SCREEN;
 			}

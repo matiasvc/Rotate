@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour {
 	
 	void Update() {
 		
+		OuyaInput.UpdateControllers();
+		
 		if ( OuyaInput.GetButtonDown( OuyaButton.RB, OuyaPlayer.P01 ) ) {
 			FPSGraphC hudFps = GameObject.FindObjectOfType(typeof(FPSGraphC)) as FPSGraphC;
 			hudFps.enabled = !hudFps.enabled;
