@@ -497,6 +497,10 @@ Prefab:
       propertyPath: continuousScan
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 386f3777e084b1e49b39b81ff6e24cb9, type: 2}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 386f3777e084b1e49b39b81ff6e24cb9, type: 2}
   m_RootGameObject: {fileID: 1472583491}
@@ -807,7 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEVELOPER_ID: c558732b-4f1e-4568-a350-e4cb6a906767
-  debugOff: 1
+  debugOff: 0
   Purchasables: []
 --- !u!4 &1117511607
 Transform:
@@ -994,7 +998,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ad92c5da04e1b904ead8291e00d4c927, type: 2}
       propertyPath: debugOff
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: ad92c5da04e1b904ead8291e00d4c927, type: 2}
       propertyPath: DEVELOPER_ID
