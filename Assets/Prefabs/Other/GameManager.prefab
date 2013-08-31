@@ -45,13 +45,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 313ba1ef9a9924ae9861a2a0776e4660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  continuousScan: 0
+  continuousScan: 1
   observedPlayer: 1
   deadzoneType: 2
   deadzone: .25
