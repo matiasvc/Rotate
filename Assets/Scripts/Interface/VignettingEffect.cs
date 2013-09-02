@@ -19,9 +19,6 @@ public class VignettingEffect : MonoBehaviour {
 		Vector3 camPointB = cam.ScreenToWorldPoint( new Vector3( Screen.width, Screen.height, 1.0f ) );
 		
 		Vector2 vignetteScale = new Vector2( camPointB.x - camPointA.x, camPointB.z - camPointA.z );
-		Debug.Log( camPointA );
-		Debug.Log( camPointB );
-		Debug.Log( vignetteScale );
 		
 		//MeshEx.TransformMesh( mesh, Vector3.zero, Quaternion.identity, new Vector3( vignetteScale.x, vignetteScale.y, 1.0f) );
 		meshFilter.mesh = mesh;
