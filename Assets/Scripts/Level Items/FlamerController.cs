@@ -11,15 +11,12 @@ public class FlamerController : LevelItem {
 	
 	private float enabledFlameLength = 0f;
 	
-	public float FireLength
-	{
+	public float FireLength {
 		get { return fireLength; }
 	}
 	
-	public BoxCollider FlameCollider
-	{
-		get
-		{
+	public BoxCollider FlameCollider {
+		get {
 			if (flameCollider == null)
 				flameCollider = gameObject.GetComponent<BoxCollider>();
 			
@@ -27,10 +24,8 @@ public class FlamerController : LevelItem {
 		}
 	}
 	
-	public ParticleSystem FlameParticleEmitter
-	{
-		get
-		{
+	public ParticleSystem FlameParticleEmitter {
+		get {
 			if (flameParticles == null)
 				flameParticles = gameObject.GetComponentInChildren<ParticleSystem>();
 			
@@ -38,54 +33,45 @@ public class FlamerController : LevelItem {
 		}
 	}
 	
-	void Awake()
-	{
+	void Awake() {
 		flameParticles = gameObject.GetComponentInChildren<ParticleSystem>();
 		enabledFlameLength = fireLength;
 	}
 	
-	void Start()
-	{
-		if (itemEnabled)
+	void Start() {
+		if (itemEnabled) {
 			FlameParticleEmitter.Play();
+		}
 	}
 	
-	public override void ItemToggle ()
-	{
+	public override void ItemToggle () {
 		base.ItemToggle ();
 		
-		if (itemEnabled)
+		if (itemEnabled) {
 			StartCoroutine(ToggleCoroutine(true));
-		else
+		} else {
 			StartCoroutine(ToggleCoroutine(false));
+		}
 	}
 	
-	public IEnumerator ToggleCoroutine(bool toggleTo)
-	{
-		
+	public IEnumerator ToggleCoroutine(bool toggleTo) {
 		float length = 0.3f;
-		
 		float fromLength;
 		float toLength;
-		
 		float t = 0f;
 		
-		if(toggleTo)
-		{
+		if ( toggleTo) {
 			FlameParticleEmitter.enableEmission = true;
 			fromLength = 0f;
 			toLength = enabledFlameLength;
-		}
-		else
-		{
+		} else {
 			fromLength = enabledFlameLength;
 			toLength = 0f;
 		}
 		
 		
 		
-		while(t <= length)
-		{
+		while ( t <= length ) {
 			float lerp = Mathf.InverseLerp(0f, length, t);
 			SetFlameLength(Mathf.Lerp(fromLength, toLength, lerp));
 			yield return null;
@@ -94,20 +80,18 @@ public class FlamerController : LevelItem {
 		
 		SetFlameLength(toLength);
 		
-		if (!toggleTo)
+		if ( !toggleTo ) {
 			FlameParticleEmitter.enableEmission = false;
+		}
 	}
 	
-	public void SetFlameLength(float length)
-	{
+	public void SetFlameLength(float length) {
 		fireLength = length;
 		
 		Vector3 oldColliderSize = FlameCollider.size;
 		Vector3 oldColliderPos = FlameCollider.center;
-		
 		Vector3 newColliderPos = new Vector3((fireLength * 0.5f ) + 1f , oldColliderPos.y, oldColliderPos.z);
 		Vector3 newColliderSize = new Vector3(fireLength, oldColliderSize.y, oldColliderSize.z);
-		
 		float particleSpeed = FlameParticleEmitter.startSpeed;
 		
 		FlameParticleEmitter.startLifetime = fireLength / particleSpeed;
