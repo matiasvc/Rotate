@@ -1,30 +1,57 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class ItemTimer : MonoBehaviour
-{
-	public float startDelay = 0f;
-	public float toggleDelay = 1f;
+public class ItemTimer : MonoBehaviour {
 	
-	void Start()
-	{
+	public enum TimerObjectType { WAIT, TOGGLE, ON, OFF, EXIT };
+	
+	public List<TimerObject> timerObjects = new List<TimerObject>();
+	
+	
+	[System.Serializable]
+	public class TimerObject {
+		public TimerObjectType type = TimerObjectType.WAIT;
+		public float wait = 0.0f;
+	}
+	
+	void OnEnable() {
 		StartCoroutine(TimerCoroutine());
 	}
 	
-	private IEnumerator TimerCoroutine()
-	{
-		yield return new WaitForSeconds(startDelay);
+	private IEnumerator TimerCoroutine() {
+		int currentObjectIndex = 0;
 		
-		while(true)
-		{
-			gameObject.SendMessage("ItemToggle");
-			yield return new WaitForSeconds(toggleDelay);
+		while( true ) {
+			if ( timerObjects.Count == 0 ) { return false; }
+			TimerObject currentObject = timerObjects[currentObjectIndex];
+			
+			switch ( currentObject.type ) {
+			case TimerObjectType.WAIT:
+				yield return new WaitForSeconds( currentObject.wait );
+				break;
+			case TimerObjectType.TOGGLE:
+				gameObject.SendMessage("ItemToggle");
+				break;
+			case TimerObjectType.ON:
+				gameObject.SendMessage("ItemEnable");
+				break;
+			case TimerObjectType.OFF:
+				gameObject.SendMessage("ItemDisable");
+				break;
+			case TimerObjectType.EXIT:
+				return false;
+			}
+			
+			currentObjectIndex++;
+			if ( currentObjectIndex >= timerObjects.Count ) {
+				currentObjectIndex = 0;
+			}
 		}
 	}
 	
-	void OnDrawGizmos() // Vector3(-0.5f, 1f, 0.5f)
-	{
-		Gizmos.DrawIcon(transform.position + transform.rotation * new Vector3(0.5f, 1f, 0.5f) , "timer.png", true);
+	void OnDrawGizmos() {
+		Gizmos.DrawIcon( transform.position + transform.rotation * new Vector3(0.5f, 1f, 0.5f) , "timer.png", true );
 	}
 	
 }
