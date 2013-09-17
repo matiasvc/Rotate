@@ -7,7 +7,7 @@ public class FanController : LevelItem {
 	public float fanForce = 20f;
 	
 	public Transform bladeTransform;
-	
+
 	public ParticleSystem _airflowParticles = null;
 	public ParticleSystem airflowParticles {
 		get {
@@ -29,7 +29,9 @@ public class FanController : LevelItem {
 	private float motorForce = 360 * 3f;
 	private float fanSpeed = 0f;
 	private float fanRotation = 0f;
-	
+	private float stabilizationForce = 13.0f;
+
+	private Transform playerTransform = null;
 	private bool playerInTrigger = false;
 	
 	void Start() {
@@ -61,12 +63,14 @@ public class FanController : LevelItem {
 	
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
+			playerTransform = other.transform;
 			playerInTrigger = true;
 		}
 	}
 	
 	void OnTriggerExit(Collider other) {
 		if (other.gameObject.layer == LayerMask.NameToLayer("Player")) {
+			playerTransform = null;
 			playerInTrigger = false;
 		}
 	}
@@ -80,15 +84,16 @@ public class FanController : LevelItem {
 		} else {
 			fanSpeed *= Mathf.Pow( dampening, Time.deltaTime );
 		}
-		
+
 		fanSpeed = Mathf.Clamp(fanSpeed, 0f, fanEnabledSpeed);
 		bladeTransform.localEulerAngles = new Vector3(0f, 0f, fanRotation);
 	}
 	
-	void FixedUpdate()
-	{
-		if (itemEnabled && playerInTrigger) {
-			EventDispatcher.SendEvent( EventKey.PLAYER_APPLY_FORCE, new object[]{transform.forward * fanForce, ForceMode.Force} );
+	void FixedUpdate() {
+		if ( itemEnabled && playerInTrigger ) {
+			float ballPosSign = ( transform.InverseTransformPoint( playerTransform.position ).x - 1.5f )  * ( 1.0f/1.5f );
+			Vector3 forceVector = ( transform.forward * fanForce ) + ( transform.right * stabilizationForce * -ballPosSign );
+			EventDispatcher.SendEvent( EventKey.PLAYER_APPLY_FORCE, new object[]{ forceVector, ForceMode.Force} );
 		}
 	}
 	
