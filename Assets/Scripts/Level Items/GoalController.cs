@@ -16,22 +16,22 @@ public class GoalController : LevelItem {
 	
 	private const string animName = "open";
 	
-	void Awake()
+	void Awake ()
 	{
 		particles = gameObject.GetComponentInChildren<ParticleSystem>();
 		anim = gameObject.GetComponentInChildren<Animation>();
 	}
 	
-	void Start()
+	void Start ()
 	{
 		particles.Stop();
 	}
 
-	void OnEnable() {
+	void OnEnable () {
 		EventDispatcher.AddHandler( EventKey.GAME_ENABLE_GOAL, HandleEvent );
 	}
 
-	void OnDisable() {
+	void OnDisable () {
 		EventDispatcher.RemoveHandler( EventKey.GAME_ENABLE_GOAL, HandleEvent );
 	}
 
@@ -39,35 +39,32 @@ public class GoalController : LevelItem {
 		switch(eventName) {
 		case EventKey.GAME_ENABLE_GOAL:
 			ItemEnable();
+			if ( playerInTrigger ) {
+				EnableSuction();
+			}
 			break;
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
+	void OnTriggerEnter (Collider other)
 	{
-		if (itemEnabled && other.gameObject.tag == "Player")
-		{
+		if ( other.gameObject.tag == "Player" ) {
 			playerInTrigger = true;
 			player = other.gameObject;
-			particles.Play();
-			
-			anim[animName].speed = 1f;
-			anim[animName].normalizedTime = 0f;
-			anim.Play();
+			if ( itemEnabled ) {
+				EnableSuction();
+			}
 		}
 	}
 	
-	void OnTriggerExit(Collider other)
+	void OnTriggerExit (Collider other)
 	{
-		if (itemEnabled && other.gameObject.tag == "Player")
-		{
+		if ( other.gameObject.tag == "Player" ) {
 			playerInTrigger = false;
 			player = null;
-			particles.Stop();
-			
-			anim[animName].speed = -1f;
-			anim[animName].normalizedTime = 1f;
-			anim.Play();
+			if ( itemEnabled ) {
+				DisableSuction ();
+			}
 		}
 	}
 	
@@ -95,7 +92,7 @@ public class GoalController : LevelItem {
 		}
 	}
 	
-	private IEnumerator PlayerExitAnimation(float velocity, float distance)
+	private IEnumerator PlayerExitAnimation (float velocity, float distance)
 	{
 		
 		float t = 0;
@@ -104,8 +101,7 @@ public class GoalController : LevelItem {
 		Vector2 startPos = new Vector2(player.transform.position.x, player.transform.position.z);
 		Vector2 goalPos = new Vector2(transform.position.x, transform.position.z);
 		
-		while (t <= length)
-		{
+		while (t <= length) {
 			float xyLerp = Easing.easing(Easing.EasingType.linear, 0f, 1f, Mathf.InverseLerp(0f, length, t));
 			Vector2 xyPos = Vector2.Lerp(startPos, goalPos, xyLerp);
 			
@@ -130,15 +126,25 @@ public class GoalController : LevelItem {
 		EventDispatcher.SendEvent(EventKey.GAME_LEVEL_COMPLETE);
 	}
 
-	void OnDrawGizmosSelected()
-	{
+	void OnDrawGizmosSelected () {
 		Color oldColor = Gizmos.color;
 		Gizmos.color = Color.green;
-		
 		Gizmos.DrawWireSphere(transform.position, goalRadius);
-		
 		Gizmos.color = oldColor;
 	}
 	
 	
+	void EnableSuction () {
+		particles.Play ();
+		anim [animName].speed = 1f;
+		anim [animName].normalizedTime = 0f;
+		anim.Play ();
+	}
+
+	void DisableSuction () {
+		particles.Stop ();
+		anim [animName].speed = -1f;
+		anim [animName].normalizedTime = 1f;
+		anim.Play ();
+	}
 }
