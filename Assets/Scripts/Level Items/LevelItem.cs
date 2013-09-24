@@ -11,23 +11,19 @@ public abstract class LevelItem : MonoBehaviour {
 		set { ItemSwitch( value ); }
 	}
 	
-	public virtual void ItemEnable ()
-	{
+	public virtual void ItemEnable () {
 		itemEnabled = true;
 	}
 	
-	public virtual void ItemDisable ()
-	{
+	public virtual void ItemDisable () {
 		itemEnabled = false;
 	}
 	
-	public virtual void ItemSwitch ( bool setTo )
-	{
+	public virtual void ItemSwitch ( bool setTo ) {
 		itemEnabled = setTo;
 	}
 	
-	public virtual void ItemToggle ()
-	{
+	public virtual void ItemToggle () {
 		itemEnabled = !itemEnabled;
 	}
 }

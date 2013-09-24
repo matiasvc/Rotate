@@ -8,23 +8,63 @@ ModelImporter:
     100004: checkpoint_sprite
     100006: checkpoint_body
     100008: checkpoint_collider
+    100010: checkPointMesh_0000
+    100012: checkPointMesh_0001
+    100014: checkPointMesh_0003
+    100016: checkPointMesh_0004
+    100018: checkPointMesh_0005
+    100020: checkPointMesh_0006
+    100022: checkPointMesh_0007
+    100024: newCheckpointSphere
     400000: //RootNode
     400002: checkpoint_top
     400004: checkpoint_sprite
     400006: checkpoint_body
     400008: checkpoint_collider
+    400010: checkPointMesh_0000
+    400012: checkPointMesh_0001
+    400014: checkPointMesh_0003
+    400016: checkPointMesh_0004
+    400018: checkPointMesh_0005
+    400020: checkPointMesh_0006
+    400022: checkPointMesh_0007
+    400024: newCheckpointSphere
     2300000: checkpoint_top
     2300002: checkpoint_sprite
     2300004: checkpoint_body
     2300006: checkpoint_collider
+    2300008: checkPointMesh_0000
+    2300010: checkPointMesh_0001
+    2300012: checkPointMesh_0003
+    2300014: checkPointMesh_0004
+    2300016: checkPointMesh_0005
+    2300018: checkPointMesh_0006
+    2300020: checkPointMesh_0007
+    2300022: newCheckpointSphere
     3300000: checkpoint_top
     3300002: checkpoint_sprite
     3300004: checkpoint_body
     3300006: checkpoint_collider
+    3300008: checkPointMesh_0000
+    3300010: checkPointMesh_0001
+    3300012: checkPointMesh_0003
+    3300014: checkPointMesh_0004
+    3300016: checkPointMesh_0005
+    3300018: checkPointMesh_0006
+    3300020: checkPointMesh_0007
+    3300022: newCheckpointSphere
     4300000: checkpoint_sprite
     4300002: checkpoint_body
     4300004: checkpoint_top
     4300006: checkpoint_collider
+    4300008: checkPointMesh_0000
+    4300010: checkPointMesh_0001
+    4300012: newCheckpointSphere
+    4300014: checkPointMesh_0003
+    4300016: checkPointMesh_0004
+    4300018: checkPointMesh_0005
+    4300020: checkPointMesh_0006
+    4300022: checkPointMesh_0007
     11100000: //RootNode
   materials:
     importMaterials: 0
@@ -33,11 +73,13 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 0
     bakeSimulation: 0
+    optimizeGameObjects: 0
     animationCompression: 0
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
     animationWrapMode: 0
+    extraExposedTransformPaths: []
     clipAnimations: []
     isReadable: 0
   meshes:
@@ -65,7 +107,6 @@ ModelImporter:
   humanDescription:
     human: []
     skeleton: []
-    handles: []
     armTwist: .5
     foreArmTwist: .5
     upperLegTwist: .5
@@ -75,6 +116,5 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  additionalBone: 1
   animationType: 0
   userData: 
