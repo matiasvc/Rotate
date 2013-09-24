@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LevelController : MonoBehaviour
 {
@@ -17,18 +18,16 @@ public class LevelController : MonoBehaviour
 	private float spawnRotation;
 	
 	private float levelTime = 0;
-	
+
 	private int bonusObjectsCollected = 0;
-	
-	public static float LevelTime
-	{
+	private List<BonusObjectController> bonusObjects;
+
+	public static float LevelTime {
 		get { return _instance.levelTime; }
 	}
 	
-	public static string LevelTimeString
-	{
-		get
-		{
+	public static string LevelTimeString {
+		get {
 			int intTime = Mathf.FloorToInt(_instance.levelTime);
 			
 			int num1 = intTime / 100;
@@ -39,40 +38,44 @@ public class LevelController : MonoBehaviour
 			return timeString;
 		}
 	}
-	
-	public static int BonusObjectsCollected
-	{
+
+	public void AddBonusObject(BonusObjectController bonusObject) {
+		bonusObjects.Add(bonusObject);
+	}
+
+	public static int BonusObjectsCollected {
 		get { return _instance.bonusObjectsCollected; }
 	}
 	
-	public static GameState CurrentGameState
-	{
-		set
-		{
+	public static GameState CurrentGameState {
+		set {
 			_instance.gameState = value;
 			
-			if (value == GameState.PAUSED)
+			if (value == GameState.PAUSED) {
 				Time.timeScale = 0f;
-			else
+			} else {
 				Time.timeScale = 1f;
+			}
 		}
 		get { return _instance.gameState; }
 	}
-	
-	void Awake()
-	{
+
+	public static LevelController Instance {
+		get { return _instance; }
+	}
+
+	void Awake() {
 		_instance = this;
+		bonusObjects = new List<BonusObjectController>();
 	}
 	
-	void Start()
-	{
+	void Start() {
 		GameObject.Instantiate(playerGroupPrefab, Vector3.zero, Quaternion.identity);
 		GameObject.Instantiate(HUDGroupPrefab, Vector3.zero, Quaternion.identity);
 		SpawnPlayer();
 	}
 	
-	void OnEnable()
-	{
+	void OnEnable() {
 		EventDispatcher.AddHandler(EventKey.INPUT_ROTATE, HandleEvent);
 		EventDispatcher.AddHandler(EventKey.GAME_SET_ROTATION, HandleEvent);
 		EventDispatcher.AddHandler(EventKey.PLAYER_SET_CHECKPOINT, HandleEvent);
@@ -89,18 +92,14 @@ public class LevelController : MonoBehaviour
 		EventDispatcher.RemoveHandler(EventKey.PLAYER_BONUS_OBJECT, HandleEvent);
 	}
 	
-	void Update()
-	{
-		if (LevelController.CurrentGameState == LevelController.GameState.PLAYING)
-		{
+	void Update() {
+		if (LevelController.CurrentGameState == LevelController.GameState.PLAYING) {
 			levelTime += Time.deltaTime;
 		}
 	}
 	
-	private void HandleEvent(string eventName, object param)
-	{
-		switch (eventName)
-		{
+	private void HandleEvent(string eventName, object param) {
+		switch (eventName) {
 		case EventKey.INPUT_ROTATE:
 			Rotate((float)param);
 			break;
@@ -115,7 +114,11 @@ public class LevelController : MonoBehaviour
 			SpawnPlayer();
 			break;
 		case EventKey.PLAYER_BONUS_OBJECT:
+			bonusObjects.Remove((BonusObjectController)param);
 			bonusObjectsCollected++;
+			if( bonusObjects.Count == 0 ) {
+				EventDispatcher.SendEvent( EventKey.GAME_ENABLE_GOAL );
+			}
 			break;
 		default:
 			Debug.LogWarning("No handler for this event implemented.");
@@ -123,32 +126,28 @@ public class LevelController : MonoBehaviour
 		}
 	}
 	
-	private void SpawnPlayer()
-	{
+	private void SpawnPlayer() {
 		EventDispatcher.SendEvent(EventKey.PLAYER_MOVE, spawnPoint); // Move player to start position
 		EventDispatcher.SendEvent(EventKey.GAME_SET_ROTATION, spawnRotation); // Rotate to the level starting rotation
 		EventDispatcher.SendEvent(EventKey.PLAYER_TOGGLE_ACTIVE, true); // Activate the player
 	}
 	
-	private void Rotate(float rotationDelta)
-	{
+	private void Rotate(float rotationDelta) {
 		float newRotation = rotation + rotationDelta;
 		
 		EventDispatcher.SendEvent(EventKey.GAME_SET_ROTATION, newRotation);
 	}
 	
-	private void SetRotation(float degrees)
-	{
+	private void SetRotation(float degrees) {
 		rotation = Mathf.Repeat(degrees, 360f);
 		
 		float rad = rotation * Mathf.Deg2Rad;
 		Physics.gravity = new Vector3 (Mathf.Sin (rad), 0f, Mathf.Cos (rad)) * -gravityForce;
 	}
-	
-	private void SetCheckpoint(Vector3 pos, float rot)
-	{
+
+	private void SetCheckpoint(Vector3 pos, float rot) {
 		spawnPoint = pos;
 		spawnRotation = rot;
 	}
-	
+
 }

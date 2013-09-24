@@ -26,10 +26,26 @@ public class GoalController : LevelItem {
 	{
 		particles.Stop();
 	}
-	
+
+	void OnEnable() {
+		EventDispatcher.AddHandler( EventKey.GAME_ENABLE_GOAL, HandleEvent );
+	}
+
+	void OnDisable() {
+		EventDispatcher.RemoveHandler( EventKey.GAME_ENABLE_GOAL, HandleEvent );
+	}
+
+	private void HandleEvent(string eventName, object param) {
+		switch(eventName) {
+		case EventKey.GAME_ENABLE_GOAL:
+			ItemEnable();
+			break;
+		}
+	}
+
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.tag == "Player")
+		if (itemEnabled && other.gameObject.tag == "Player")
 		{
 			playerInTrigger = true;
 			player = other.gameObject;
@@ -43,7 +59,7 @@ public class GoalController : LevelItem {
 	
 	void OnTriggerExit(Collider other)
 	{
-		if (other.gameObject.tag == "Player")
+		if (itemEnabled && other.gameObject.tag == "Player")
 		{
 			playerInTrigger = false;
 			player = null;
@@ -113,7 +129,7 @@ public class GoalController : LevelItem {
 		
 		EventDispatcher.SendEvent(EventKey.GAME_LEVEL_COMPLETE);
 	}
-	
+
 	void OnDrawGizmosSelected()
 	{
 		Color oldColor = Gizmos.color;
