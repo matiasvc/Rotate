@@ -22,6 +22,7 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   m_ActiveColorSpace: 0
   m_MTRendering: 1
+  m_MobileMTRendering: 0
   m_UseDX11: 0
   iosShowActivityIndicatorOnLoading: 0
   androidShowActivityIndicatorOnLoading: 0
@@ -154,6 +155,7 @@ PlayerSettings:
   ps3SaveGameSlots: 1
   ps3TrialMode: 0
   flashStrippingLevel: 2
+  spritePackerPolicy: 
   scriptingDefineSymbols: {}
   metroPackageName: 
   metroPackageLogo: 
@@ -192,6 +194,7 @@ PlayerSettings:
   blackberryGPSPermissions: 0
   blackberryDeviceIDPermissions: 0
   blackberryMicrophonePermissions: 0
+  blackberryGamepadSupport: 0
   blackberryBuildId: 0
   blackberryLandscapeSplashScreen: {fileID: 0}
   blackberryPortraitSplashScreen: {fileID: 0}
@@ -203,5 +206,5 @@ PlayerSettings:
   tizenSaveLogPath: 
   firstStreamedLevelWithResources: 0
   unityRebuildLibraryVersion: 9
-  unityForwardCompatibleVersion: 38
+  unityForwardCompatibleVersion: 39
   unityStandardAssetsVersion: 0
