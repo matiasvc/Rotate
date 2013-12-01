@@ -12063,7 +12063,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1748519978}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: goalIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12631,7 +12631,7 @@ GameObject:
   - 4: {fileID: 2004376492}
   - 33: {fileID: 2004376495}
   - 23: {fileID: 2004376493}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: goalIndicator_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

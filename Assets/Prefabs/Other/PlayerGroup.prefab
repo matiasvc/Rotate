@@ -191,7 +191,7 @@ GameObject:
   - 4: {fileID: 400022}
   - 33: {fileID: 3300006}
   - 23: {fileID: 2300006}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: goalIndicator_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400024}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: goalIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,6 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 969045dfe288feb40893be40c7fb1061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalIndicator: {fileID: 400024}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
