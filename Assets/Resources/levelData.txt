@@ -2,57 +2,16 @@
 	{
 		"levelName" : "Level 1",
 		"sceneName" : "level1",
-		"thumbPath" : "thumbnails/level1",
-		"starScore1" : 100,
-		"starScore2" : 200,
-		"starScore3" : 300
+		"thumbPath" : "thumbnails/level1"
 	},
 	{
 		"levelName" : "Level 2",
 		"sceneName" : "level2",
-		"thumbPath" : "thumbnails/level1",
-		"starScore1" : 100,
-		"starScore2" : 200,
-		"starScore3" : 300
-	},
-	{
-		"levelName" : "Level 3",
-		"sceneName" : "level3",
-		"thumbPath" : "thumbnails/level1",
-		"starScore1" : 100,
-		"starScore2" : 200,
-		"starScore3" : 300
+		"thumbPath" : "thumbnails/level1"
 	},
 	{
 		"levelName" : "Level 4",
 		"sceneName" : "level4",
-		"thumbPath" : "thumbnails/level1",
-		"starScore1" : 100,
-		"starScore2" : 200,
-		"starScore3" : 300
-	},
-	{
-		"levelName" : "Level 5",
-		"sceneName" : "level5",
-		"thumbPath" : "thumbnails/level1",
-		"starScore1" : 100,
-		"starScore2" : 200,
-		"starScore3" : 300
-	},
-	{
-		"levelName" : "Level 6",
-		"sceneName" : "level6",
-		"thumbPath" : "thumbnails/level1",
-		"starScore1" : 100,
-		"starScore2" : 200,
-		"starScore3" : 300
-	},
-	{
-		"levelName" : "Level 7",
-		"sceneName" : "level7",
-		"thumbPath" : "thumbnails/level1",
-		"starScore1" : 100,
-		"starScore2" : 200,
-		"starScore3" : 300
+		"thumbPath" : "thumbnails/level1"
 	}
 ]
