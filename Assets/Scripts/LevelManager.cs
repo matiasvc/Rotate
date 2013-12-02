@@ -41,29 +41,39 @@ public static class LevelManager {
 		get { return levels; }
 	}
 	
-	private static Level previusLoadedLevel = null;
+	private static Level lastLoadedLevel = null;
 	
 	public static void LoadMainMenu() {
-		previusLoadedLevel = null;
+		lastLoadedLevel = null;
 		Application.LoadLevel( "mainMenu" );
 	}
 	
 	public static void LoadLevel( Level level ) {
 		Time.timeScale = 1f;
 		
-		previusLoadedLevel = level;
+		lastLoadedLevel = level;
 		Application.LoadLevel( level.sceneName );
 	}
-	
+
+	public static void LoadNextLevel() {
+		int nextLevelIndex = levels.FindIndex( Level => Level == lastLoadedLevel ) + 1;
+
+		if ( nextLevelIndex == -1 || nextLevelIndex >= levels.Count ) {
+			Debug.LogWarning("Next Level not found");
+			return;
+		}
+		LoadLevel( levels[nextLevelIndex] );
+	}
+
 	public static void RestatLevel() {
 		Time.timeScale = 1f;
 		
-		if ( previusLoadedLevel == null ) {
+		if ( lastLoadedLevel == null ) {
 			Application.LoadLevel( Application.loadedLevel );
 			return;
 		}
 		
-		LoadLevel(previusLoadedLevel);
+		LoadLevel(lastLoadedLevel);
 	}
 	
 	public static Level GetLevel( string levelName ) {

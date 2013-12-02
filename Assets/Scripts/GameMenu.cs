@@ -18,20 +18,17 @@ public class GameMenu : MonoBehaviour {
 	private bool selectedPress = false;
 	private bool menuPress = false;
 	
-	protected void OnEnable()
-	{
+	protected void OnEnable() {
 		EventDispatcher.AddHandler(EventKey.INPUT_PAUSE, HandleEvent);
 		EventDispatcher.AddHandler(EventKey.GAME_LEVEL_COMPLETE, HandleEvent);
 	}
 	
-	protected void OnDisable()
-	{
+	protected void OnDisable() {
 		EventDispatcher.RemoveHandler(EventKey.INPUT_PAUSE, HandleEvent);
 		EventDispatcher.RemoveHandler(EventKey.GAME_LEVEL_COMPLETE, HandleEvent);
 	}
 	
-	protected void Start()
-	{
+	protected void Start() {
 		screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
 	}
 	
@@ -66,36 +63,30 @@ public class GameMenu : MonoBehaviour {
 		}
 	}
 	
-	private void Toggle()
-	{
-		if (state == MenuState.HIDDEN)
-		{
+	private void Toggle() {
+
+		if (state == MenuState.HIDDEN) {
 			state = MenuState.MAIN;
 			LevelController.CurrentGameState = LevelController.GameState.PAUSED;
-		}
-		else
-		{
+		} else {
 			state = MenuState.HIDDEN;
 			LevelController.CurrentGameState = LevelController.GameState.PLAYING;
 		}
 			
 	}
 	
-	private void Show()
-	{
+	private void Show() {
 		state = MenuState.MAIN;
 		LevelController.CurrentGameState = LevelController.GameState.PAUSED;
 	}
 	
-	private void Hide()
-	{
+	private void Hide() {
 		state = MenuState.HIDDEN;
 		LevelController.CurrentGameState = LevelController.GameState.PLAYING;
 	}
 	
 	
-	protected void OnGUI()
-	{
+	protected void OnGUI() {
 		if(GUI.Button(new Rect(3f, 3f, 50f, 50f), "M") || menuPress ) {
 				Toggle();
 		}
@@ -160,17 +151,22 @@ public class GameMenu : MonoBehaviour {
 			break;
 		case MenuState.LEVEL_COMPLETE:
 			
-			if ( selected < 0 ) { selected = 1; }
-			if ( selected > 1 ) { selected = 0; }
+			if ( selected < 0 ) { selected = 2; }
+			if ( selected > 2 ) { selected = 0; }
 			
 			GUI.Label(new Rect(screenCenter.x - titleWidth / 2f, screenCenter.y - 100f, titleWidth, titleHeigth), "Level complete.");
-			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2, buttonWidth, buttonHeigth), selected == 1 ? "--RESTART--" : "RESTART" ) ) {
+
+
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f, buttonWidth, buttonHeigth), selected == 2 ? "--RESTART--" : "RESTART" ) ) {
 				state = MenuState.RESTART_CHECK;
 			}
 			
-			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y + buttonHeigth / 2, buttonWidth, buttonHeigth), selected == 0 ? "--MAIN MENU--" : "MAIN MENU" ) ) {
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y + buttonHeigth / 2f, buttonWidth, buttonHeigth), selected == 1 ? "--MAIN MENU--" : "MAIN MENU" ) ) {
 				state = MenuState.MAIN_MENU_CHECK;
+			}
+
+			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth * 1.5f, buttonWidth, buttonHeigth), selected == 0 ? "--NEXT LEVEL--" : "NEXT LEVEL" ) ) {
+				LevelManager.LoadNextLevel();
 			}
 			
 			break;
