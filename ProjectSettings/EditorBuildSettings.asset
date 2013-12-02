@@ -10,14 +10,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/1 - Movement/level1.unity
   - enabled: 1
-    path: Assets/Scenes/Levels/Uncategorized/level2.unity
+    path: Assets/Scenes/Levels/1 - Movement/level2.unity
   - enabled: 1
-    path: Assets/Scenes/Levels/Uncategorized/level3.unity
-  - enabled: 1
-    path: Assets/Scenes/Levels/Uncategorized/level4.unity
-  - enabled: 1
-    path: Assets/Scenes/Levels/Uncategorized/level5.unity
-  - enabled: 1
-    path: Assets/Scenes/Levels/Uncategorized/level6.unity
-  - enabled: 1
-    path: Assets/Scenes/Levels/Uncategorized/level7.unity
+    path: Assets/Scenes/Levels/1 - Movement/level4.unity

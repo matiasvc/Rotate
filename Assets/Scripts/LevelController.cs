@@ -33,13 +33,14 @@ public class LevelController : MonoBehaviour
 	
 	public static string LevelTimeString {
 		get {
+			float levelTime = _instance.levelTime;
 			int intTime = Mathf.FloorToInt (_instance.levelTime);
 			
-			int num1 = intTime / 100;
-			int num2 = (intTime / 10) % 10;
-			int num3 = intTime % 10;
-			
-			string timeString = num1.ToString () + ":" + num2.ToString () + ":" + num3.ToString ();
+			int num1 = Mathf.FloorToInt( levelTime / 60.0f );
+			int num2 = Mathf.FloorToInt( levelTime % 60.0f );
+			int num3 = Mathf.FloorToInt( (levelTime % 1.0f) * 10.0f );
+		
+			string timeString = num1.ToString() + ":" + num2.ToString() + ":" + num3.ToString();
 			return timeString;
 		}
 	}
@@ -49,10 +50,18 @@ public class LevelController : MonoBehaviour
 		bonusObjects.Add (bonusObject);
 	}
 
+	public int BonusObjectsLeft() {
+		return bonusObjects.Count - bonusObjectsCollected;
+	}
+
 	public static int BonusObjectsCollected {
 		get { return _instance.bonusObjectsCollected; }
 	}
-	
+
+	public static bool CollectedAllBonusObjects {
+		get { return _instance.BonusObjectsLeft() == 0; }
+	}
+
 	public static GameState CurrentGameState {
 		set {
 			_instance.gameState = value;
@@ -107,20 +116,22 @@ public class LevelController : MonoBehaviour
 	
 	void OnEnable ()
 	{
-		EventDispatcher.AddHandler (EventKey.INPUT_ROTATE, HandleEvent);
-		EventDispatcher.AddHandler (EventKey.GAME_SET_ROTATION, HandleEvent);
-		EventDispatcher.AddHandler (EventKey.PLAYER_SET_CHECKPOINT, HandleEvent);
-		EventDispatcher.AddHandler (EventKey.PLAYER_SPAWN, HandleEvent);
-		EventDispatcher.AddHandler (EventKey.PLAYER_BONUS_OBJECT, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.INPUT_ROTATE, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.GAME_SET_ROTATION, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.PLAYER_SET_CHECKPOINT, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.PLAYER_SPAWN, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.PLAYER_BONUS_OBJECT, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.GAME_LEVEL_COMPLETE, HandleEvent);
 	}
 	
 	void OnDisable ()
 	{
-		EventDispatcher.RemoveHandler (EventKey.INPUT_ROTATE, HandleEvent);
-		EventDispatcher.RemoveHandler (EventKey.GAME_SET_ROTATION, HandleEvent);
-		EventDispatcher.RemoveHandler (EventKey.PLAYER_SET_CHECKPOINT, HandleEvent);
-		EventDispatcher.RemoveHandler (EventKey.PLAYER_SPAWN, HandleEvent);
-		EventDispatcher.RemoveHandler (EventKey.PLAYER_BONUS_OBJECT, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.INPUT_ROTATE, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.GAME_SET_ROTATION, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.PLAYER_SET_CHECKPOINT, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.PLAYER_SPAWN, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.PLAYER_BONUS_OBJECT, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.GAME_LEVEL_COMPLETE, HandleEvent);
 	}
 	
 	void Update ()
@@ -152,6 +163,9 @@ public class LevelController : MonoBehaviour
 			if (bonusObjects.Count == 0) {
 				EventDispatcher.SendEvent (EventKey.GAME_ENABLE_GOAL);
 			}
+			break;
+		case EventKey.GAME_LEVEL_COMPLETE:
+			gameState = GameState.PAUSED;
 			break;
 		default:
 			Debug.LogWarning ("No handler for this event implemented.");

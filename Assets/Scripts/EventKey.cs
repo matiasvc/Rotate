@@ -13,6 +13,7 @@ public static class EventKey
 	
 	public const string GAME_SET_ROTATION =		"GAME_SET_ROTATION";		// Sets level rotation
 	public const string GAME_LEVEL_COMPLETE = 	"GAME_LEVEL_COMPLETE";		// Level completed
+	public const string GAME_SHOW_COMPLETE_MENU = "GAME_SHOW_COMPLETE_MENU";// Show the end of level menu
 	public const string GAME_ENABLE_GOAL =      "GAME_ENABLE_GOAL";         // Enables the goal in the level
 	
 	public const string INPUT_PAUSE = 			"INPUT_PAUSE";				// Pause button was pressed

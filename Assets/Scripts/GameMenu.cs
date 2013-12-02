@@ -20,12 +20,12 @@ public class GameMenu : MonoBehaviour {
 	
 	protected void OnEnable() {
 		EventDispatcher.AddHandler(EventKey.INPUT_PAUSE, HandleEvent);
-		EventDispatcher.AddHandler(EventKey.GAME_LEVEL_COMPLETE, HandleEvent);
+		EventDispatcher.AddHandler(EventKey.GAME_SHOW_COMPLETE_MENU, HandleEvent);
 	}
 	
 	protected void OnDisable() {
 		EventDispatcher.RemoveHandler(EventKey.INPUT_PAUSE, HandleEvent);
-		EventDispatcher.RemoveHandler(EventKey.GAME_LEVEL_COMPLETE, HandleEvent);
+		EventDispatcher.RemoveHandler(EventKey.GAME_SHOW_COMPLETE_MENU, HandleEvent);
 	}
 	
 	protected void Start() {
@@ -38,7 +38,7 @@ public class GameMenu : MonoBehaviour {
 		{
 			Toggle();
 		}
-		else if (eventName == EventKey.GAME_LEVEL_COMPLETE)
+		else if (eventName == EventKey.GAME_SHOW_COMPLETE_MENU)
 		{
 			state = MenuState.LEVEL_COMPLETE;
 		}
@@ -156,6 +156,11 @@ public class GameMenu : MonoBehaviour {
 			
 			GUI.Label(new Rect(screenCenter.x - titleWidth / 2f, screenCenter.y - 100f, titleWidth, titleHeigth), "Level complete.");
 
+			if ( LevelController.CollectedAllBonusObjects ) {
+				GUI.Label(new Rect(screenCenter.x - titleWidth / 2f, screenCenter.y - 200f, titleWidth, titleHeigth), "Level time: " + LevelController.LevelTimeString );
+			} else {
+				GUI.Label(new Rect(screenCenter.x - titleWidth / 2f, screenCenter.y - 200f, titleWidth, titleHeigth), "Collect all energy orbs to get your level time on the high score" );
+			}
 
 			if(GUI.Button(new Rect(screenCenter.x - buttonWidth / 2f, screenCenter.y - buttonHeigth / 2f, buttonWidth, buttonHeigth), selected == 2 ? "--RESTART--" : "RESTART" ) ) {
 				state = MenuState.RESTART_CHECK;

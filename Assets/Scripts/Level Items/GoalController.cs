@@ -87,6 +87,7 @@ public class GoalController : LevelItem {
 			{
 				player.rigidbody.isKinematic = true;
 				playerReachedGoal = true;
+				EventDispatcher.SendEvent(EventKey.GAME_LEVEL_COMPLETE);
 				StartCoroutine(PlayerExitAnimation(player.rigidbody.velocity.magnitude, Vector3.Distance(player.transform.position, transform.position)));
 			}
 		}
@@ -123,7 +124,7 @@ public class GoalController : LevelItem {
 		while(anim.isPlaying)
 			yield return null;
 		
-		EventDispatcher.SendEvent(EventKey.GAME_LEVEL_COMPLETE);
+		EventDispatcher.SendEvent(EventKey.GAME_SHOW_COMPLETE_MENU);
 	}
 
 	void OnDrawGizmosSelected () {
