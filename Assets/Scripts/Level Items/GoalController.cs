@@ -7,10 +7,11 @@ public class GoalController : LevelItem {
 	private bool playerReachedGoal = false;
 	private GameObject player;
 	
-	private float atractionRadius = 4f;
-	private float atractionForce = 50f;
-	private float goalRadius = 0.6f;
-	
+	private const float atractionRadius = 4f;
+	private const float atractionForce = 50f;
+	private const float goalRadius = 0.6f;
+	private const float maxExitSpeed = 6.0f;
+
 	private ParticleSystem particles;
 	private Animation anim;
 	
@@ -75,7 +76,7 @@ public class GoalController : LevelItem {
 				pullVector *= Easing.easeInExpo( atractionForce * 0.25f, atractionForce, pullLerp );
 				
 				player.rigidbody.AddForce(pullVector, ForceMode.Force);	
-			} else {
+			} else if ( player.rigidbody.velocity.magnitude <= maxExitSpeed) {
 				player.rigidbody.isKinematic = true;
 				playerReachedGoal = true;
 				EventDispatcher.SendEvent(EventKey.GAME_LEVEL_COMPLETE);
