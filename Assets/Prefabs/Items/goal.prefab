@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896ca88d0930c714e8c41741bd2cf4ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemEnabled: 0
+  itemEnabled: 1
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -921,21 +921,21 @@ ParticleSystem:
     time3: 0
     m_BurstCount: 0
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .740740776
-          inSlope: .709999859
-          outSlope: .709999859
+          value: 0
+          inSlope: 2
+          outSlope: 2
           tangentMode: 0
         - time: 1
           value: 1
-          inSlope: -.0692009553
-          outSlope: -.0692009553
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -992,7 +992,7 @@ ParticleSystem:
           rgba: 4292203989
         key2:
           serializedVersion: 2
-          rgba: 4278190080
+          rgba: 4292203989
         key3:
           serializedVersion: 2
           rgba: 0
@@ -1010,14 +1010,14 @@ ParticleSystem:
           rgba: 0
         ctime0: 0
         ctime1: 65535
-        ctime2: 0
+        ctime2: 65535
         ctime3: 0
         ctime4: 0
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 44718
+        atime1: 43369
         atime2: 56669
         atime3: 65535
         atime4: 65535
@@ -1110,7 +1110,7 @@ ParticleSystem:
   VelocityModule:
     enabled: 0
     x:
-      scalar: 10
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1187,7 +1187,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: -1
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1210,7 +1210,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: -1
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1232,8 +1232,8 @@ ParticleSystem:
       maxCurve:
         serializedVersion: 2
         m_Curve:
-        - time: .192307696
-          value: -1
+        - time: 0
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0

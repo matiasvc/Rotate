@@ -16,14 +16,12 @@ public class GoalController : LevelItem {
 	
 	private const string animName = "open";
 	
-	void Awake ()
-	{
+	void Awake () {
 		particles = gameObject.GetComponentInChildren<ParticleSystem>();
 		anim = gameObject.GetComponentInChildren<Animation>();
 	}
 	
-	void Start ()
-	{
+	void Start () {
 		particles.Stop();
 	}
 
@@ -46,45 +44,38 @@ public class GoalController : LevelItem {
 		}
 	}
 
-	void OnTriggerEnter (Collider other)
-	{
+	void OnTriggerEnter (Collider other) {
 		if ( other.gameObject.tag == "Player" ) {
-			playerInTrigger = true;
-			player = other.gameObject;
 			if ( itemEnabled ) {
+				playerInTrigger = true;
+				player = other.gameObject;
 				EnableSuction();
 			}
 		}
 	}
 	
-	void OnTriggerExit (Collider other)
-	{
+	void OnTriggerExit (Collider other) {
 		if ( other.gameObject.tag == "Player" ) {
-			playerInTrigger = false;
-			player = null;
 			if ( itemEnabled ) {
+				playerInTrigger = false;
+				player = null;
 				DisableSuction ();
 			}
 		}
 	}
 	
-	void FixedUpdate()
-	{
-		if (playerInTrigger && !playerReachedGoal)
-		{
+	void FixedUpdate() {
+		if (playerInTrigger && !playerReachedGoal) {
 			float distance = Vector3.Distance(player.transform.position, transform.position);
 			
-			if (distance > goalRadius)
-			{
+			if (distance > goalRadius) {
 				Vector3 pullVector = (transform.position - player.transform.position).normalized;
 				
 				float pullLerp = Mathf.InverseLerp(atractionRadius, 0f, distance);
 				pullVector *= Easing.easeInExpo( atractionForce * 0.25f, atractionForce, pullLerp );
 				
 				player.rigidbody.AddForce(pullVector, ForceMode.Force);	
-			}
-			else
-			{
+			} else {
 				player.rigidbody.isKinematic = true;
 				playerReachedGoal = true;
 				EventDispatcher.SendEvent(EventKey.GAME_LEVEL_COMPLETE);
@@ -93,8 +84,7 @@ public class GoalController : LevelItem {
 		}
 	}
 	
-	private IEnumerator PlayerExitAnimation (float velocity, float distance)
-	{
+	private IEnumerator PlayerExitAnimation (float velocity, float distance) {
 		
 		float t = 0;
 		float length = (distance / velocity) * 2.0f;
@@ -121,8 +111,9 @@ public class GoalController : LevelItem {
 		anim[animName].normalizedTime = 1f;
 		anim.Play();
 		
-		while(anim.isPlaying)
+		while(anim.isPlaying) {
 			yield return null;
+		}
 		
 		EventDispatcher.SendEvent(EventKey.GAME_SHOW_COMPLETE_MENU);
 	}
