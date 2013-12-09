@@ -6,7 +6,7 @@ using System.IO;
 
 public class LevelEditor : EditorWindow {
 	
-	private const float UISize = 18f;
+	private float UISize = 19f;
 	
 	public class PrefabItem : Object {
 		public string itemName;
@@ -61,7 +61,7 @@ public class LevelEditor : EditorWindow {
 			PrefabItem newItemObject = new PrefabItem();
 			
 			newItemObject.prefab = ( GameObject )AssetDatabase.LoadAssetAtPath( objectPath, typeof( GameObject ) );
-			newItemObject.itemName = newItemObject.prefab.name;
+			newItemObject.itemName = newItemObject.prefab.name.Replace( "_", "\n" );
 			newItemObject.parent = "items";
 			
 			itemPrefabs.Add( newItemObject );
@@ -74,7 +74,7 @@ public class LevelEditor : EditorWindow {
 			PrefabItem newLevelObject = new PrefabItem();
 			
 			newLevelObject.prefab = ( GameObject )AssetDatabase.LoadAssetAtPath(objectPath, typeof( GameObject ) );
-			newLevelObject.itemName = newLevelObject.prefab.name;
+			newLevelObject.itemName = newLevelObject.prefab.name.Replace( "_", "\n" );
 			newLevelObject.parent = "level";
 			
 			levelPrefabs.Add( newLevelObject );
@@ -86,7 +86,7 @@ public class LevelEditor : EditorWindow {
 		DrawInfoBox();
 		
 		if ( IsLevelInitialized() ) {
-			toolbarSelected = GUI.Toolbar(new Rect(0.25f, 12.5f, 18f, 1f).Multiply(UISize), toolbarSelected, new string[]{"Level", "Items", "Components"});
+			toolbarSelected = GUI.Toolbar(new Rect(0.25f, 12.5f, 18f, 1f).Multiply(UISize), toolbarSelected, new string[]{"Level", "Items", "Components", "Settings"});
 			
 			switch (toolbarSelected) {
 			case 0:
@@ -99,6 +99,9 @@ public class LevelEditor : EditorWindow {
 				break;
 			case 2:
 				
+				break;
+			case 3:
+				DrawSettings();
 				break;
 			}	
 		} else {
@@ -159,7 +162,7 @@ public class LevelEditor : EditorWindow {
 			MoveSelectedObjects(new Vector3(0f, 0f, 1f));
 		}
 		
-		if ( GUI.Button( posRotButtons[2].Multiply( UISize ), "Rotate\nRigth" ) ) {
+		if ( GUI.Button( posRotButtons[2].Multiply( UISize ), new GUIContent( "Rotate\nReft", "Rotates selected objects clockwise" ) ) ) {
 			RotateSelectedObjects(new Vector3(0f, 90f, 0f));
 		}
 		
@@ -190,7 +193,7 @@ public class LevelEditor : EditorWindow {
 		// Tool Buttons
 		Rect[] toolButtons = RectEx.RectGrid( new Rect( 10f, 0.25f, 8f, 9f ), 2, 4 );
 		
-		if ( GUI.Button( toolButtons[0].Multiply( UISize ), "Rotate UV" ) ) {
+		if ( GUI.Button( toolButtons[0].Multiply( UISize ), "Rotate UV\nNOT SAFE!" ) ) {
 			RotateSelectedUVs();
 		}
 		
@@ -218,27 +221,37 @@ public class LevelEditor : EditorWindow {
 	
 	private void DrawInfoBox() {
 		string infoString = "";
-		
+		bool levelError = false;
+
 		if ( !IsLevelInitialized() ) {
 			infoString += "Level is not initialized.";
+			levelError = true;
 		} else {
 			Object[] spawnObjects = MonoBehaviour.FindObjectsOfType( typeof( SpawnController ) );
 			Object[] goalObjects = MonoBehaviour.FindObjectsOfType( typeof( GoalController ) );
 			
 			if ( spawnObjects.Length == 0 ) {
 				infoString += "No spawn object in scene. ";
+				levelError = true;
 			} else if ( spawnObjects.Length > 1 ) {
 				infoString += "More than one spawn object in the scene. ";
+				levelError = true;
 			}
 			
 			if ( goalObjects.Length == 0 ) {
 				infoString += "No goal object in scene. ";
+				levelError = true;
 			} else if ( goalObjects.Length > 1 ) {
 				infoString += "More than one goal object in the scene. ";
+				levelError = true;
 			}
 		}
-		
+
+		Color defaultColor = GUI.color;
+		if ( levelError ) { GUI.color = Color.red; }
+		else { infoString += "Everything looks OK!"; }
 		GUI.Box( new Rect( 0.25f, 10f, 18f, 2f ).Multiply( UISize ), new GUIContent( infoString ) );
+		GUI.color = defaultColor;
 	}
 	
 	private bool IsLevelInitialized() {
@@ -248,8 +261,7 @@ public class LevelEditor : EditorWindow {
 		
 		if ( ligthGroup == null || levelController == null || gameManager == null ) {
 			return false;
-		}
-		else {
+		} else {
 			return true;
 		}
 	}
@@ -328,6 +340,11 @@ public class LevelEditor : EditorWindow {
 		for ( int i = 0; i < btnCount; i++ ) {
 			DrawPrefabButton( itemBtnPosArray[i].Multiply( UISize ), levelPrefabs[i] );
 		}
+	}
+
+	private void DrawSettings() {
+		UISize = EditorGUI.Slider( new Rect( 0.25f*UISize, 14f*UISize, 18f*UISize, 20f ), new GUIContent( "UI Size", "Change the Level Editor UI size"), UISize, 15f, 30f );
+		UISize = Mathf.Clamp( UISize, 15f, 30f );
 	}
 	
 }
