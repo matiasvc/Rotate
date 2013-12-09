@@ -460,18 +460,18 @@ Transform:
   - {fileID: 1964772708}
   - {fileID: 1751013785}
   - {fileID: 396577471}
-  - {fileID: 1617611612}
-  - {fileID: 694320805}
-  - {fileID: 2080752269}
-  - {fileID: 652251810}
   - {fileID: 1624454849}
+  - {fileID: 603516669}
+  - {fileID: 570201817}
   - {fileID: 1692206485}
   - {fileID: 328110134}
   - {fileID: 1963278118}
+  - {fileID: 652251810}
   - {fileID: 1914162852}
-  - {fileID: 570201817}
-  - {fileID: 603516669}
+  - {fileID: 1617611612}
+  - {fileID: 2080752269}
   - {fileID: 1903329244}
+  - {fileID: 694320805}
   - {fileID: 1559573970}
   m_Father: {fileID: 0}
 --- !u!1001 &67615261
@@ -619,7 +619,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 69019114}
   m_GameObject: {fileID: 77791844}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1747,7 +1747,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 328110134}
-  - 111: {fileID: 328110135}
+  - 114: {fileID: 328110135}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -1767,22 +1767,19 @@ Transform:
   m_Children:
   - {fileID: 889025995}
   m_Father: {fileID: 61450728}
---- !u!111 &328110135
-Animation:
+--- !u!114 &328110135
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 886678352}
   m_GameObject: {fileID: 328110133}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
 --- !u!1 &330919283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,7 +1922,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 266701360}
   m_GameObject: {fileID: 363150616}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4576,7 +4573,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 570201817}
-  - 111: {fileID: 570201818}
+  - 114: {fileID: 570201818}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -4596,22 +4593,19 @@ Transform:
   m_Children:
   - {fileID: 2051924198}
   m_Father: {fileID: 61450728}
---- !u!111 &570201818
-Animation:
+--- !u!114 &570201818
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 1258002834}
   m_GameObject: {fileID: 570201816}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
 --- !u!1 &587487679
 GameObject:
   m_ObjectHideFlags: 0
@@ -4647,7 +4641,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 603516669}
-  - 111: {fileID: 603516670}
+  - 114: {fileID: 603516670}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -4667,22 +4661,19 @@ Transform:
   m_Children:
   - {fileID: 1619841892}
   m_Father: {fileID: 61450728}
---- !u!111 &603516670
-Animation:
+--- !u!114 &603516670
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 1638137842}
   m_GameObject: {fileID: 603516668}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
 --- !u!1 &605296460
 GameObject:
   m_ObjectHideFlags: 0
@@ -5112,7 +5103,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 652251810}
-  - 111: {fileID: 652251811}
+  - 114: {fileID: 652251811}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -5127,27 +5118,24 @@ Transform:
   m_PrefabInternal: {fileID: 663392033}
   m_GameObject: {fileID: 652251809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5, y: 0, z: -6}
+  m_LocalPosition: {x: -5.75378227, y: 0, z: -5.94581938}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 1341213993}
   m_Father: {fileID: 61450728}
---- !u!111 &652251811
-Animation:
+--- !u!114 &652251811
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 663392033}
   m_GameObject: {fileID: 652251809}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -180
 --- !u!1 &653693968
 GameObject:
   m_ObjectHideFlags: 0
@@ -5212,7 +5200,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.5
+      value: -5.75378227
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
       propertyPath: m_LocalPosition.y
@@ -5220,7 +5208,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -6
+      value: -5.94581938
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5237,6 +5225,10 @@ Prefab:
     - target: {fileID: 400002, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
+      propertyPath: speed
+      value: -180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
@@ -5428,7 +5420,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 694320805}
-  - 111: {fileID: 694320806}
+  - 114: {fileID: 694320806}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -5448,22 +5440,19 @@ Transform:
   m_Children:
   - {fileID: 363150617}
   m_Father: {fileID: 61450728}
---- !u!111 &694320806
-Animation:
+--- !u!114 &694320806
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 266701360}
   m_GameObject: {fileID: 694320804}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
 --- !u!1 &695621025
 GameObject:
   m_ObjectHideFlags: 0
@@ -6116,7 +6105,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 1205457261}
   m_GameObject: {fileID: 762318719}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6770,7 +6759,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 886678352}
   m_GameObject: {fileID: 889025994}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6914,7 +6903,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 365657215}
   m_GameObject: {fileID: 895897358}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -7058,7 +7047,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 855346730}
   m_GameObject: {fileID: 909272392}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -8390,7 +8379,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 684972723}
   m_GameObject: {fileID: 1127576948}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -9040,11 +9029,11 @@ Transform:
   - {fileID: 1706560824}
   - {fileID: 671179108}
   - {fileID: 1291257748}
+  - {fileID: 222321120}
   - {fileID: 1120287612}
   - {fileID: 732478905}
   - {fileID: 978614623}
   - {fileID: 1704169569}
-  - {fileID: 222321120}
   - {fileID: 1707925502}
   - {fileID: 2126579679}
   - {fileID: 618715129}
@@ -9814,7 +9803,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 663392033}
   m_GameObject: {fileID: 1341213992}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -10989,7 +10978,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 1148954825}
   m_GameObject: {fileID: 1519493179}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -11519,7 +11508,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 1735668596}
   m_GameObject: {fileID: 1609490197}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -11646,7 +11635,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1617611612}
-  - 111: {fileID: 1617611613}
+  - 114: {fileID: 1617611613}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -11666,22 +11655,19 @@ Transform:
   m_Children:
   - {fileID: 77791845}
   m_Father: {fileID: 61450728}
---- !u!111 &1617611613
-Animation:
+--- !u!114 &1617611613
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 69019114}
   m_GameObject: {fileID: 1617611611}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
 --- !u!1 &1619841891
 GameObject:
   m_ObjectHideFlags: 0
@@ -11707,7 +11693,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 1638137842}
   m_GameObject: {fileID: 1619841891}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -11776,7 +11762,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1624454849}
-  - 111: {fileID: 1624454850}
+  - 114: {fileID: 1624454850}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -11796,22 +11782,19 @@ Transform:
   m_Children:
   - {fileID: 1127576949}
   m_Father: {fileID: 61450728}
---- !u!111 &1624454850
-Animation:
+--- !u!114 &1624454850
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 684972723}
   m_GameObject: {fileID: 1624454848}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
 --- !u!1 &1629774573
 GameObject:
   m_ObjectHideFlags: 0
@@ -12084,7 +12067,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1692206485}
-  - 111: {fileID: 1692206486}
+  - 114: {fileID: 1692206486}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -12104,22 +12087,19 @@ Transform:
   m_Children:
   - {fileID: 909272393}
   m_Father: {fileID: 61450728}
---- !u!111 &1692206486
-Animation:
+--- !u!114 &1692206486
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 855346730}
   m_GameObject: {fileID: 1692206484}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
 --- !u!1 &1694338491
 GameObject:
   m_ObjectHideFlags: 0
@@ -13538,7 +13518,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1903329244}
-  - 111: {fileID: 1903329245}
+  - 114: {fileID: 1903329245}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -13558,22 +13538,19 @@ Transform:
   m_Children:
   - {fileID: 1609490198}
   m_Father: {fileID: 61450728}
---- !u!111 &1903329245
-Animation:
+--- !u!114 &1903329245
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 1735668596}
   m_GameObject: {fileID: 1903329243}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
 --- !u!1001 &1911609448
 Prefab:
   m_ObjectHideFlags: 0
@@ -13680,7 +13657,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1914162852}
-  - 111: {fileID: 1914162853}
+  - 114: {fileID: 1914162853}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -13700,22 +13677,19 @@ Transform:
   m_Children:
   - {fileID: 762318720}
   m_Father: {fileID: 61450728}
---- !u!111 &1914162853
-Animation:
+--- !u!114 &1914162853
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 1205457261}
   m_GameObject: {fileID: 1914162851}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
 --- !u!1 &1920755679
 GameObject:
   m_ObjectHideFlags: 0
@@ -13890,7 +13864,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1963278118}
-  - 111: {fileID: 1963278119}
+  - 114: {fileID: 1963278119}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -13910,22 +13884,19 @@ Transform:
   m_Children:
   - {fileID: 1519493180}
   m_Father: {fileID: 61450728}
---- !u!111 &1963278119
-Animation:
+--- !u!114 &1963278119
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 1148954825}
   m_GameObject: {fileID: 1963278117}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
 --- !u!1 &1964772707
 GameObject:
   m_ObjectHideFlags: 0
@@ -14577,7 +14548,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 91215c570dea30e44ac9c4acbe896e4d, type: 2}
   m_PrefabInternal: {fileID: 1258002834}
   m_GameObject: {fileID: 2051924197}
-  m_LocalRotation: {x: 8.13181209e-17, y: .907090902, z: -8.13181209e-17, w: .420934767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -14875,7 +14846,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2080752269}
-  - 111: {fileID: 2080752270}
+  - 114: {fileID: 2080752270}
   m_Layer: 8
   m_Name: sawblade_01
   m_TagString: Untagged
@@ -14895,22 +14866,19 @@ Transform:
   m_Children:
   - {fileID: 895897359}
   m_Father: {fileID: 61450728}
---- !u!111 &2080752270
-Animation:
+--- !u!114 &2080752270
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 91215c570dea30e44ac9c4acbe896e4d,
+  m_PrefabParentObject: {fileID: 11400002, guid: 91215c570dea30e44ac9c4acbe896e4d,
     type: 2}
   m_PrefabInternal: {fileID: 365657215}
   m_GameObject: {fileID: 2080752268}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 847f5e5e9b269e64596ddbc3a0079b53, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c4bb6f4f08448d28daedbf400f2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 180
 --- !u!1 &2086756998
 GameObject:
   m_ObjectHideFlags: 0
