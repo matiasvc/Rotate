@@ -23,7 +23,7 @@ public class ItemTimer : MonoBehaviour {
 		int currentObjectIndex = 0;
 		
 		while( true ) {
-			if ( timerObjects.Count == 0 ) { return false; }
+			if ( timerObjects.Count == 0 ) { yield return false; }
 			TimerObject currentObject = timerObjects[currentObjectIndex];
 			
 			switch ( currentObject.type ) {
@@ -40,7 +40,8 @@ public class ItemTimer : MonoBehaviour {
 				gameObject.SendMessage("ItemDisable");
 				break;
 			case TimerObjectType.EXIT:
-				return false;
+				yield return false;
+				break;
 			}
 			
 			currentObjectIndex++;
