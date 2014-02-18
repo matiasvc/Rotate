@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public Transform goalIndicator;
+	public Transform goalIndicatorMesh;
 
 	private Rigidbody playerRigidbody;
 	private MeshRenderer[] meshRenderers;
@@ -44,6 +45,9 @@ public class PlayerController : MonoBehaviour {
 			float goalDirection = Mathf.Atan2( goalRelativePosition.z, goalRelativePosition.x ) * Mathf.Rad2Deg;
 			
 			goalIndicator.eulerAngles = new Vector3( 0.0f, -goalDirection + 90.0f, 0.0f );
+
+			float indicatorSize = Mathf.InverseLerp(2.2f, 7f, goalRelativePosition.magnitude );
+			goalIndicatorMesh.localScale = Vector3.one * indicatorSize;
 		}
 	}
 
