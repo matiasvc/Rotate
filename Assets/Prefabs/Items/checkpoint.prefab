@@ -258,7 +258,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400018}
@@ -589,8 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3fee3dd4989c0469bc6650eb7d44cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointOffset: {x: 2.5, y: 0, z: .5}
-  checkpointRotation: 270
+  checkpointRotation: 90
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
