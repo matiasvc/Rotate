@@ -585,6 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goalIndicator: {fileID: 400024}
+  goalIndicatorMesh: {fileID: 400022}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
