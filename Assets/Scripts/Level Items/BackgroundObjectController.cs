@@ -31,11 +31,12 @@ public class BackgroundObjectController : MonoBehaviour {
 	public int type = 0;
 	public Vector2 tileSize = Vector2.one;
 
+	public Rect planeOutline = new Rect( -1.5f, -1.5f, 3f, 3f );
+
 	// Plane variables
 	public string planeData = "";
 	// Shape variables
 	public string shapeData = "";
-		
 
 	void Update() {
 		if ( !Mathf.Approximately(0f, animationSpeed.sqrMagnitude) && meshRenderer.renderer.isVisible ) {
