@@ -110,26 +110,31 @@ public class BackgroundObjectInspector : Editor {
 
 			Handles.color = Color.white;
 			Vector3 newPos;
-			newPos = Handles.Slider2D( editorTarget.transform.TransformPoint( new Vector3( editorTarget.planeOutline.xMin, 0f, editorTarget.planeOutline.yMin ) ),
-			                          targetTransform.up, targetTransform.forward, targetTransform.right, 0.15f, Handles.CubeCap, 0f );
+
+			newPos = new Vector3( editorTarget.planeOutline.xMin, 0f, editorTarget.planeOutline.yMin );
+			newPos = Handles.Slider2D( editorTarget.transform.TransformPoint( newPos ),
+			                          targetTransform.up, targetTransform.forward, targetTransform.right, 0.2f * HandleUtility.GetHandleSize( newPos ) , Handles.CubeCap, 0f );
 			newPos = editorTarget.transform.InverseTransformPoint( newPos );
 			editorTarget.planeOutline.xMin = newPos.x;
 			editorTarget.planeOutline.yMin = newPos.z;
 
-			newPos = Handles.Slider2D( editorTarget.transform.TransformPoint( new Vector3( editorTarget.planeOutline.xMax, 0f, editorTarget.planeOutline.yMin ) ),
-			                          targetTransform.up, targetTransform.forward, targetTransform.right, 0.15f, Handles.CubeCap, 0f );
+			newPos = new Vector3( editorTarget.planeOutline.xMax, 0f, editorTarget.planeOutline.yMin );
+			newPos = Handles.Slider2D( editorTarget.transform.TransformPoint( newPos ),
+			                          targetTransform.up, targetTransform.forward, targetTransform.right, 0.2f * HandleUtility.GetHandleSize( newPos ), Handles.CubeCap, 0f );
 			newPos = editorTarget.transform.InverseTransformPoint( newPos );
 			editorTarget.planeOutline.xMax = newPos.x;
 			editorTarget.planeOutline.yMin = newPos.z;
 
-			newPos = Handles.Slider2D( editorTarget.transform.TransformPoint( new Vector3( editorTarget.planeOutline.xMax, 0f, editorTarget.planeOutline.yMax ) ),
-			                          targetTransform.up, targetTransform.forward, targetTransform.right, 0.15f, Handles.CubeCap, 0f );
+			newPos = new Vector3( editorTarget.planeOutline.xMax, 0f, editorTarget.planeOutline.yMax );
+			newPos = Handles.Slider2D( editorTarget.transform.TransformPoint( newPos ),
+			                          targetTransform.up, targetTransform.forward, targetTransform.right, 0.2f * HandleUtility.GetHandleSize( newPos ), Handles.CubeCap, 0f );
 			newPos = editorTarget.transform.InverseTransformPoint( newPos );
 			editorTarget.planeOutline.xMax = newPos.x;
 			editorTarget.planeOutline.yMax = newPos.z;
 
-			newPos = Handles.Slider2D( editorTarget.transform.TransformPoint( new Vector3( editorTarget.planeOutline.xMin, 0f, editorTarget.planeOutline.yMax ) ),
-			                          targetTransform.up, targetTransform.forward, targetTransform.right, 0.15f, Handles.CubeCap, 0f );
+			newPos = new Vector3( editorTarget.planeOutline.xMin, 0f, editorTarget.planeOutline.yMax );
+			newPos = Handles.Slider2D( editorTarget.transform.TransformPoint( newPos ),
+			                          targetTransform.up, targetTransform.forward, targetTransform.right, 0.2f * HandleUtility.GetHandleSize( newPos ), Handles.CubeCap, 0f );
 			newPos = editorTarget.transform.InverseTransformPoint( newPos );
 			editorTarget.planeOutline.xMin = newPos.x;
 			editorTarget.planeOutline.yMax = newPos.z;
@@ -149,7 +154,7 @@ public class BackgroundObjectInspector : Editor {
 
 			Handles.color = Color.green;
 			Vector3 buttonPos = Vector3.Lerp(start, end, 0.5f);
-			if (Handles.Button( buttonPos, targetTransform.rotation, 0.15f, 0.2f, Handles.SphereCap )) {
+			if (Handles.Button( buttonPos, targetTransform.rotation, 0.15f * HandleUtility.GetHandleSize( buttonPos ), 0.2f * HandleUtility.GetHandleSize( buttonPos ), Handles.SphereCap )) {
 				shapeOutline.InsertPointAtIndex(VectorEx.Vec3ToVec2(targetTransform.InverseTransformPoint(buttonPos)), i+1);
 			}
 		}
@@ -159,8 +164,9 @@ public class BackgroundObjectInspector : Editor {
 			Vector3 worldPos = targetTransform.TransformPoint(VectorEx.Vec2ToVec3(points[i]));
 
 			Handles.color = Color.blue;
-			Vector3 newPos = Handles.Slider2D( worldPos, targetTransform.up, targetTransform.forward, targetTransform.right, 0.25f, Handles.SphereCap, 1f );
-			Vector3 deleteButtonPos = worldPos + QuaternionEx.GetRightVector(SceneView.lastActiveSceneView.rotation) * 0.15f + QuaternionEx.GetUpVector(SceneView.lastActiveSceneView.rotation) * 0.15f;
+			Vector3 newPos = Handles.Slider2D( worldPos, targetTransform.up, targetTransform.forward, targetTransform.right, 0.25f * HandleUtility.GetHandleSize( worldPos ), Handles.SphereCap, 1f );
+			Vector3 deleteButtonPos = worldPos + QuaternionEx.GetRightVector(SceneView.lastActiveSceneView.rotation) * 0.15f * HandleUtility.GetHandleSize( worldPos )
+				+ QuaternionEx.GetUpVector(SceneView.lastActiveSceneView.rotation) * 0.15f * HandleUtility.GetHandleSize( worldPos );
 
 			newPos = targetTransform.InverseTransformPoint(newPos);
 			Vector2 newPos2D = VectorEx.Vec3ToVec2(newPos);
@@ -171,7 +177,7 @@ public class BackgroundObjectInspector : Editor {
 			}
 
 			Handles.color = Color.red;
-			if (Handles.Button( deleteButtonPos, targetTransform.rotation, 0.05f, 0.05f, Handles.DotCap )) {
+			if (Handles.Button( deleteButtonPos, targetTransform.rotation, 0.05f * HandleUtility.GetHandleSize( deleteButtonPos ), 0.05f * HandleUtility.GetHandleSize( deleteButtonPos ), Handles.DotCap )) {
 				shapeOutline.RemovePointAtIndex(i);
 			}
 		}
