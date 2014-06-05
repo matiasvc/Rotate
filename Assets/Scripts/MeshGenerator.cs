@@ -7,7 +7,7 @@ using Poly2Tri;
 
 public static class MeshGenerator {
 
-	private const float CLIPPER_SCALE = 1000f;
+	private const float CLIPPER_SCALE = 100f;
 
 	public static Mesh GenerateShapeMesh( Vector2 tileSize, Shape2D shapeOutline ) {
 
@@ -28,20 +28,22 @@ public static class MeshGenerator {
 				Shape2D tileShape = new Shape2D();
 				tileShape.AddRange( new Vector2[]{ topLeft, topRight, bottomRight, bottomLeft } );
 				
-				Mesh mesh = new Mesh();
+				List<Mesh> meshes = new List<Mesh>();
 
 				if ( shapeOutline.Contains( tileShape ) ) { // The tile is square, so no need for clipping
-					mesh = GenerateQuad( topLeft, topRight, bottomLeft, bottomRight );
+					meshes.AddRange( GenerateQuad( topLeft, topRight, bottomLeft, bottomRight ) );
 				} else { // The tile is somehow clipped, so we need to involve the Clipper and Poly2Tri libs
-					mesh = GenerateClippedQuad( tileShape, shapeOutline, ClipType.ctIntersection );
+					meshes.AddRange( GenerateClippedQuad( tileShape, shapeOutline, ClipType.ctIntersection ) );
 				}
 					
-				CombineInstance meshInstance = new CombineInstance();
-				meshInstance.mesh = mesh;
-				meshInstance.subMeshIndex = 0;
-				meshInstance.transform = Matrix4x4.identity;
-				
-				meshInstances.Add( meshInstance );
+				foreach( Mesh mesh in meshes ){
+					CombineInstance meshInstance = new CombineInstance();
+					meshInstance.mesh = mesh;
+					meshInstance.subMeshIndex = 0;
+					meshInstance.transform = Matrix4x4.identity;
+					
+					meshInstances.Add( meshInstance );
+				}
 			}
 		}
 	
@@ -72,34 +74,37 @@ public static class MeshGenerator {
 				Shape2D tileShape = new Shape2D();
 				tileShape.AddRange( new Vector2[]{ topLeft, topRight, bottomRight, bottomLeft } );
 				
-				Mesh mesh = new Mesh();
+				List<Mesh> meshes = new List<Mesh>();
 				
 				if ( !shapeOutline.Contains( tileShape ) ) { // The tile is square, so no need for clipping
-					mesh = GenerateClippedQuad( tileShape, shapeOutline, ClipType.ctDifference );
+					meshes.AddRange( GenerateClippedQuad( tileShape, shapeOutline, ClipType.ctDifference ) );
 				}
 				
-				CombineInstance meshInstance = new CombineInstance();
-				meshInstance.mesh = mesh;
-				meshInstance.subMeshIndex = 0;
-				meshInstance.transform = Matrix4x4.identity;
-				
-				meshInstances.Add( meshInstance );
+				foreach( Mesh mesh in meshes ){
+					CombineInstance meshInstance = new CombineInstance();
+					meshInstance.mesh = mesh;
+					meshInstance.subMeshIndex = 0;
+					meshInstance.transform = Matrix4x4.identity;
+					
+					meshInstances.Add( meshInstance );
+				}
 			}
 		}
 		
 		
-		Mesh shapeMesh = new Mesh();
-		shapeMesh.name = "shapeMesh";
-		shapeMesh.CombineMeshes( meshInstances.ToArray(), true );
-		shapeMesh.Optimize();
-		shapeMesh.RecalculateNormals();
+		Mesh planeMesh = new Mesh();
+		planeMesh.name = "shapeMesh";
+		planeMesh.CombineMeshes( meshInstances.ToArray(), true );
+		planeMesh.Optimize();
+		planeMesh.RecalculateNormals();
 		
-		return shapeMesh;
+		return planeMesh;
 	}
 
-	private static Mesh GenerateQuad( Vector2 topLeft, Vector2 topRight, Vector2 bottomLeft, Vector2 bottomRight ) {
+	private static List<Mesh> GenerateQuad( Vector2 topLeft, Vector2 topRight, Vector2 bottomLeft, Vector2 bottomRight ) {
 		Mesh mesh = new Mesh();
-		
+		List<Mesh> meshList = new List<Mesh>();
+
 		mesh.vertices = new Vector3[]{
 			VectorEx.Vec2ToVec3( topLeft ),
 			VectorEx.Vec2ToVec3( topRight ),
@@ -117,10 +122,11 @@ public static class MeshGenerator {
 			1,2,3
 		};
 
-		return mesh;
+		meshList.Add(mesh);
+		return meshList;
 	}
 
-	private static Mesh GenerateClippedQuad( Shape2D tileShape, Shape2D shapeOutline, ClipType clipType ) {
+	private static List<Mesh> GenerateClippedQuad( Shape2D tileShape, Shape2D shapeOutline, ClipType clipType ) {
 
 		// START CLIPPING
 
@@ -144,69 +150,78 @@ public static class MeshGenerator {
 		bool clippingSucceeded = !c.Execute( clipType, solutions, PolyFillType.pftNonZero, PolyFillType.pftNonZero );
 
 
-		if ( solutions.Count != 1 ) { // Something went wrong, so skip this tile
-			//Debug.LogWarning("No solution mesh");
-			return new Mesh();
+		if ( solutions.Count == 0 ) { // Something went wrong, so skip this tile
+			Debug.LogWarning("No solution mesh. Solution count: " + solutions.Count.ToString());
+			return new List<Mesh>();
 		}
-		
-		List<IntPoint> solutionMesh = solutions[0];
 
 		// END CLIPPING
 
 		// START TRIANGULATION
 
-		List<TriangulationPoint> solutionMeshVertecies = new List<TriangulationPoint>();
-		
-		foreach ( IntPoint solutionMeshPoint in solutionMesh ) {
-			solutionMeshVertecies.Add( new TriangulationPoint( (double)(solutionMeshPoint.X / CLIPPER_SCALE), (double)(solutionMeshPoint.Y / CLIPPER_SCALE) ) );
+		List<List<PolygonPoint>> solutionMeshVertecieList = new List<List<PolygonPoint>>();
+
+		foreach ( List<IntPoint> solutionMesh in solutions ) {
+			List<PolygonPoint> solutionMeshVertecies = new List<PolygonPoint>();
+
+			foreach ( IntPoint solutionMeshPoint in solutionMesh ) {
+				solutionMeshVertecies.Add( new PolygonPoint( (double)(solutionMeshPoint.X / CLIPPER_SCALE), (double)(solutionMeshPoint.Y / CLIPPER_SCALE) ) );
+			}
+			solutionMeshVertecieList.Add(solutionMeshVertecies);
 		}
-		
-		PointSet pointSet = new PointSet(solutionMeshVertecies);
-		
-		List<Vector3> vertecies = new List<Vector3>();
-		List<Vector2> UVs = new List<Vector2>();
-		List<int> tris = new List<int>();
-		
-		if ( solutionMeshVertecies.Count > 3 ) {
-			try {
-				P2T.Triangulate(pointSet);
-				
-				foreach( TriangulationPoint point in pointSet.Points ) {
-					vertecies.Add( new Vector3( point.Xf, 0f, point.Yf ) );
-					UVs.Add( new Vector2( point.Xf, point.Yf ) );
+
+		List<Mesh> meshList = new List<Mesh>();
+
+		foreach( List<PolygonPoint> solutionMeshVertecies in solutionMeshVertecieList ) {
+			Polygon polygon = new Polygon(solutionMeshVertecies);
+			
+			List<Vector3> vertecies = new List<Vector3>();
+			List<Vector2> UVs = new List<Vector2>();
+			List<int> tris = new List<int>();
+			
+			if ( solutionMeshVertecies.Count > 3 ) {
+				try {
+					P2T.Triangulate(polygon);
+					
+					foreach( TriangulationPoint point in polygon.Points ) {
+						vertecies.Add( new Vector3( point.Xf, 0f, point.Yf ) );
+						UVs.Add( new Vector2( point.Xf, point.Yf ) );
+					}
+					
+					foreach( DelaunayTriangle triangle in polygon.Triangles ) {
+						tris.Add( polygon.Points.IndexOf( triangle.Points[2] ) );
+						tris.Add( polygon.Points.IndexOf( triangle.Points[1] ) );
+						tris.Add( polygon.Points.IndexOf( triangle.Points[0] ) );
+					}
+				}catch{
+					Debug.LogWarning("Triangulation error");
 				}
 				
-				foreach( DelaunayTriangle triangle in pointSet.Triangles ) {
-					tris.Add( pointSet.Points.IndexOf( triangle.Points[2] ) );
-					tris.Add( pointSet.Points.IndexOf( triangle.Points[1] ) );
-					tris.Add( pointSet.Points.IndexOf( triangle.Points[0] ) );
-				}
-			}catch{
-				Debug.LogWarning("Triangulation error");
+			} else {
+				vertecies.Add( new Vector3( solutionMeshVertecies[0].Xf, 0f, solutionMeshVertecies[0].Yf ));
+				UVs.Add( new Vector2( solutionMeshVertecies[0].Xf, solutionMeshVertecies[0].Yf ) );
+				
+				vertecies.Add( new Vector3( solutionMeshVertecies[1].Xf, 0f, solutionMeshVertecies[1].Yf ));
+				UVs.Add( new Vector2( solutionMeshVertecies[1].Xf, solutionMeshVertecies[1].Yf ) );
+				
+				vertecies.Add( new Vector3( solutionMeshVertecies[2].Xf, 0f, solutionMeshVertecies[2].Yf ));
+				UVs.Add( new Vector2( solutionMeshVertecies[2].Xf, solutionMeshVertecies[2].Yf ) );
+				
+				tris.AddRange( new int[]{2, 1, 0} );
 			}
 			
-		} else {
-			vertecies.Add( new Vector3( solutionMeshVertecies[0].Xf, 0f, solutionMeshVertecies[0].Yf ));
-			UVs.Add( new Vector2( solutionMeshVertecies[0].Xf, solutionMeshVertecies[0].Yf ) );
+			Mesh mesh = new Mesh();
 			
-			vertecies.Add( new Vector3( solutionMeshVertecies[1].Xf, 0f, solutionMeshVertecies[1].Yf ));
-			UVs.Add( new Vector2( solutionMeshVertecies[1].Xf, solutionMeshVertecies[1].Yf ) );
-			
-			vertecies.Add( new Vector3( solutionMeshVertecies[2].Xf, 0f, solutionMeshVertecies[2].Yf ));
-			UVs.Add( new Vector2( solutionMeshVertecies[2].Xf, solutionMeshVertecies[2].Yf ) );
-			
-			tris.AddRange( new int[]{2, 1, 0} );
-		}
-		
-		Mesh mesh = new Mesh();
+			mesh.vertices = vertecies.ToArray();
+			mesh.uv = UVs.ToArray();
+			mesh.triangles = tris.ToArray();
 
-		mesh.vertices = vertecies.ToArray();
-		mesh.uv = UVs.ToArray();
-		mesh.triangles = tris.ToArray();
+			meshList.Add(mesh);
+		}
+
+		return meshList;
 
 		// END TRIANGULATION
-
-		return mesh;
 	}
 
 }
