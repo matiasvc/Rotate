@@ -29,31 +29,29 @@ public class BackgroundObjectInspector : Editor {
 	// Shape variables
 	public Shape2D shapeOutline;
 
-	public override void OnInspectorGUI () {
 
-		editorTarget.animationSpeed = EditorGUILayout.Vector2Field( "UV Animation:", editorTarget.animationSpeed );
-		editorTarget.meshRenderer.sharedMaterial = EditorGUILayout.ObjectField( editorTarget.meshRenderer.sharedMaterial, typeof(Material), false ) as Material;
-
+	public override void OnInspectorGUI() {
+		Vector2 uvAnimation = EditorGUILayout.Vector2Field( "UV Animation:", editorTarget.animationSpeed );
+		Material meshMaterial = EditorGUILayout.ObjectField( editorTarget.meshRenderer.sharedMaterial, typeof(Material), false ) as Material;
 		GUILayout.Space( 15f );
 		GUILayout.Label( "MESH" );
-
-		editorTarget.tileSize = EditorGUILayout.Vector2Field( "Tile Size:", editorTarget.tileSize );
+		Vector2 tileSize = EditorGUILayout.Vector2Field( "Tile Size:", editorTarget.tileSize );
 
 		type = (Type)EditorGUILayout.EnumPopup( "Type", type );
 
-
+		if (GUI.changed) {
+			editorTarget.animationSpeed = uvAnimation;
+			editorTarget.meshRenderer.sharedMaterial = meshMaterial;
+			editorTarget.tileSize = tileSize;
+		}
 
 		if (GUILayout.Button( "Generate Shape Mesh" )) {
-
 			if ( type == Type.PLANE ) {
 				editorTarget.meshFilter.mesh = MeshGenerator.GeneratePlaneMesh( editorTarget.tileSize, editorTarget.planeOutline, shapeOutline );
 			} else {
 				editorTarget.meshFilter.mesh = MeshGenerator.GenerateShapeMesh( editorTarget.tileSize, shapeOutline );
 			}
-
-
 		}
-
 	}
 
 	void OnEnable() {
@@ -73,11 +71,9 @@ public class BackgroundObjectInspector : Editor {
 	}
 
 	void OnDestroy() { // Serialize the shape
-		editorTarget.type = (int)type;
-
 		JSONObject shapeObj = new JSONObject(JSONObject.Type.ARRAY);
 		Vector2[] shapePoints = shapeOutline.GetPoints();
-
+		
 		foreach (Vector2 vec2 in shapePoints) {
 			JSONObject vecObj = new JSONObject(JSONObject.Type.OBJECT);
 			vecObj.AddField("x", vec2.x);
@@ -85,12 +81,15 @@ public class BackgroundObjectInspector : Editor {
 			shapeObj.Add(vecObj);
 		}
 
-		editorTarget.shapeData = shapeObj.print();
-		EditorUtility.SetDirty( editorTarget );
+		string shapeObjStr = shapeObj.print();
+		if (editorTarget.type != (int)type || _editorTarget.shapeData != shapeObjStr ) {
+			editorTarget.type = (int)type;	
+			editorTarget.shapeData = shapeObjStr;
+			EditorUtility.SetDirty( editorTarget );
+		}
 	}
 
 	void OnSceneGUI() {
-
 		Transform targetTransform = editorTarget.transform;
 
 		if ( type == Type.PLANE ) {

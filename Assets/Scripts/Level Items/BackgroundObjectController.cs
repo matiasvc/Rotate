@@ -33,8 +33,6 @@ public class BackgroundObjectController : MonoBehaviour {
 
 	public Rect planeOutline = new Rect( -1.5f, -1.5f, 3f, 3f );
 
-	// Plane variables
-	public string planeData = "";
 	// Shape variables
 	public string shapeData = "";
 
